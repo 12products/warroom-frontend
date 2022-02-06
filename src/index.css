@@ -1,3 +1,25 @@
 @tailwind base;
+
+body {
+  @apply bg-brand-black text-white;
+}
+
 @tailwind components;
+
+.row:first-of-type {
+  @apply border-l-4 border-green-500;
+}
+
+.row:last-of-type {
+  @apply border-r-4 border-green-500;
+}
+
+.cell:first-of-type {
+  @apply border-t-2 border-green-500;
+}
+
+.cell:last-of-type {
+  @apply border-b-2 border-green-500;
+}
+
 @tailwind utilities;

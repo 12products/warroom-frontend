@@ -3,7 +3,11 @@ module.exports = {
   darkMode: false,
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'brand-black': '#12141d',
+      },
+    },
   },
   plugins: [],
 }
