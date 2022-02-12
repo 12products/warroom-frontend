@@ -1,4 +1,4 @@
-import { Component, For, createEffect } from 'solid-js'
+import { Component, For, createEffect, onCleanup } from 'solid-js'
 
 const Grid: Component = () => {
   createEffect(() => {
@@ -15,7 +15,7 @@ const Grid: Component = () => {
       }, 2000)
     }, 2000)
 
-    return () => clearInterval(ping)
+    onCleanup(() => clearInterval(ping))
   })
 
   const grid: number[][] = []
@@ -32,14 +32,14 @@ const Grid: Component = () => {
 
   return (
     <>
-      <div className="grid-container flex justify-center items-center absolute top-0 bottom-0 left-0 right-0">
+      <div class="grid-container flex justify-center items-center absolute top-0 bottom-0 left-0 right-0">
         <For each={grid}>
           {(row) => (
-            <div className="row border-2 border-green-500 divide-y-4 divide-green-500">
+            <div class="row border-2 border-green-500 divide-y-4 divide-green-500">
               <For each={row}>
                 {(cell) => (
-                  <div className="cell w-24 h-24 transition duration-500 ease-in-out relative hover:bg-green-500">
-                    <div className="cell-child hidden bg-red-500 absolute top-0 bottom-0 right-0 left-0"></div>
+                  <div class="cell w-24 h-24 transition duration-500 ease-in-out relative hover:bg-green-500">
+                    <div class="cell-child hidden bg-red-500 absolute top-0 bottom-0 right-0 left-0"></div>
                   </div>
                 )}
               </For>

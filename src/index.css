@@ -1,7 +1,7 @@
 @tailwind base;
 
 body {
-  @apply bg-brand-black text-white;
+  @apply bg-zinc-900 text-white tracking-wider;
 }
 
 @tailwind components;
