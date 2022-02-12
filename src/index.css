@@ -1,7 +1,7 @@
 @tailwind base;
 
 body {
-  @apply bg-zinc-900 text-white tracking-wider;
+  @apply bg-zinc-900 bg-opacity-95 text-white tracking-wider;
 }
 
 @tailwind components;
@@ -23,7 +23,7 @@ body {
 }
 
 .input:focus-within label {
-  @apply text-green-500;
+  @apply text-green-500 opacity-100;
 }
 
 @tailwind utilities;
