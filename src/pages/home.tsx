@@ -2,12 +2,12 @@ import type { Component } from 'solid-js'
 import { FiX } from 'solid-icons/fi'
 import { FaSolidMicrophoneSlash, FaSolidMicrophone } from 'solid-icons/fa'
 
-import Nav from '../components/Nav'
+import PublicLayout from '../components/layouts/PublicLayout'
 import Grid from '../components/Grid'
 
 const Home: Component = () => {
   return (
-    <>
+    <PublicLayout>
       <header class="md:pb-18">
         <div class="h-screen relative">
           <div class="relative flex flex-col justify-center h-full z-10 pointer-events-none">
@@ -406,7 +406,7 @@ const Home: Component = () => {
           </div>
         </div>
       </section>
-    </>
+    </PublicLayout>
   )
 }
 

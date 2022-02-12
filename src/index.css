@@ -1,7 +1,7 @@
 @tailwind base;
 
 body {
-  @apply bg-brand-black text-white;
+  @apply bg-zinc-900 bg-opacity-95 text-white tracking-wider;
 }
 
 @tailwind components;
@@ -20,6 +20,10 @@ body {
 
 .cell:last-of-type {
   @apply border-b-2 border-green-500;
+}
+
+.input:focus-within label {
+  @apply text-green-500 opacity-100;
 }
 
 @tailwind utilities;
