@@ -11,7 +11,7 @@ const SignUp: Component = () => {
     <Form
       initialValues={{ email: '', password: '' }}
       validation={{
-        email: Yup.string().required(),
+        email: Yup.string().email().required(),
         password: Yup.string().required(),
       }}
       onSubmit={async ({ values: { email, password } }) => {
@@ -27,14 +27,8 @@ const SignUp: Component = () => {
     >
       <div class="flex flex-col">
         <div class="space-y-4">
-          <Input name="email" label="Email" labelClass="text-zinc-300" />
-
-          <Input
-            name="password"
-            label="Password"
-            type="password"
-            labelClass="text-zinc-300"
-          />
+          <Input name="email" label="Email" />
+          <Input name="password" label="Password" type="password" />
         </div>
 
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">

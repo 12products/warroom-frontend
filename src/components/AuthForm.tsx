@@ -24,7 +24,7 @@ const AuthForm: Component<Props> = ({ state: initialState }) => {
       <div class="mt-20 w-1/3">
         <h1 class="font-bold text-xl">{getState()}</h1>
 
-        <div class="bg-zinc-800  p-4 rounded mt-2">
+        <div class="bg-zinc-700 bg-opacity-75 p-7 rounded mt-2 shadow-2xl">
           {getState() === STATES.SIGN_IN && <SignInForm />}
           {getState() === STATES.SIGN_UP && <SignUpForm />}
         </div>

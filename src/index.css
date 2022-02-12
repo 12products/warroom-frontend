@@ -22,4 +22,8 @@ body {
   @apply border-b-2 border-green-500;
 }
 
+.input:focus-within label {
+  @apply text-green-500;
+}
+
 @tailwind utilities;
