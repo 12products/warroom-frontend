@@ -17,7 +17,6 @@ const Incident: Component = () => {
 
         <div class="space-y-4">
           <IncidentProperties />
-
           <IncidentActionItems />
         </div>
       </div>
