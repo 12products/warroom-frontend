@@ -11,7 +11,7 @@ export type AuthState = {
 }
 
 type AuthActions = {
-  logIn: (user: User) => void
+  signIn: (user: User) => void
   signOut: () => void
 }
 
@@ -26,7 +26,7 @@ const EMPTY_STATE = {
 const [state, setState] = createStore<AuthState>(EMPTY_STATE)
 
 const ACTIONS = {
-  logIn: (user: User) => {
+  signIn: (user: User) => {
     setState({ user, isAuthenticated: true })
   },
   signOut: async () => {

@@ -16,7 +16,7 @@ const Nav: Component = () => {
 
   return (
     <>
-      <nav class="flex justify-between items-center">
+      <nav class="flex justify-between items-center mb-4">
         <Logo />
 
         <Button onClick={handleSignOut}>Sign Out</Button>

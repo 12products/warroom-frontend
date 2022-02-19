@@ -9,7 +9,7 @@ const AppLayout: Component = ({ children }) => {
   const navigate = useNavigate()
 
   if (!isAuthenticated) {
-    navigate('/login')
+    navigate('/signup')
   }
 
   return (

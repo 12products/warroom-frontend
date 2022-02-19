@@ -12,7 +12,7 @@ const Nav: Component = () => {
       <nav class="flex justify-between items-center">
         <Logo />
 
-        <Button onClick={() => navigate('/login')}>Log In</Button>
+        <Button onClick={() => navigate('/signin')}>Sign In</Button>
       </nav>
     </>
   )
