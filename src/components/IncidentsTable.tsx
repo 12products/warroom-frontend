@@ -10,7 +10,7 @@ type Props = {
 const IncidentsTableEmptyState: Component = () => {
   return (
     <div class="flex flex-col justify-center items-center h-full">
-      <div class="text-zinc-500">No incidents found</div>
+      <div class="text-zinc-500 mb-2">No incidents found</div>
       <div>Create one?</div>
     </div>
   )
@@ -18,7 +18,7 @@ const IncidentsTableEmptyState: Component = () => {
 
 const IncidentsTable: Component<Props> = ({ incidents }) => {
   return (
-    <section class="col-span-3 border border-zinc-700 rounded text-sm text-zinc-300 space-y-4">
+    <section class="col-span-3 border border-zinc-700 rounded text-sm text-zinc-300">
       <For each={incidents} fallback={<IncidentsTableEmptyState />}>
         {(incident) => <IncidentRow incident={incident} />}
       </For>

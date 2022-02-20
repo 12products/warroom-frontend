@@ -33,6 +33,10 @@ export const routes = [
         path: '/room',
         component: lazy(() => import('./pages/incidents/[id]/room')),
       },
+      {
+        path: '/:section',
+        component: lazy(() => import('./pages/incidents/[id]')),
+      },
     ],
   },
 ]

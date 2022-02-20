@@ -4,7 +4,7 @@ import IncidentProperty from './IncidentProperty'
 
 const IncidentProperties: Component = () => {
   return (
-    <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm space-y-4">
+    <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm">
       <IncidentProperty
         label="Satus"
         selected="investigating"

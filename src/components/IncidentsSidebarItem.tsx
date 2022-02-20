@@ -2,7 +2,7 @@ import { Component } from 'solid-js'
 import classnames from 'classnames'
 import { useNavigate, useMatch } from 'solid-app-router'
 
-import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/incidents'
+import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/ui'
 
 type Props = {
   item: IncidentsSidebarItemType
