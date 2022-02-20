@@ -3,7 +3,7 @@ import { Component, createSignal, Show, For } from 'solid-js'
 import { IncidentPropertyOption } from '../types/Incident'
 import IncidentPropertyDropdownOption from './IncidentPropertyDropdownOption'
 import onClickOutside from '../directives/onClickOutside'
-import { getUseDirectives } from '../utils/getUseDirectives'
+import { getUseDirectives } from '../utils/directives'
 
 type Props = {
   label: string
