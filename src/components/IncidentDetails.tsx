@@ -40,7 +40,7 @@ const IncidentDetails: Component = () => {
   const navigate = useNavigate()
   const { id: incidentId, section } = useParams()
   const currentSection =
-    Object.keys(SECTION_TYPE).find((key) => key === section.toUpperCase()) ||
+    Object.keys(SECTION_TYPE).find((key) => key === section?.toUpperCase()) ||
     SECTION_TYPE.STATUSES
   const [getSelectedSection, setSelectedSection] = createSignal<SECTION_TYPE>(
     currentSection as SECTION_TYPE
