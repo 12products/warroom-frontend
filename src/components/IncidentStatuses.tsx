@@ -31,7 +31,7 @@ const IncidentStatusesEmptyState: Component = () => {
 
 const IncidentStatuses: Component = () => {
   return (
-    <section class="text-sm p-8 space-y-8 border border-t-0 border-zinc-700 rounded-b">
+    <section class="text-sm p-8 space-y-8">
       <For each={STATUSES} fallback={<IncidentStatusesEmptyState />}>
         {(statusMessage) => <IncidentStatus statusMessage={statusMessage} />}
       </For>

@@ -52,8 +52,8 @@ const IncidentDetails: Component = () => {
   }
 
   return (
-    <section>
-      <header class="border rounded-t flex items-center justify-between px-8 py-4 border-zinc-700 bg-zinc-800">
+    <section class="shadow shadow-zinc-900/50 rounded border border-zinc-700">
+      <header class="rounded-t flex items-center justify-between px-8 py-4 border-b border-zinc-700 bg-zinc-800">
         <div class="flex space-x-8">
           <For each={Object.values(SECTIONS)}>
             {({ id: sectionId }) => {
