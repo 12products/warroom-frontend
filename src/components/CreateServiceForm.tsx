@@ -50,7 +50,7 @@ const CreateServiceForm: Component = () => {
           },
         } = createServiceResult()
 
-        navigate(`/incidents/s/${id}`)
+        navigate(`/incidents/service/${id}`)
       }}
     >
       <div class="flex flex-col">
