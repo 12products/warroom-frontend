@@ -11,7 +11,7 @@ const ACTION_ITMES = [
 const IncidentActionItems: Component = () => {
   return (
     <section class="p-4 pt-0 text-sm">
-      <h2 class="text-zinc-500 mb-4">Action Items</h2>
+      <h2 class="text-zinc-500 mb-2">Action Items</h2>
 
       <ul class="space-y-2">
         <For each={ACTION_ITMES}>

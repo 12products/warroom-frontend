@@ -12,7 +12,7 @@ enum SECTION_TYPE {
 
 const CreateButton: Component = () => {
   return (
-    <div class="w-6 h-6 bg-zinc-700 rounded flex justify-center items-center hover:bg-opacity-75 hover:cursor-pointer">
+    <div class="w-6 h-6 bg-zinc-700 shadow border border-zinc-600 rounded flex justify-center items-center hover:bg-opacity-75 hover:cursor-pointer text-zinc-300">
       <FiPlus size={16} />
     </div>
   )
