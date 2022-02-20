@@ -1,20 +1,20 @@
 import { Component, createSignal, Show, For, Accessor } from 'solid-js'
 import classnames from 'classnames'
 
-import { DropdownPropertyOption } from '../types/Incident'
-import IncidentPropertyDropdownOption from './IncidentPropertyDropdownOption'
+import { DropdownOption as DropdownOptionType } from '../types/ui'
+import DropdownOption from './DropdownOption'
 import onClickOutside from '../directives/onClickOutside'
 import { getUseDirectives } from '../utils/directives'
 import { getOption } from '../utils/getOption'
-import { FiCornerDownLeft } from 'solid-icons/fi'
 
 type Props = {
   placeholder: string | null
-  options: DropdownPropertyOption[]
-  selected: Accessor<string>
-  onSelected: (optionLabel: DropdownPropertyOption) => void
+  options: DropdownOptionType[]
+  selected: Accessor<string | null>
+  onSelected: (optionLabel: DropdownOptionType | null) => void
 }
-const IncidentPropertyDropdown: Component<Props> = ({
+
+const Dropdown: Component<Props> = ({
   placeholder,
   options,
   selected,
@@ -23,7 +23,7 @@ const IncidentPropertyDropdown: Component<Props> = ({
   const [getShouldDisplayOptions, setShouldDisplayOptions] = createSignal(false)
 
   const handleSelectOption = (id: string) => {
-    onSelected(getOption(id, options) || { id: '', label: '' })
+    onSelected(getOption(id, options) || null)
     setShouldDisplayOptions(false)
   }
 
@@ -43,7 +43,7 @@ const IncidentPropertyDropdown: Component<Props> = ({
         onClick={() => setShouldDisplayOptions(!getShouldDisplayOptions())}
       >
         <Show when={selected()} fallback={<>{placeholder}</>}>
-          {selected().toLowerCase()}
+          {selected()?.toLowerCase()}
         </Show>
       </div>
 
@@ -51,10 +51,7 @@ const IncidentPropertyDropdown: Component<Props> = ({
         <div class="absolute bg-zinc-800 border border-zinc-400 border-opacity-25 z-10 w-full mt-1 rounded shadow-lg shadow-zinc-900/50">
           <For each={options}>
             {(item) => (
-              <IncidentPropertyDropdownOption
-                onClick={handleSelectOption}
-                {...item}
-              />
+              <DropdownOption onClick={handleSelectOption} {...item} />
             )}
           </For>
         </div>
@@ -63,4 +60,4 @@ const IncidentPropertyDropdown: Component<Props> = ({
   )
 }
 
-export default IncidentPropertyDropdown
+export default Dropdown

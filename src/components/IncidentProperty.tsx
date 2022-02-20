@@ -1,7 +1,7 @@
 import { Accessor, Component, createSignal } from 'solid-js'
 
-import { DropdownPropertyOption } from '../types/Incident'
-import IncidentPropertyDropdown from './IncidentPropertyDropdown'
+import { DropdownPropertyOption } from '../types/incident'
+import IncidentPropertyDropdown from './Dropdown'
 import { getOption } from '../utils/getOption'
 
 type Props = {

@@ -1,7 +1,7 @@
 import { Component, For } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 
-import { Incident } from '../types/Incident'
+import { Incident } from '../types/incident'
 import Button from './Button'
 import IncidentRow from './IncidentRow'
 

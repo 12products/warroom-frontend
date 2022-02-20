@@ -1,4 +1,4 @@
-import { IncidentStatus } from './Incident'
+import { IncidentStatus } from './incident'
 
 export type StatusMessage = {
   id: string

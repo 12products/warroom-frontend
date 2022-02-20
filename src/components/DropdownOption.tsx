@@ -1,6 +1,6 @@
 import { Component, createSignal } from 'solid-js'
 
-import { DropdownPropertyOption } from '../types/Incident'
+import { DropdownPropertyOption } from '../types/incident'
 
 type Props = {
   onClick: (id: string) => void

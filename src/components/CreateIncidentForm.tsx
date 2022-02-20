@@ -5,8 +5,9 @@ import { createMutation } from 'solid-urql'
 
 import Button from './Button'
 import Input from './Input'
-import DropdownForm from './DropdownForm'
-import { DropdownPropertyOption, IncidentStatus } from '../types/Incident'
+import DropdownForm from './FormDropdown'
+import { IncidentStatus } from '../types/incident'
+import { DropdownOption } from '../types/ui'
 
 const CreateIncidentMutation = `
   mutation ($input: CreateIncidentInput!) {
@@ -15,14 +16,14 @@ const CreateIncidentMutation = `
     }
   }
 `
-const statusOptions: DropdownPropertyOption[] = Object.keys(IncidentStatus).map(
+const statusOptions: DropdownOption[] = Object.keys(IncidentStatus).map(
   (status) => ({
     id: status,
     label: status,
   })
 )
 
-const serviceOptions: DropdownPropertyOption[] = [
+const serviceOptions: DropdownOption[] = [
   { id: 'bb41245e-cd22-402d-9f79-e04f2390d83f', label: 'Service 1' },
   { id: 'cfb79f35-bb0e-4fd3-8c93-30af62d82f1e', label: 'Service 2' },
   { id: 'ea0050ef-2ca5-4692-b18d-5a24733d5367', label: 'Service 3' },

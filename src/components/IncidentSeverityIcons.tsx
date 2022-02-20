@@ -1,4 +1,4 @@
-import { IncidentSeverity } from '../types/Incident'
+import { IncidentSeverity } from '../types/incident'
 
 export const CriticalIncidentSeverityIcon = () => (
   <div class="flex justify-center items-center bg-zinc-500 font-bold text-zinc-800 rounded w-4 h-4">
