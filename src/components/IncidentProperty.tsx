@@ -1,24 +1,34 @@
-import { Component } from 'solid-js'
+import { Accessor, Component, createSignal } from 'solid-js'
 
-import { IncidentPropertyOption } from '../types/Incident'
+import { DropdownPropertyOption } from '../types/Incident'
 import IncidentPropertyDropdown from './IncidentPropertyDropdown'
+import { getOption } from '../utils/getOption'
 
 type Props = {
   label: string
-  selected: string
-  options: IncidentPropertyOption[]
+  options: DropdownPropertyOption[]
+  selected: string | null
 }
 
 const IncidentProperty: Component<Props> = ({ label, selected, options }) => {
+  const [getSelected, setSelected] = createSignal(
+    selected ? getOption(selected, options)?.label : null
+  )
+
+  const onSelected = (option: DropdownPropertyOption) => {
+    setSelected(option.label)
+  }
+
   return (
     <div class="grid gap-4 grid-cols-3">
       <div class="flex items-center text-zinc-500">{label}</div>
 
       <div class="col-span-2">
         <IncidentPropertyDropdown
-          label={label}
-          selected={selected}
+          placeholder={label}
+          selected={getSelected as Accessor<string>}
           options={options}
+          onSelected={onSelected}
         />
       </div>
     </div>

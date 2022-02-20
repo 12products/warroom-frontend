@@ -1,30 +1,29 @@
-import { Component, createSignal, Show, For } from 'solid-js'
+import { Component, createSignal, Show, For, Accessor } from 'solid-js'
 import classnames from 'classnames'
 
-import { IncidentPropertyOption } from '../types/Incident'
+import { DropdownPropertyOption } from '../types/Incident'
 import IncidentPropertyDropdownOption from './IncidentPropertyDropdownOption'
 import onClickOutside from '../directives/onClickOutside'
 import { getUseDirectives } from '../utils/directives'
+import { getOption } from '../utils/getOption'
+import { FiCornerDownLeft } from 'solid-icons/fi'
 
 type Props = {
-  label: string
-  options: IncidentPropertyOption[]
-  selected: string | null
+  placeholder: string | null
+  options: DropdownPropertyOption[]
+  selected: Accessor<string>
+  onSelected: (optionLabel: DropdownPropertyOption) => void
 }
-
 const IncidentPropertyDropdown: Component<Props> = ({
-  label,
+  placeholder,
   options,
-  selected = null,
+  selected,
+  onSelected,
 }) => {
-  const getOption = (id: string) => options.find((option) => option.id === id)
-  const [getSelected, setSelected] = createSignal(
-    selected ? getOption(selected)?.label : null
-  )
   const [getShouldDisplayOptions, setShouldDisplayOptions] = createSignal(false)
 
   const handleSelectOption = (id: string) => {
-    setSelected(getOption(id)?.label)
+    onSelected(getOption(id, options) || { id: '', label: '' })
     setShouldDisplayOptions(false)
   }
 
@@ -36,18 +35,15 @@ const IncidentPropertyDropdown: Component<Props> = ({
           () => setShouldDisplayOptions(false),
         ])}
         class={classnames(
-          'border border-transparent hover:border-zinc-400 hover:border-opacity-25 p-2 rounded hover:cursor-pointer',
+          'border border-transparent hover:border-zinc-400 hover:border-opacity-25 p-2 rounded hover:cursor-pointer capitalize',
           {
             'border-zinc-400 border-opacity-25': getShouldDisplayOptions(),
           }
         )}
         onClick={() => setShouldDisplayOptions(!getShouldDisplayOptions())}
       >
-        <Show
-          when={getSelected()}
-          fallback={<>Select {label.toLowerCase()}...</>}
-        >
-          {getSelected()}
+        <Show when={selected()} fallback={<>{placeholder}</>}>
+          {selected().toLowerCase()}
         </Show>
       </div>
 

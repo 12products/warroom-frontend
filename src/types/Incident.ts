@@ -21,7 +21,7 @@ export enum IncidentSeverity {
   LOW = 'LOW',
 }
 
-export type IncidentPropertyOption = {
+export type DropdownPropertyOption = {
   id: string
   label: string
 }
