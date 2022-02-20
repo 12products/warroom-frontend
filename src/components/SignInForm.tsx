@@ -27,7 +27,7 @@ const SignIn: Component = () => {
           throw error
         }
 
-        navigate('/dashboard')
+        navigate('/incidents')
       }}
     >
       <div class="flex flex-col">
