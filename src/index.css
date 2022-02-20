@@ -23,7 +23,7 @@ body {
 }
 
 .input:focus-within label {
-  @apply text-green-500 opacity-100;
+  @apply text-green-500;
 }
 
 @tailwind utilities;

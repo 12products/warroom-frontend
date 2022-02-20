@@ -43,7 +43,7 @@ const IncidentEventsEmptyState: Component = () => {
 
 const IncidentEvents: Component = () => {
   return (
-    <section class="text-sm p-8 space-y-8 border border-t-0 border-zinc-700 rounded-b">
+    <section class="text-sm p-8 space-y-8">
       <For each={EVENTS} fallback={<IncidentEventsEmptyState />}>
         {(event) => <IncidentEvent event={event} />}
       </For>

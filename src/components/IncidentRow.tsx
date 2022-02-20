@@ -15,7 +15,7 @@ const IncidentRow: Component<Props> = ({ incident }) => {
 
   return (
     <div
-      class="flex justify-between items-center border-b last:border-b-0 border-zinc-700 hover:bg-zinc-800 hover:cursor-pointer p-4"
+      class="flex justify-between items-center border-b last:border-b-0 border-zinc-700 hover:bg-zinc-800 hover:cursor-pointer p-4 first:rounder-t last:rounded-b"
       onClick={() => navigate(`/incidents/${incident.id}`)}
     >
       <div class="flex space-x-4">
