@@ -27,7 +27,7 @@ const IncidentRow: Component<Props> = ({ incident }) => {
       </div>
 
       <div class="text-zinc-500">{`${format(
-        incident.date,
+        new Date(incident.incidentDate),
         'MMM do, yyyy'
       )}`}</div>
     </div>

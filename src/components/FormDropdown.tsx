@@ -2,7 +2,7 @@ import { Component, createSignal } from 'solid-js'
 import { useField } from 'solid-js-form'
 import { DropdownOption } from '../types/ui'
 
-import IncidentPropertyDropdown from './Dropdown'
+import Dropdown from './Dropdown'
 
 type Props = {
   options: DropdownOption[]
@@ -20,12 +20,13 @@ const FormDropdown: Component<Props> = ({ options, field, placeholder }) => {
   }
 
   return (
-    <div class="border text-zinc-400 rounded">
-      <IncidentPropertyDropdown
+    <div class="mt-1 shadow-inner shadow-zinc-900/25 bg-transparent  rounded border-zinc-700 outline-none">
+      <Dropdown
         placeholder={placeholder}
         selected={getSelected}
         options={options}
         onSelected={onSelected}
+        dropdownClass="border border-zinc-700"
       />
     </div>
   )

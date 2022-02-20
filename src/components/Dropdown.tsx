@@ -12,6 +12,7 @@ type Props = {
   options: DropdownOptionType[]
   selected: Accessor<string | null>
   onSelected: (optionLabel: DropdownOptionType | null) => void
+  dropdownClass?: string
 }
 
 const Dropdown: Component<Props> = ({
@@ -19,6 +20,7 @@ const Dropdown: Component<Props> = ({
   options,
   selected,
   onSelected,
+  dropdownClass = '',
 }) => {
   const [getShouldDisplayOptions, setShouldDisplayOptions] = createSignal(false)
 
@@ -35,14 +37,18 @@ const Dropdown: Component<Props> = ({
           () => setShouldDisplayOptions(false),
         ])}
         class={classnames(
-          'border border-transparent hover:border-zinc-400 hover:border-opacity-25 p-2 rounded hover:cursor-pointer capitalize',
+          'p-2 rounded hover:cursor-pointer capitalize',
           {
             'border-zinc-400 border-opacity-25': getShouldDisplayOptions(),
-          }
+          },
+          dropdownClass
         )}
         onClick={() => setShouldDisplayOptions(!getShouldDisplayOptions())}
       >
-        <Show when={selected()} fallback={<>{placeholder}</>}>
+        <Show
+          when={selected()}
+          fallback={<span class="text-zinc-500">{placeholder}</span>}
+        >
           {selected()?.toLowerCase()}
         </Show>
       </div>

@@ -4,7 +4,7 @@ export type Incident = {
   description: string
   status: IncidentStatus
   severity: IncidentSeverity
-  date: Date
+  incidentDate: Date
 }
 
 export enum IncidentStatus {

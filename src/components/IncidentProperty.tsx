@@ -1,12 +1,12 @@
 import { Accessor, Component, createSignal } from 'solid-js'
 
-import { DropdownPropertyOption } from '../types/incident'
-import IncidentPropertyDropdown from './Dropdown'
+import { DropdownOption } from '../types/ui'
+import Dropdown from './Dropdown'
 import { getOption } from '../utils/getOption'
 
 type Props = {
   label: string
-  options: DropdownPropertyOption[]
+  options: DropdownOption[]
   selected: string | null
 }
 
@@ -15,8 +15,8 @@ const IncidentProperty: Component<Props> = ({ label, selected, options }) => {
     selected ? getOption(selected, options)?.label : null
   )
 
-  const onSelected = (option: DropdownPropertyOption) => {
-    setSelected(option.label)
+  const onSelected = (option: DropdownOption | null) => {
+    setSelected(option?.label)
   }
 
   return (
@@ -24,11 +24,12 @@ const IncidentProperty: Component<Props> = ({ label, selected, options }) => {
       <div class="flex items-center text-zinc-500">{label}</div>
 
       <div class="col-span-2">
-        <IncidentPropertyDropdown
+        <Dropdown
           placeholder={label}
           selected={getSelected as Accessor<string>}
           options={options}
           onSelected={onSelected}
+          dropdownClass="border border-transparent"
         />
       </div>
     </div>

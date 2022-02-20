@@ -1,21 +1,33 @@
-import { Component } from 'solid-js'
+import { Component, Show, createSignal, createEffect } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
-import { createMutation } from 'solid-urql'
+import { createMutation, createQuery } from 'solid-urql'
+import { useNavigate } from 'solid-app-router'
 
 import Button from './Button'
 import Input from './Input'
-import DropdownForm from './FormDropdown'
+import FormDropdown from './FormDropdown'
 import { IncidentStatus } from '../types/incident'
 import { DropdownOption } from '../types/ui'
+import { Service } from '../types/service'
 
-const CreateIncidentMutation = `
+const SERVICES_QUERY = `
+  query {
+    services {
+      id
+      name
+    }
+  }
+`
+
+const CREATE_INCIDENT_MUTATION = `
   mutation ($input: CreateIncidentInput!) {
     createIncident(createIncidentInput: $input){
       id
     }
   }
 `
+
 const statusOptions: DropdownOption[] = Object.keys(IncidentStatus).map(
   (status) => ({
     id: status,
@@ -23,18 +35,28 @@ const statusOptions: DropdownOption[] = Object.keys(IncidentStatus).map(
   })
 )
 
-const serviceOptions: DropdownOption[] = [
-  { id: 'bb41245e-cd22-402d-9f79-e04f2390d83f', label: 'Service 1' },
-  { id: 'cfb79f35-bb0e-4fd3-8c93-30af62d82f1e', label: 'Service 2' },
-  { id: 'ea0050ef-2ca5-4692-b18d-5a24733d5367', label: 'Service 3' },
-]
-
 const CreateIncidentForm: Component = () => {
+  const [getServices, setServices] = createSignal([])
+  const [servicesResult, servicesState] = createQuery({ query: SERVICES_QUERY })
   const [createIncidentResult, createIncident] = createMutation(
-    CreateIncidentMutation
+    CREATE_INCIDENT_MUTATION
   )
-  const handleOnSubmit = (
+  const navigate = useNavigate()
+
+  createEffect(() => {
+    if (!servicesState().fetching) {
+      setServices(
+        servicesResult().services.map(({ id, name }: Service) => ({
+          id,
+          label: name,
+        }))
+      )
+    }
+  })
+
+  const handleOnSubmit = async (
     form: FormType.Context<{
+      title: string
       description: string
       status: string
       serviceId: string
@@ -42,42 +64,67 @@ const CreateIncidentForm: Component = () => {
   ) => {
     const variables = {
       input: {
+        title: form.values.title,
         description: form.values.description,
         status: form.values.status,
         serviceId: form.values.serviceId,
       },
     }
-    createIncident(variables).then((result) => console.log(result))
+
+    await createIncident(variables)
+
+    const {
+      data: {
+        createIncident: { id },
+      },
+    } = createIncidentResult()
+
+    navigate(`/incidents/${id}`)
   }
+
   return (
     <Form
-      initialValues={{ description: '', status: '', serviceId: '' }}
+      initialValues={{ title: '', description: '', status: '', serviceId: '' }}
       validation={{
+        title: Yup.string().required(),
         description: Yup.string().required(),
         status: Yup.string().required(),
         serviceId: Yup.string().required(),
       }}
       onSubmit={async (form) => handleOnSubmit(form)}
     >
-      <div class="grid grid-cols-1 gap-4 place-content-center m-24">
-        <div class="space-y-4">
-          <Input name="description" label="Description" />
-        </div>
-        <DropdownForm
+      <div class="space-y-4">
+        <Input name="title" label="Title" />
+
+        <Input name="description" label="Description" />
+
+        <FormDropdown
           options={statusOptions}
-          placeholder="Select status"
+          placeholder="Select status..."
           field="status"
         />
-        <DropdownForm
-          options={serviceOptions}
-          placeholder="Select service"
-          field="serviceId"
-        />
 
-        <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
-          Create
-        </Button>
+        <Show
+          when={getServices().length}
+          fallback={
+            <FormDropdown
+              options={[]}
+              placeholder="Select service..."
+              field="serviceId"
+            />
+          }
+        >
+          <FormDropdown
+            options={getServices()}
+            placeholder="Select service..."
+            field="serviceId"
+          />
+        </Show>
       </div>
+
+      <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">
+        Create
+      </Button>
     </Form>
   )
 }
