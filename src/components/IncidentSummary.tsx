@@ -2,7 +2,7 @@ import { Component } from 'solid-js'
 
 const IncidentSummary: Component = () => {
   return (
-    <section class="border border-zinc-700 rounded p-4 space-y-4">
+    <section class="border border-zinc-700 rounded p-8 space-y-4">
       <div class="flex justify-between">
         <div>
           <label class="text-sm text-zinc-500">BAT-66</label>
@@ -22,7 +22,7 @@ const IncidentSummary: Component = () => {
         </div>
       </div>
 
-      <p class="text-zinc-300">
+      <p class="text-zinc-300 text-sm">
         Made in the interiors of collapsing stars explorations paroxysm of
         global death vastness is bearable only through love globular star
         cluster across the centuries. Preserve and cherish that pale blue dot

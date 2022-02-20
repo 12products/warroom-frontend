@@ -8,17 +8,17 @@ export type Incident = {
 }
 
 export enum IncidentStatus {
-  INVESTIGATING,
-  IDENTIFIED,
-  MONITORING,
-  RESOLVED,
+  INVESTIGATING = 'INVESTIGATING',
+  IDENTIFIED = 'IDENTIFIED',
+  MONITORING = 'MONITORING',
+  RESOLVED = 'RESOLVED',
 }
 
 export enum IncidentSeverity {
-  CRITICAL,
-  HIGH,
-  MEDIUM,
-  LOW,
+  CRITICAL = 'CRITICAL',
+  HIGH = 'HIGH',
+  MEDIUM = 'MEDIUM',
+  LOW = 'LOW',
 }
 
 export type IncidentPropertyOption = {

@@ -1,7 +1,7 @@
 import { Component, For } from 'solid-js'
 
 import IncidentsSidebarItem from './IncidentsSidebarItem'
-import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/incidents'
+import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/ui'
 
 const SIDEBAR_ITEMS = [
   { title: 'My Incidents', route: '/incidents/assigned' },

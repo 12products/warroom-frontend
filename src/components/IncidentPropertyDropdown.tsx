@@ -1,4 +1,5 @@
 import { Component, createSignal, Show, For } from 'solid-js'
+import classnames from 'classnames'
 
 import { IncidentPropertyOption } from '../types/Incident'
 import IncidentPropertyDropdownOption from './IncidentPropertyDropdownOption'
@@ -34,7 +35,12 @@ const IncidentPropertyDropdown: Component<Props> = ({
           onClickOutside,
           () => setShouldDisplayOptions(false),
         ])}
-        class="border border-transparent hover:border-zinc-400 hover:border-opacity-25 p-2 rounded hover:cursor-pointer"
+        class={classnames(
+          'border border-transparent hover:border-zinc-400 hover:border-opacity-25 p-2 rounded hover:cursor-pointer',
+          {
+            'border-zinc-400 border-opacity-25': getShouldDisplayOptions(),
+          }
+        )}
         onClick={() => setShouldDisplayOptions(!getShouldDisplayOptions())}
       >
         <Show
@@ -46,9 +52,9 @@ const IncidentPropertyDropdown: Component<Props> = ({
       </div>
 
       <Show when={getShouldDisplayOptions()}>
-        <div class="absolute bg-zinc-800 border border-zinc-400 border-opacity-25 z-10 w-full mt-2 rounded shadow-2xl">
+        <div class="absolute bg-zinc-800 border border-zinc-400 border-opacity-25 z-10 w-full mt-1 rounded shadow-lg shadow-zinc-900/50">
           <For each={options}>
-            {(item, index) => (
+            {(item) => (
               <IncidentPropertyDropdownOption
                 onClick={handleSelectOption}
                 {...item}

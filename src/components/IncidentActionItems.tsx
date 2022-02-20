@@ -10,7 +10,7 @@ const ACTION_ITMES = [
 
 const IncidentActionItems: Component = () => {
   return (
-    <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm">
+    <section class="p-4 pt-0 text-sm">
       <h2 class="text-zinc-500 mb-4">Action Items</h2>
 
       <ul class="space-y-2">
