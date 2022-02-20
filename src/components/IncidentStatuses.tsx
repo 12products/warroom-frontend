@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { Component, For } from 'solid-js'
 
-import { IncidentStatus as IncidentStatusType } from '../types/Incident'
+import { IncidentStatus as IncidentStatusType } from '../types/incident'
 import { StatusMessage } from '../types/statusMessage'
 import IncidentStatus from './IncidentStatus'
 

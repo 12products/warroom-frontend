@@ -2,7 +2,7 @@ import { Component } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 import { format } from 'date-fns'
 
-import { Incident } from '../types/Incident'
+import { Incident } from '../types/incident'
 import { getIncidentSeverityIcon } from './IncidentSeverityIcons'
 
 type Props = {
@@ -27,7 +27,7 @@ const IncidentRow: Component<Props> = ({ incident }) => {
       </div>
 
       <div class="text-zinc-500">{`${format(
-        incident.date,
+        new Date(incident.incidentDate),
         'MMM do, yyyy'
       )}`}</div>
     </div>

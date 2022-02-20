@@ -1,30 +1,31 @@
-import { Component, createSignal, Show, For } from 'solid-js'
+import { Component, createSignal, Show, For, Accessor } from 'solid-js'
 import classnames from 'classnames'
 
-import { IncidentPropertyOption } from '../types/Incident'
-import IncidentPropertyDropdownOption from './IncidentPropertyDropdownOption'
+import { DropdownOption as DropdownOptionType } from '../types/ui'
+import DropdownOption from './DropdownOption'
 import onClickOutside from '../directives/onClickOutside'
 import { getUseDirectives } from '../utils/directives'
+import { getOption } from '../utils/getOption'
 
 type Props = {
-  label: string
-  options: IncidentPropertyOption[]
-  selected: string | null
+  placeholder: string | null
+  options: DropdownOptionType[]
+  selected: Accessor<string | null>
+  onSelected: (optionLabel: DropdownOptionType | null) => void
+  dropdownClass?: string
 }
 
-const IncidentPropertyDropdown: Component<Props> = ({
-  label,
+const Dropdown: Component<Props> = ({
+  placeholder,
   options,
-  selected = null,
+  selected,
+  onSelected,
+  dropdownClass = '',
 }) => {
-  const getOption = (id: string) => options.find((option) => option.id === id)
-  const [getSelected, setSelected] = createSignal(
-    selected ? getOption(selected)?.label : null
-  )
   const [getShouldDisplayOptions, setShouldDisplayOptions] = createSignal(false)
 
   const handleSelectOption = (id: string) => {
-    setSelected(getOption(id)?.label)
+    onSelected(getOption(id, options) || null)
     setShouldDisplayOptions(false)
   }
 
@@ -36,18 +37,19 @@ const IncidentPropertyDropdown: Component<Props> = ({
           () => setShouldDisplayOptions(false),
         ])}
         class={classnames(
-          'border border-transparent hover:border-zinc-400 hover:border-opacity-25 p-2 rounded hover:cursor-pointer',
+          'p-2 rounded hover:cursor-pointer capitalize',
           {
             'border-zinc-400 border-opacity-25': getShouldDisplayOptions(),
-          }
+          },
+          dropdownClass
         )}
         onClick={() => setShouldDisplayOptions(!getShouldDisplayOptions())}
       >
         <Show
-          when={getSelected()}
-          fallback={<>Select {label.toLowerCase()}...</>}
+          when={selected()}
+          fallback={<span class="text-zinc-500">{placeholder}</span>}
         >
-          {getSelected()}
+          {selected()?.toLowerCase()}
         </Show>
       </div>
 
@@ -55,10 +57,7 @@ const IncidentPropertyDropdown: Component<Props> = ({
         <div class="absolute bg-zinc-800 border border-zinc-400 border-opacity-25 z-10 w-full mt-1 rounded shadow-lg shadow-zinc-900/50">
           <For each={options}>
             {(item) => (
-              <IncidentPropertyDropdownOption
-                onClick={handleSelectOption}
-                {...item}
-              />
+              <DropdownOption onClick={handleSelectOption} {...item} />
             )}
           </For>
         </div>
@@ -67,4 +66,4 @@ const IncidentPropertyDropdown: Component<Props> = ({
   )
 }
 
-export default IncidentPropertyDropdown
+export default Dropdown

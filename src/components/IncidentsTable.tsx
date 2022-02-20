@@ -1,6 +1,8 @@
 import { Component, For } from 'solid-js'
+import { useNavigate } from 'solid-app-router'
 
-import { Incident } from '../types/Incident'
+import { Incident } from '../types/incident'
+import Button from './Button'
 import IncidentRow from './IncidentRow'
 
 type Props = {
@@ -8,10 +10,14 @@ type Props = {
 }
 
 const IncidentsTableEmptyState: Component = () => {
+  const navigate = useNavigate()
+  const handleCreateIncident = () => {
+    navigate('/incidents/create')
+  }
   return (
     <div class="flex flex-col justify-center items-center h-52">
       <div class="text-zinc-500 mb-2">No incidents found</div>
-      <div>Create one?</div>
+      <Button onClick={handleCreateIncident}>Create one?</Button>
     </div>
   )
 }

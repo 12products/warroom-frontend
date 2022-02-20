@@ -19,7 +19,7 @@ const ServiceCard: Component<Props> = ({ service }) => {
         'bg-zinc-800 border border-zinc-700 rounded p-8 shadow shadow-zinc-900/50 h-32 flex flex-col justify-between',
         'hover:cursor-pointer hover:bg-opacity-75 hover:shadow-lg',
       ])}
-      onClick={() => navigate(`/incidents/s/${service.id}`)}
+      onClick={() => navigate(`/incidents/service/${service.id}`)}
     >
       <div class="flex justify-between items-center">
         <h2 class="text-2xl font-bold">{service.name}</h2>

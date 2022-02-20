@@ -42,7 +42,7 @@ const IncidentsSidebar: Component = () => {
                 <IncidentsSidebarItem
                   item={{
                     title: service.name,
-                    route: `/incidents/s/${service.id}`,
+                    route: `/incidents/service/${service.id}`,
                   }}
                 />
               )}

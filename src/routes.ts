@@ -21,8 +21,12 @@ export const routes = [
         component: lazy(() => import('./pages/incidents/open')),
       },
       {
-        path: '/s/:id',
+        path: '/service/:id',
         component: lazy(() => import('./pages/incidents/service')),
+      },
+      {
+        path: '/create',
+        component: lazy(() => import('./pages/incidents/create')),
       },
     ],
   },
