@@ -14,12 +14,19 @@ const Nav: Component = () => {
     navigate('/signin')
   }
 
+  const handleCreateIncident = () => {
+    navigate('/incidents/create')
+  }
+
   return (
     <>
       <nav class="flex justify-between items-center mb-4">
         <Logo />
+        <div class="space-x-4">
+          <Button onClick={handleCreateIncident}>Create Incident</Button>
 
-        <Button onClick={handleSignOut}>Sign Out</Button>
+          <Button onClick={handleSignOut}>Sign Out</Button>
+        </div>
       </nav>
     </>
   )

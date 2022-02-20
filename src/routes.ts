@@ -24,6 +24,10 @@ export const routes = [
         path: '/s/:id',
         component: lazy(() => import('./pages/incidents/service')),
       },
+      {
+        path: '/create',
+        component: lazy(() => import('./pages/incidents/create')),
+      },
     ],
   },
   {
