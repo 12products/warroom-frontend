@@ -27,7 +27,7 @@ const CREATE_ORGANIZATION = `
 const CreateServiceForm: Component = () => {
   const [{ user }] = useContext(AuthContext)
   const navigate = useNavigate()
-  const [updateUserResult, updateUser] = createMutation(CREATE_USER)
+  const [createUserResult, createUser] = createMutation(CREATE_USER)
   const [createOrganizationResult, createOrganization] =
     createMutation(CREATE_ORGANIZATION)
 
@@ -46,7 +46,7 @@ const CreateServiceForm: Component = () => {
       onSubmit={async ({
         values: { firstName, lastName, organizationName },
       }) => {
-        await updateUser({
+        await createUser({
           input: {
             id: user?.id,
             email: user?.email,
@@ -61,7 +61,7 @@ const CreateServiceForm: Component = () => {
           },
         })
 
-        if (updateUserResult().error || createOrganizationResult().error) {
+        if (createUserResult().error || createOrganizationResult().error) {
           alert('Something went wrong, please try again.')
           return
         }

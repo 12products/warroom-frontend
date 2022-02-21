@@ -1,4 +1,4 @@
-import { Component, Show } from 'solid-js'
+import { Component, Suspense } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
 import AppLayout from '../../components/layouts/AppLayout'

@@ -9,7 +9,7 @@ const CreateServiceButton: Component = () => {
   return (
     <div
       class={classnames([
-        'bg-zinc-800 border border-zinc-700 rounded h-32 flex flex-col justify-center items-center text-zinc-400 shadow shadow-zinc-900/50',
+        'border border-zinc-700 rounded h-32 flex flex-col justify-center items-center text-zinc-400 shadow shadow-zinc-900/50',
         'hover:cursor-pointer hover:bg-opacity-75 hover:shadow-lg',
       ])}
       onClick={() => navigate('/services/create')}

@@ -42,7 +42,9 @@ const CreateService: Component = () => {
             {(service) => <ServiceCard service={service} />}
           </For>
 
-          <CreateServiceButton />
+          <Show when={services().services.length}>
+            <CreateServiceButton />
+          </Show>
         </Show>
       </main>
     </AppLayout>
