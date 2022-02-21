@@ -5,7 +5,7 @@ import IncidentsSidebarItem from './IncidentsSidebarItem'
 import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/ui'
 import { Service } from '../types/service'
 
-const SERVICES_QUERY = `
+const GET_SERVICES = `
   query {
     services {
       id
@@ -22,7 +22,7 @@ const SIDEBAR_ITEMS = [
 ] as IncidentsSidebarItemType[]
 
 const IncidentsSidebar: Component = () => {
-  const [services, servicesState] = createQuery({ query: SERVICES_QUERY })
+  const [services] = createQuery({ query: GET_SERVICES })
 
   return (
     <aside class="col-span-1">
@@ -33,22 +33,20 @@ const IncidentsSidebar: Component = () => {
           </For>
         </section>
 
-        <Show when={!servicesState().fetching}>
-          <section class="space-y-1">
-            <h3 class="px-2 py-1 text-zinc-500">Services</h3>
+        <section class="space-y-1">
+          <h3 class="px-2 py-1 text-zinc-500">Services</h3>
 
-            <For each={services().services as Service[]}>
-              {(service) => (
-                <IncidentsSidebarItem
-                  item={{
-                    title: service.name,
-                    route: `/incidents/service/${service.id}`,
-                  }}
-                />
-              )}
-            </For>
-          </section>
-        </Show>
+          <For each={services()?.services as Service[]}>
+            {(service) => (
+              <IncidentsSidebarItem
+                item={{
+                  title: service.name,
+                  route: `/incidents/service/${service.id}`,
+                }}
+              />
+            )}
+          </For>
+        </section>
       </div>
     </aside>
   )

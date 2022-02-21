@@ -37,7 +37,7 @@ const AssignedIncidents: Component = () => {
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        <IncidentsTable incidents={INCIDENTS} />
+        {/* <IncidentsTable incidents={()=> {incidents: INCIDENTS}} /> */}
       </main>
     </AppLayout>
   )

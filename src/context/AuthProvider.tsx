@@ -40,6 +40,17 @@ const store: AuthStore = [state, ACTIONS]
 export const AuthContext = createContext<AuthStore>([EMPTY_STATE, ACTIONS])
 
 export const AuthProvider: Component = ({ children }) => {
+  const getSession = async () => {
+    const session = await supabase.auth.session()
+    if (session) {
+      setState({ user: session.user, isAuthenticated: true, session })
+    }
+  }
+
+  if (!state.isAuthenticated) {
+    getSession()
+  }
+
   const { data: authListener, error } = supabase.auth.onAuthStateChange(
     (_, session) => {
       const user = session?.user || null

@@ -6,7 +6,7 @@ import { Service } from '../../types/service'
 import CreateServiceButton from '../../components/CreateServiceButton'
 import ServiceCard from '../../components/ServiceCard'
 
-const SERVICES_QUERY = `
+const GET_SERVICES = `
   query {
     services {
       id
@@ -29,7 +29,7 @@ const CreateServiceEmptyState: Component = () => {
 }
 
 const CreateService: Component = () => {
-  const [services, servicesState] = createQuery({ query: SERVICES_QUERY })
+  const [services, servicesState] = createQuery({ query: GET_SERVICES })
 
   return (
     <AppLayout>
