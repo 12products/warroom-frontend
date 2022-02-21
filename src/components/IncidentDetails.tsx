@@ -1,4 +1,4 @@
-import { Component, createSignal, For, lazy } from 'solid-js'
+import { Accessor, Component, createSignal, For, lazy } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import classnames from 'classnames'
 import { FiPlus } from 'solid-icons/fi'
@@ -35,8 +35,10 @@ const SECTIONS = {
     createComponent: CreateButton,
   },
 }
-
-const IncidentDetails: Component = () => {
+type Props = {
+  incident: Accessor<any>
+}
+const IncidentDetails: Component<Props> = ({ incident }) => {
   const navigate = useNavigate()
   const { id: incidentId, section } = useParams()
   const currentSection =
@@ -77,7 +79,10 @@ const IncidentDetails: Component = () => {
         <Dynamic component={SECTIONS[getSelectedSection()].createComponent} />
       </header>
 
-      <Dynamic component={SECTIONS[getSelectedSection()].component} />
+      <Dynamic
+        component={SECTIONS[getSelectedSection()].component}
+        incident={incident}
+      />
     </section>
   )
 }

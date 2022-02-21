@@ -16,7 +16,7 @@ const IncidentStatus: Component<Props> = ({ statusMessage }) => {
         </h2>
 
         <div class="text-zinc-500">
-          {format(statusMessage.createdAt, 'MMM do, yyyy')}
+          {format(new Date(statusMessage.createdAt), 'MMM do, yyyy')}
         </div>
       </header>
 
