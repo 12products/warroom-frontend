@@ -1,8 +1,18 @@
 import { Accessor, Component, createSignal } from 'solid-js'
+import { createMutation } from 'solid-urql'
+import { useParams } from 'solid-app-router'
 
 import { DropdownOption } from '../types/ui'
 import Dropdown from './Dropdown'
 import { getOption } from '../utils/getOption'
+
+const UPDATE_INCIDENT_MUTATION = `
+  mutation($input: UpdateIncidentInput!) {
+    updateIncident(updateIncidentInput: $input){
+      id
+    }
+  }
+`
 
 type Props = {
   label: string
@@ -11,12 +21,17 @@ type Props = {
 }
 
 const IncidentProperty: Component<Props> = ({ label, selected, options }) => {
+  const params = useParams()
   const [getSelected, setSelected] = createSignal(
     selected ? getOption(selected, options)?.label : null
   )
+  const [_, updateIncident] = createMutation(UPDATE_INCIDENT_MUTATION)
 
   const onSelected = (option: DropdownOption | null) => {
     setSelected(option?.label)
+
+    const key = label.toLowerCase()
+    updateIncident({ input: { [key]: option?.label, id: params.id } })
   }
 
   return (

@@ -1,25 +1,28 @@
-import { Component } from 'solid-js'
+import { Accessor, Component } from 'solid-js'
 
 import IncidentProperty from './IncidentProperty'
+import {
+  incidentStatusOptions,
+  incidentSeverityOptions,
+} from '../types/Incident'
 
-const IncidentProperties: Component = () => {
+type Props = {
+  incident: Accessor<any>
+}
+
+const IncidentProperties: Component<Props> = ({ incident }) => {
   return (
     <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm shadow shadow-zinc-900/50">
       <IncidentProperty
         label="Status"
-        selected="investigating"
-        options={[{ id: 'investigating', label: 'Investigating' }]}
+        selected={incident()?.incident.status}
+        options={incidentStatusOptions}
       />
 
       <IncidentProperty
         label="Severity"
-        selected="critical"
-        options={[
-          { id: 'critical', label: 'Critical' },
-          { id: 'high', label: 'High' },
-          { id: 'medium', label: 'Medium' },
-          { id: 'Low', label: 'Low' },
-        ]}
+        selected={incident()?.incident.severity}
+        options={incidentSeverityOptions}
       />
 
       <IncidentProperty

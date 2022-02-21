@@ -35,6 +35,7 @@ const SECTIONS = {
     createComponent: CreateButton,
   },
 }
+
 type Props = {
   incident: Accessor<any>
 }

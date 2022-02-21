@@ -1,5 +1,5 @@
-import { Accessor, Component, createEffect, Show } from 'solid-js'
-import { useParams, useRouteData } from 'solid-app-router'
+import { Component, Show } from 'solid-js'
+import { useParams } from 'solid-app-router'
 
 import AppLayout from '../../../components/layouts/AppLayout'
 import IncidentDetails from '../../../components/IncidentDetails'
@@ -15,6 +15,8 @@ const INCIDENT_QUERY = `
       title
       description
       incidentDate
+      status
+      severity
       statusMessage {
         text
         status
@@ -40,7 +42,7 @@ const Incident: Component = () => {
           </div>
 
           <div class="space-y-4">
-            <IncidentProperties />
+            <IncidentProperties incident={incident} />
             <IncidentActionItems />
           </div>
         </div>
