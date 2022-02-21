@@ -9,7 +9,7 @@ const Incidents: Component = () => {
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        <IncidentsTable incidents={[]} />
+        {/* <IncidentsTable incidents={[]} /> */}
       </main>
     </AppLayout>
   )

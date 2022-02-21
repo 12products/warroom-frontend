@@ -17,21 +17,15 @@ const GET_INCIDENTS = `
 `
 
 const Incidents: Component = () => {
-  const [incidentsResult, incidentsState] = createQuery({
+  const [incidentsResult] = createQuery({
     query: GET_INCIDENTS,
   })
-  console.log(incidentsResult()?.incidents)
 
   return (
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        <Show
-          when={!incidentsState().fetching}
-          fallback={<IncidentsTable incidents={[]} />}
-        >
-          <IncidentsTable incidents={incidentsResult().incidents} />
-        </Show>
+        <IncidentsTable incidents={incidentsResult} />
       </main>
     </AppLayout>
   )

@@ -5,8 +5,8 @@ const Logo: Component = () => {
     <div class="text-4xl no-underline font-bold uppercase flex items-center tracking-wider">
       <span class="text-white">war r</span>
       <div class="flex justify-center rounded bg-green-500 border-4 mx-1 border-green-500">
-        <span class="bg-zinc-900 w-5 h-5 inline-block rounded relative"></span>
-        <span class="bg-zinc-900 w-5 h-5 inline-block rounded relative"></span>
+        <span class="bg-zinc-800 w-5 h-5 inline-block rounded relative"></span>
+        <span class="bg-zinc-800 w-5 h-5 inline-block rounded relative"></span>
       </div>
       <span class="text-white">m</span>
     </div>

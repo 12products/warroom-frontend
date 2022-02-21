@@ -11,7 +11,7 @@ import { IncidentStatus } from '../types/incident'
 import { DropdownOption } from '../types/ui'
 import { Service } from '../types/service'
 
-const SERVICES_QUERY = `
+const GET_SERVICES = `
   query {
     services {
       id
@@ -20,7 +20,7 @@ const SERVICES_QUERY = `
   }
 `
 
-const CREATE_INCIDENT_MUTATION = `
+const CREATE_INCIDENT = `
   mutation ($input: CreateIncidentInput!) {
     createIncident(createIncidentInput: $input){
       id
@@ -37,10 +37,8 @@ const statusOptions: DropdownOption[] = Object.keys(IncidentStatus).map(
 
 const CreateIncidentForm: Component = () => {
   const [getServices, setServices] = createSignal([])
-  const [servicesResult, servicesState] = createQuery({ query: SERVICES_QUERY })
-  const [createIncidentResult, createIncident] = createMutation(
-    CREATE_INCIDENT_MUTATION
-  )
+  const [servicesResult, servicesState] = createQuery({ query: GET_SERVICES })
+  const [createIncidentResult, createIncident] = createMutation(CREATE_INCIDENT)
   const navigate = useNavigate()
 
   createEffect(() => {

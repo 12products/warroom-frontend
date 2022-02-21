@@ -6,6 +6,10 @@ export const routes = [
   { path: '/signup', component: lazy(() => import('./pages/signup')) },
   // Authentication required for all routes below
   {
+    path: '/onboard',
+    component: lazy(() => import('./pages/onboard')),
+  },
+  {
     path: '/incidents',
     children: [
       {

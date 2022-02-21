@@ -1264,10 +1264,10 @@ semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-solid-app-router@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.2.1.tgz#1ee6be8d7321b81b57e1b166153c6014b1b98b1a"
-  integrity sha512-ENkhw3EF6MbkOuhRuCvmALtXs2x/fjvQw1ZSQP3ON7l6q6+QqTT8d0oZf6r5VYS95IIlevSSJNnAwvc1+Fx6Hw==
+solid-app-router@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/solid-app-router/-/solid-app-router-0.3.0.tgz#c06aba1c170649a65b3511210769020d973e3bc9"
+  integrity sha512-427qO9W90HH3coVq3a25xlL0B8dv+FKQcGQE3v5z5Z+8+u00svhOEQoM3Yj8W0C0xhGKSh2mKSIhpjUGQ7C68g==
 
 solid-icons@^0.3.3:
   version "0.3.3"

@@ -1,12 +1,15 @@
 import { Component } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
+import { useNavigate } from 'solid-app-router'
 
 import Input from './Input'
 import Button from './Button'
 import { supabase } from '../lib/supabase'
 
 const SignUp: Component = () => {
+  const navigate = useNavigate()
+
   return (
     <Form
       initialValues={{ email: '', password: '' }}
@@ -23,6 +26,8 @@ const SignUp: Component = () => {
         if (error) {
           throw error
         }
+
+        navigate('/onboard')
       }}
     >
       <div class="flex flex-col">
