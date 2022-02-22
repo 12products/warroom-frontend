@@ -2,7 +2,7 @@ import { Accessor, Component, Setter } from 'solid-js'
 import { Portal } from 'solid-js/web'
 import onClickOutside from '../../directives/onClickOutside'
 import { getUseDirectives } from '../../utils/directives'
-import ModalCloseButton from './ModalCloseButton'
+import ModalCloseButton from './CloseButton'
 
 type Props = {
   getShouldDisplay: Accessor<Boolean>

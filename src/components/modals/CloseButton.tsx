@@ -4,6 +4,7 @@ import { Component, Setter } from 'solid-js'
 type Props = {
   setShouldDisplay: Setter<Boolean>
 }
+
 const CloseButton: Component<Props> = ({ setShouldDisplay }) => {
   return (
     <div

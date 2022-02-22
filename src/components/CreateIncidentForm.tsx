@@ -73,45 +73,43 @@ const CreateIncidentForm: Component = () => {
   }
 
   return (
-    <>
-      <Form
-        initialValues={{
-          title: '',
-          description: '',
-          status: '',
-          serviceId: '',
-        }}
-        validation={{
-          title: Yup.string().required(),
-          description: Yup.string().required(),
-          status: Yup.string().required(),
-          serviceId: Yup.string().required(),
-        }}
-        onSubmit={async (form) => handleOnSubmit(form)}
-      >
-        <div class="space-y-4">
-          <Input name="title" label="Title" />
+    <Form
+      initialValues={{
+        title: '',
+        description: '',
+        status: '',
+        serviceId: '',
+      }}
+      validation={{
+        title: Yup.string().required(),
+        description: Yup.string().required(),
+        status: Yup.string().required(),
+        serviceId: Yup.string().required(),
+      }}
+      onSubmit={async (form) => handleOnSubmit(form)}
+    >
+      <div class="space-y-4">
+        <Input name="title" label="Title" />
 
-          <Input name="description" label="Description" />
+        <Input name="description" label="Description" />
 
-          <FormDropdown
-            options={() => incidentStatusOptions}
-            placeholder="Select status..."
-            field="status"
-          />
+        <FormDropdown
+          options={() => incidentStatusOptions}
+          placeholder="Select status..."
+          field="status"
+        />
 
-          <FormDropdown
-            options={getServices}
-            placeholder="Select service..."
-            field="serviceId"
-          />
-        </div>
+        <FormDropdown
+          options={getServices}
+          placeholder="Select service..."
+          field="serviceId"
+        />
+      </div>
 
-        <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">
-          Create
-        </Button>
-      </Form>
-    </>
+      <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">
+        Create
+      </Button>
+    </Form>
   )
 }
 
