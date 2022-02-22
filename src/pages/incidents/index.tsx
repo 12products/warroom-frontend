@@ -21,6 +21,7 @@ const Incidents: Component = () => {
     query: GET_INCIDENTS,
   })
   const incidents = () => incidentsResult().incidents
+
   return (
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
