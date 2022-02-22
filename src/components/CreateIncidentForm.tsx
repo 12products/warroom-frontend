@@ -1,4 +1,4 @@
-import { Component, Show, createSignal, createEffect } from 'solid-js'
+import { Component, createSignal, createEffect } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
@@ -74,7 +74,12 @@ const CreateIncidentForm: Component = () => {
 
   return (
     <Form
-      initialValues={{ title: '', description: '', status: '', serviceId: '' }}
+      initialValues={{
+        title: '',
+        description: '',
+        status: '',
+        serviceId: '',
+      }}
       validation={{
         title: Yup.string().required(),
         description: Yup.string().required(),
