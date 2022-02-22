@@ -9,6 +9,7 @@ import IncidentActionItem from './IncidentActionItem'
 type Props = {
   incident: Accessor<Incident>
 }
+
 const IncidentActionItems: Component<Props> = ({ incident }) => {
   return (
     <section class="p-4 pt-0 text-sm">
