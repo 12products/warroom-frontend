@@ -6,10 +6,11 @@ import IncidentProperty from './IncidentProperty'
 import {
   incidentStatusOptions,
   incidentSeverityOptions,
+  Incident,
 } from '../types/Incident'
 
 type Props = {
-  incident: Accessor<any>
+  incident: Accessor<Incident>
 }
 
 const GET_USERS = `

@@ -3,6 +3,7 @@ import { Dynamic } from 'solid-js/web'
 import classnames from 'classnames'
 import { FiPlus } from 'solid-icons/fi'
 import { useParams, useNavigate } from 'solid-app-router'
+import { Incident } from '../types/incident'
 
 enum SECTION_TYPE {
   STATUSES = 'STATUSES',
@@ -37,7 +38,7 @@ const SECTIONS = {
 }
 
 type Props = {
-  incident: Accessor<any>
+  incident: Accessor<Incident>
 }
 const IncidentDetails: Component<Props> = ({ incident }) => {
   const navigate = useNavigate()

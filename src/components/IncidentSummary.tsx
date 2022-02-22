@@ -1,9 +1,8 @@
 import { Accessor, Component } from 'solid-js'
-import { useRouteData } from 'solid-app-router'
 import { Incident } from '../types/incident'
 
 type Props = {
-  incident: Accessor<any>
+  incident: Accessor<Incident>
 }
 
 const IncidentSummary: Component<Props> = ({ incident }) => {

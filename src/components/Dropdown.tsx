@@ -9,7 +9,7 @@ import { getOption } from '../utils/getOption'
 
 type Props = {
   placeholder: string | null
-  options: () => DropdownOptionType[]
+  options: Accessor<DropdownOptionType[]>
   selected: Accessor<string | null>
   onSelected: (optionLabel: DropdownOptionType) => void
   dropdownClass?: string

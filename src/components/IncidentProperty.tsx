@@ -16,7 +16,7 @@ const UPDATE_INCIDENT_MUTATION = `
 
 type Props = {
   label: string
-  options: () => DropdownOption[]
+  options: Accessor<DropdownOption[]>
   selected: string | null
 }
 

@@ -1,23 +1,17 @@
 import { Accessor, Component, For } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 
-import { Incident } from '../types/incident'
 import Button from './Button'
 import IncidentRow from './IncidentRow'
-import { Portal } from 'solid-js/web'
-import CreateIncidentForm from './CreateIncidentForm'
+import { Incident } from '../types/incident'
 
 type Props = {
-  incidents: Accessor<{ incidents: Incident[] }>
+  incidents: Accessor<Incident[]>
 }
-
 const IncidentsTableEmptyState: Component = () => {
   const navigate = useNavigate()
   const handleCreateIncident = () => {
-    // navigate('/incidents/create')
-    ;<Portal>
-      <CreateIncidentForm />
-    </Portal>
+    navigate('/incidents/create')
   }
   return (
     <div class="flex flex-col justify-center items-center h-52">
@@ -31,11 +25,8 @@ const IncidentsTable: Component<Props> = ({ incidents }) => {
   return (
     <div class="col-span-3 ">
       <section class="border border-zinc-700 rounded text-sm text-zinc-300 shadow shadow-zinc-900/50">
-        <For
-          each={incidents()?.incidents}
-          fallback={<IncidentsTableEmptyState />}
-        >
-          {(incident) => <IncidentRow incident={incident} />}
+        <For each={incidents()} fallback={<IncidentsTableEmptyState />}>
+          {(incident: Incident) => <IncidentRow incident={incident} />}
         </For>
       </section>
     </div>

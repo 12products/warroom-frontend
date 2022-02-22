@@ -44,6 +44,7 @@ const Incident: Component = () => {
     variables: { id: params.id },
   })
   const incident = () => incidentResult()?.incident
+
   return (
     <AppLayout>
       <Show when={!incidentState().fetching} fallback={<p>Loading...</p>}>

@@ -1,4 +1,7 @@
+import { Event } from './event'
+import { StatusMessage } from './statusMessage'
 import { DropdownOption } from './ui'
+import { User } from './user'
 
 export type Incident = {
   id: string
@@ -7,6 +10,10 @@ export type Incident = {
   status: IncidentStatus
   severity: IncidentSeverity
   incidentDate: Date
+  actionItems: IncidentActionItem[]
+  events: Event[]
+  assignee: User
+  statusMessage: StatusMessage[]
 }
 
 export enum IncidentStatus {

@@ -1,15 +1,13 @@
 import { Accessor, Component, For } from 'solid-js'
 
-import { IncidentActionItem as IncidentActionItemType } from '../types/incident'
+import {
+  Incident,
+  IncidentActionItem as IncidentActionItemType,
+} from '../types/incident'
 import IncidentActionItem from './IncidentActionItem'
 
-const ACTION_ITMES = [
-  { id: '1234', text: 'Call the boss' },
-  { id: '5678', text: 'Add alert' },
-] as IncidentActionItemType[]
-
 type Props = {
-  incident: Accessor<any>
+  incident: Accessor<Incident>
 }
 const IncidentActionItems: Component<Props> = ({ incident }) => {
   return (

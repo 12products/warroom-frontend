@@ -1,4 +1,5 @@
 import { Accessor, Component, For } from 'solid-js'
+import { Incident } from '../types/incident'
 
 import { StatusMessage } from '../types/statusMessage'
 import IncidentStatus from './IncidentStatus'
@@ -11,9 +12,11 @@ const IncidentStatusesEmptyState: Component = () => {
     </div>
   )
 }
+
 type Props = {
-  incident: Accessor<any>
+  incident: Accessor<Incident>
 }
+
 const IncidentStatuses: Component<Props> = ({ incident }) => {
   return (
     <section class="text-sm p-8 space-y-8">
@@ -21,8 +24,8 @@ const IncidentStatuses: Component<Props> = ({ incident }) => {
         each={incident()?.statusMessage}
         fallback={<IncidentStatusesEmptyState />}
       >
-        {(statusMessage) => (
-          <IncidentStatus statusMessage={statusMessage as StatusMessage} />
+        {(statusMessage: StatusMessage) => (
+          <IncidentStatus statusMessage={statusMessage} />
         )}
       </For>
     </section>
