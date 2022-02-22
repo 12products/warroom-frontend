@@ -8,6 +8,7 @@ import { Incident } from '../types/incident'
 type Props = {
   incidents: Accessor<Incident[]>
 }
+
 const IncidentsTableEmptyState: Component = () => {
   const navigate = useNavigate()
   const handleCreateIncident = () => {

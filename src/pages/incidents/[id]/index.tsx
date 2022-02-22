@@ -7,7 +7,7 @@ import IncidentDetails from '../../../components/IncidentDetails'
 import IncidentProperties from '../../../components/IncidentProperties'
 import IncidentActionItems from '../../../components/IncidentActionItems'
 import IncidentSummary from '../../../components/IncidentSummary'
-import Button from '../../../components/Button'
+import IncidentWarRoom from '../../../components/IncidentWarRoom'
 
 const INCIDENT_QUERY = `
   query ($id: ID!) {
@@ -18,6 +18,7 @@ const INCIDENT_QUERY = `
       incidentDate
       status
       severity
+      roomURL
       statusMessage {
         text
         status
@@ -59,12 +60,7 @@ const Incident: Component = () => {
           <div class="space-y-4">
             <IncidentProperties incident={incident} />
 
-            <Button
-              buttonClass="w-full"
-              onClick={() => navigate(`/incidents/${params.id}/room`)}
-            >
-              Create War Room
-            </Button>
+            <IncidentWarRoom roomURL={incident()?.roomURL} />
 
             <IncidentActionItems incident={incident} />
           </div>
