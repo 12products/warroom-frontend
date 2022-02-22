@@ -20,7 +20,7 @@ const Incidents: Component = () => {
   const [incidentsResult] = createQuery({
     query: GET_INCIDENTS,
   })
-  const incidents = () => incidentsResult().incidents
+  const incidents = () => incidentsResult()?.incidents
 
   return (
     <AppLayout>

@@ -29,10 +29,6 @@ export const routes: RouteDefinition[] = [
         path: '/service/:id',
         component: lazy(() => import('./pages/incidents/service')),
       },
-      {
-        path: '/create',
-        component: lazy(() => import('./pages/incidents/create')),
-      },
     ],
   },
   {
