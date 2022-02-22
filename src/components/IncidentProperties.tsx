@@ -8,6 +8,7 @@ import {
   incidentSeverityOptions,
   Incident,
 } from '../types/Incident'
+import { DropdownOption } from '../types/ui'
 
 type Props = {
   incident: Accessor<Incident>
@@ -24,9 +25,15 @@ const GET_USERS = `
 
 const IncidentProperties: Component<Props> = ({ incident }) => {
   const [usersResult] = createQuery({ query: GET_USERS })
-  const defaultUserOptions = [
-    { id: incident().assignee.id, label: incident().assignee.firstName },
-  ]
+  const defaultUserOptions: DropdownOption[] = []
+
+  if (incident()?.assignee) {
+    defaultUserOptions.push({
+      id: incident().assignee.id,
+      label: incident().assignee.firstName,
+    })
+  }
+
   const userOptions = () =>
     usersResult()?.users.map(({ id, firstName }: User) => ({
       id,
@@ -49,7 +56,7 @@ const IncidentProperties: Component<Props> = ({ incident }) => {
 
       <IncidentProperty
         label="Assignee"
-        selected={incident()?.assignee.id}
+        selected={incident()?.assignee?.id}
         options={userOptions}
       />
     </section>
