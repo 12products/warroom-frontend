@@ -12,7 +12,7 @@ const IncidentSummary: Component<Props> = ({ incident }) => {
       <div class="flex justify-between">
         <div>
           <label class="text-sm text-zinc-500">BAT-66</label>
-          <h1 class="text-2xl font-bold">{incident()?.incident.title}</h1>
+          <h1 class="text-2xl font-bold">{incident().title}</h1>
         </div>
 
         <div class="text-sm">
@@ -28,7 +28,7 @@ const IncidentSummary: Component<Props> = ({ incident }) => {
         </div>
       </div>
 
-      <p class="text-zinc-300 text-sm">{incident()?.incident.description}</p>
+      <p class="text-zinc-300 text-sm">{incident().description}</p>
     </section>
   )
 }

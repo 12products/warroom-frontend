@@ -89,27 +89,15 @@ const CreateIncidentForm: Component = () => {
         <Input name="description" label="Description" />
 
         <FormDropdown
-          options={incidentStatusOptions}
+          options={() => incidentStatusOptions}
           placeholder="Select status..."
           field="status"
         />
-
-        <Show
-          when={getServices().length}
-          fallback={
-            <FormDropdown
-              options={[]}
-              placeholder="Select service..."
-              field="serviceId"
-            />
-          }
-        >
-          <FormDropdown
-            options={getServices()}
-            placeholder="Select service..."
-            field="serviceId"
-          />
-        </Show>
+        <FormDropdown
+          options={getServices}
+          placeholder="Select service..."
+          field="serviceId"
+        />
       </div>
 
       <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">

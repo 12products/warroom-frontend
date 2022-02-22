@@ -5,7 +5,7 @@ import { DropdownOption } from '../types/ui'
 import Dropdown from './Dropdown'
 
 type Props = {
-  options: DropdownOption[]
+  options: () => DropdownOption[]
   field: string
   placeholder: string
 }
@@ -14,7 +14,7 @@ const FormDropdown: Component<Props> = ({ options, field, placeholder }) => {
   const [getSelected, setSelected] = createSignal<string | null>(null)
   const { form } = useField(field)
 
-  const onSelected = (option: DropdownOption | null) => {
+  const onSelected = (option: DropdownOption) => {
     setSelected(option?.label || null)
     option && form.setValue(field, option.id)
   }

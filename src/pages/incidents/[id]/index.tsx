@@ -22,16 +22,28 @@ const INCIDENT_QUERY = `
         status
         createdAt
       }
+      assignee {
+        id
+        firstName
+      }
+      actionItems {
+        text
+      }
+      events {
+        text
+        createdAt
+      }
     }
   }
 `
 
 const Incident: Component = () => {
   const params = useParams()
-  const [incident, incidentState] = createQuery({
+  const [incidentResult, incidentState] = createQuery({
     query: INCIDENT_QUERY,
     variables: { id: params.id },
   })
+  const incident = () => incidentResult()?.incident
   return (
     <AppLayout>
       <Show when={!incidentState().fetching} fallback={<p>Loading...</p>}>
@@ -43,7 +55,7 @@ const Incident: Component = () => {
 
           <div class="space-y-4">
             <IncidentProperties incident={incident} />
-            <IncidentActionItems />
+            <IncidentActionItems incident={incident} />
           </div>
         </div>
       </Show>

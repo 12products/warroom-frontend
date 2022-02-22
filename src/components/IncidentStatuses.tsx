@@ -18,7 +18,7 @@ const IncidentStatuses: Component<Props> = ({ incident }) => {
   return (
     <section class="text-sm p-8 space-y-8">
       <For
-        each={incident()?.incident.statusMessage}
+        each={incident()?.statusMessage}
         fallback={<IncidentStatusesEmptyState />}
       >
         {(statusMessage) => (
