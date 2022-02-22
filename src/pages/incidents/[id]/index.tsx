@@ -1,12 +1,13 @@
 import { Component, Show } from 'solid-js'
-import { useParams } from 'solid-app-router'
+import { useNavigate, useParams } from 'solid-app-router'
+import { createQuery } from 'solid-urql'
 
 import AppLayout from '../../../components/layouts/AppLayout'
 import IncidentDetails from '../../../components/IncidentDetails'
 import IncidentProperties from '../../../components/IncidentProperties'
 import IncidentActionItems from '../../../components/IncidentActionItems'
 import IncidentSummary from '../../../components/IncidentSummary'
-import { createQuery } from 'solid-urql'
+import Button from '../../../components/Button'
 
 const INCIDENT_QUERY = `
   query ($id: ID!) {
@@ -39,6 +40,7 @@ const INCIDENT_QUERY = `
 
 const Incident: Component = () => {
   const params = useParams()
+  const navigate = useNavigate()
   const [incidentResult, incidentState] = createQuery({
     query: INCIDENT_QUERY,
     variables: { id: params.id },
@@ -56,6 +58,14 @@ const Incident: Component = () => {
 
           <div class="space-y-4">
             <IncidentProperties incident={incident} />
+
+            <Button
+              buttonClass="w-full"
+              onClick={() => navigate(`/incidents/${params.id}/room`)}
+            >
+              Create War Room
+            </Button>
+
             <IncidentActionItems incident={incident} />
           </div>
         </div>

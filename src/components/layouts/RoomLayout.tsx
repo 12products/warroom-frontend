@@ -13,8 +13,10 @@ const AppLayout: Component = ({ children }) => {
   }
 
   return (
-    <div class="p-5 max-w-7xl mx-auto relative">
-      <AppNav />
+    <div>
+      <div class="p-5 pb-0 max-w-7xl mx-auto relative">
+        <AppNav />
+      </div>
 
       {children}
     </div>
