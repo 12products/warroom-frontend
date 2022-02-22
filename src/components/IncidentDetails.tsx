@@ -40,6 +40,7 @@ const SECTIONS = {
 type Props = {
   incident: Accessor<Incident>
 }
+
 const IncidentDetails: Component<Props> = ({ incident }) => {
   const navigate = useNavigate()
   const { id: incidentId, section } = useParams()
