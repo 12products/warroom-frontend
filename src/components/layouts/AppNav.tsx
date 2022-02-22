@@ -1,9 +1,10 @@
-import { Component, useContext } from 'solid-js'
+import { Component, createSignal, Show, useContext } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 
 import Logo from '../Logo'
 import Button from '../Button'
 import { AuthContext } from '../../context/AuthProvider'
+import CreateIncidentModal from '../modals/CreateIncidentModal'
 
 const Nav: Component = () => {
   const navigate = useNavigate()
@@ -14,8 +15,10 @@ const Nav: Component = () => {
     navigate('/signin')
   }
 
+  const [getShouldDisplay, setShouldDisplay] = createSignal(false)
+
   const handleCreateIncident = () => {
-    navigate('/incidents/create')
+    setShouldDisplay(true)
   }
 
   return (
@@ -28,6 +31,11 @@ const Nav: Component = () => {
           <Button onClick={handleSignOut}>Sign Out</Button>
         </div>
       </nav>
+
+      <CreateIncidentModal
+        getShouldDisplay={getShouldDisplay}
+        setShouldDisplay={setShouldDisplay}
+      />
     </>
   )
 }

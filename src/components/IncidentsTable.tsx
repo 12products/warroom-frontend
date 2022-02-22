@@ -1,14 +1,13 @@
 import { Accessor, Component, For } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 
-import { Incident } from '../types/incident'
 import Button from './Button'
 import IncidentRow from './IncidentRow'
+import { Incident } from '../types/incident'
 
 type Props = {
-  incidents: Accessor<{ incidents: Incident[] }>
+  incidents: Accessor<Incident[]>
 }
-
 const IncidentsTableEmptyState: Component = () => {
   const navigate = useNavigate()
   const handleCreateIncident = () => {
@@ -26,11 +25,8 @@ const IncidentsTable: Component<Props> = ({ incidents }) => {
   return (
     <div class="col-span-3 ">
       <section class="border border-zinc-700 rounded text-sm text-zinc-300 shadow shadow-zinc-900/50">
-        <For
-          each={incidents()?.incidents}
-          fallback={<IncidentsTableEmptyState />}
-        >
-          {(incident) => <IncidentRow incident={incident} />}
+        <For each={incidents()} fallback={<IncidentsTableEmptyState />}>
+          {(incident: Incident) => <IncidentRow incident={incident} />}
         </For>
       </section>
     </div>

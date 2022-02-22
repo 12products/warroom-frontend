@@ -7,8 +7,7 @@ import { useNavigate } from 'solid-app-router'
 import Button from './Button'
 import Input from './Input'
 import FormDropdown from './FormDropdown'
-import { IncidentStatus } from '../types/incident'
-import { DropdownOption } from '../types/ui'
+import { incidentStatusOptions } from '../types/incident'
 import { Service } from '../types/service'
 
 const GET_SERVICES = `
@@ -27,13 +26,6 @@ const CREATE_INCIDENT = `
     }
   }
 `
-
-const statusOptions: DropdownOption[] = Object.keys(IncidentStatus).map(
-  (status) => ({
-    id: status,
-    label: status,
-  })
-)
 
 const CreateIncidentForm: Component = () => {
   const [getServices, setServices] = createSignal([])
@@ -97,27 +89,16 @@ const CreateIncidentForm: Component = () => {
         <Input name="description" label="Description" />
 
         <FormDropdown
-          options={statusOptions}
+          options={() => incidentStatusOptions}
           placeholder="Select status..."
           field="status"
         />
 
-        <Show
-          when={getServices().length}
-          fallback={
-            <FormDropdown
-              options={[]}
-              placeholder="Select service..."
-              field="serviceId"
-            />
-          }
-        >
-          <FormDropdown
-            options={getServices()}
-            placeholder="Select service..."
-            field="serviceId"
-          />
-        </Show>
+        <FormDropdown
+          options={getServices}
+          placeholder="Select service..."
+          field="serviceId"
+        />
       </div>
 
       <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">

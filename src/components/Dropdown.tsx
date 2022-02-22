@@ -9,9 +9,9 @@ import { getOption } from '../utils/getOption'
 
 type Props = {
   placeholder: string | null
-  options: DropdownOptionType[]
+  options: Accessor<DropdownOptionType[]>
   selected: Accessor<string | null>
-  onSelected: (optionLabel: DropdownOptionType | null) => void
+  onSelected: (optionLabel: DropdownOptionType) => void
   dropdownClass?: string
 }
 
@@ -25,7 +25,8 @@ const Dropdown: Component<Props> = ({
   const [getShouldDisplayOptions, setShouldDisplayOptions] = createSignal(false)
 
   const handleSelectOption = (id: string) => {
-    onSelected(getOption(id, options) || null)
+    const newSelectedOption = getOption(id, options())
+    newSelectedOption && onSelected(newSelectedOption)
     setShouldDisplayOptions(false)
   }
 
@@ -55,7 +56,7 @@ const Dropdown: Component<Props> = ({
 
       <Show when={getShouldDisplayOptions()}>
         <div class="absolute bg-zinc-800 border border-zinc-400 border-opacity-25 z-10 w-full mt-1 rounded shadow-lg shadow-zinc-900/50">
-          <For each={options}>
+          <For each={options()}>
             {(item) => (
               <DropdownOption onClick={handleSelectOption} {...item} />
             )}

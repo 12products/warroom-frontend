@@ -20,12 +20,13 @@ const Incidents: Component = () => {
   const [incidentsResult] = createQuery({
     query: GET_INCIDENTS,
   })
+  const incidents = () => incidentsResult().incidents
 
   return (
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        <IncidentsTable incidents={incidentsResult} />
+        <IncidentsTable incidents={incidents} />
       </main>
     </AppLayout>
   )

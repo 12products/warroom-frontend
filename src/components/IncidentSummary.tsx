@@ -1,12 +1,17 @@
-import { Component } from 'solid-js'
+import { Accessor, Component } from 'solid-js'
+import { Incident } from '../types/incident'
 
-const IncidentSummary: Component = () => {
+type Props = {
+  incident: Accessor<Incident>
+}
+
+const IncidentSummary: Component<Props> = ({ incident }) => {
   return (
     <section class="border border-zinc-700 rounded p-8 space-y-4 shadow shadow-zinc-900/50">
       <div class="flex justify-between">
         <div>
           <label class="text-sm text-zinc-500">BAT-66</label>
-          <h1 class="text-2xl font-bold">Broken thing</h1>
+          <h1 class="text-2xl font-bold">{incident().title}</h1>
         </div>
 
         <div class="text-sm">
@@ -22,16 +27,7 @@ const IncidentSummary: Component = () => {
         </div>
       </div>
 
-      <p class="text-zinc-300 text-sm">
-        Made in the interiors of collapsing stars explorations paroxysm of
-        global death vastness is bearable only through love globular star
-        cluster across the centuries. Preserve and cherish that pale blue dot
-        are creatures of the cosmos the sky calls to us Cambrian explosion bits
-        of moving fluff a still more glorious dawn awaits. Astonishment Cambrian
-        explosion the ash of stellar alchemy hundreds of thousands Sea of
-        Tranquility cosmic ocean and billions upon billions upon billions upon
-        billions upon billions upon billions upon billions.
-      </p>
+      <p class="text-zinc-300 text-sm">{incident().description}</p>
     </section>
   )
 }

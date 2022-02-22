@@ -1,31 +1,56 @@
-import { Component } from 'solid-js'
+import { Accessor, Component } from 'solid-js'
+import { createQuery } from 'solid-urql'
 
+import { User } from '../types/user'
 import IncidentProperty from './IncidentProperty'
+import {
+  incidentStatusOptions,
+  incidentSeverityOptions,
+  Incident,
+} from '../types/Incident'
 
-const IncidentProperties: Component = () => {
+type Props = {
+  incident: Accessor<Incident>
+}
+
+const GET_USERS = `
+  query {
+    users {
+      id
+      firstName
+    }
+  }
+`
+
+const IncidentProperties: Component<Props> = ({ incident }) => {
+  const [usersResult] = createQuery({ query: GET_USERS })
+  const defaultUserOptions = [
+    { id: incident().assignee.id, label: incident().assignee.firstName },
+  ]
+  const userOptions = () =>
+    usersResult()?.users.map(({ id, firstName }: User) => ({
+      id,
+      label: firstName,
+    })) || defaultUserOptions
+
   return (
     <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm shadow shadow-zinc-900/50">
       <IncidentProperty
         label="Status"
-        selected="investigating"
-        options={[{ id: 'investigating', label: 'Investigating' }]}
+        selected={incident()?.status}
+        options={() => incidentStatusOptions}
       />
 
       <IncidentProperty
         label="Severity"
-        selected="critical"
-        options={[
-          { id: 'critical', label: 'Critical' },
-          { id: 'high', label: 'High' },
-          { id: 'medium', label: 'Medium' },
-          { id: 'Low', label: 'Low' },
-        ]}
+        selected={incident()?.severity}
+        options={() => incidentSeverityOptions}
       />
 
       <IncidentProperty
-        label="Assigned"
-        selected="amorriscode"
-        options={[{ id: 'amorriscode', label: '@amorriscode' }]}
+        label="Assignee"
+        selected={incident()?.assignee.id}
+        options={userOptions}
       />
     </section>
   )

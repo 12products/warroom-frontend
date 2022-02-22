@@ -1,5 +1,5 @@
-import { Component, useContext, createEffect, Accessor } from 'solid-js'
-import { useNavigate, useRouteData } from 'solid-app-router'
+import { Component, useContext, createEffect } from 'solid-js'
+import { useNavigate } from 'solid-app-router'
 import { createQuery } from 'solid-urql'
 
 import AuthLayout from '../components/layouts/AuthLayout'
