@@ -10,13 +10,16 @@ const CreateIncidentModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
+  const handleOnCreateIncident = () => {
+    setShouldDisplay(false)
+  }
   return (
     <Show when={getShouldDisplay()}>
       <Modal
         getShouldDisplay={getShouldDisplay}
         setShouldDisplay={setShouldDisplay}
       >
-        <CreateIncidentForm setShouldDisplay={setShouldDisplay} />
+        <CreateIncidentForm onCreateIncident={handleOnCreateIncident} />
       </Modal>
     </Show>
   )

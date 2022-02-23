@@ -1,8 +1,7 @@
-import { Component, createSignal, createEffect, Setter } from 'solid-js'
+import { Component, Setter } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
-import { useNavigate } from 'solid-app-router'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -27,25 +26,18 @@ const CREATE_INCIDENT = `
   }
 `
 type Props = {
-  setShouldDisplay: Setter<Boolean>
+  onCreateIncident: () => void
 }
 
-const CreateIncidentForm: Component<Props> = ({ setShouldDisplay }) => {
-  const [getServices, setServices] = createSignal([])
-  const [servicesResult, servicesState] = createQuery({ query: GET_SERVICES })
-  const [createIncidentResult, createIncident] = createMutation(CREATE_INCIDENT)
-  const navigate = useNavigate()
+const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
+  const [servicesResult] = createQuery({ query: GET_SERVICES })
+  const [_, createIncident] = createMutation(CREATE_INCIDENT)
 
-  createEffect(() => {
-    if (!servicesState().fetching) {
-      setServices(
-        servicesResult().services.map(({ id, name }: Service) => ({
-          id,
-          label: name,
-        }))
-      )
-    }
-  })
+  const services = () =>
+    servicesResult()?.services.map(({ id, name }: Service) => ({
+      id,
+      label: name,
+    })) || []
 
   const handleOnSubmit = async (
     form: FormType.Context<{
@@ -65,8 +57,7 @@ const CreateIncidentForm: Component<Props> = ({ setShouldDisplay }) => {
     }
 
     await createIncident(variables)
-
-    setShouldDisplay(false)
+    onCreateIncident()
   }
 
   return (
@@ -97,7 +88,7 @@ const CreateIncidentForm: Component<Props> = ({ setShouldDisplay }) => {
         />
 
         <FormDropdown
-          options={getServices}
+          options={services}
           placeholder="Select service..."
           field="serviceId"
         />

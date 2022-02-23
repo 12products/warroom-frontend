@@ -27,17 +27,17 @@ const CREATE_ACTION_ITEM = `
 `
 
 type Props = {
-  setShouldDisplay: Setter<Boolean>
+  onCreateActionItem: () => void
 }
 
-const CreateActionItemsForm: Component<Props> = ({ setShouldDisplay }) => {
+const CreateActionItemsForm: Component<Props> = ({ onCreateActionItem }) => {
   const [usersResult] = createQuery({ query: GET_USERS })
 
   const userOptions = () =>
     usersResult()?.users.map(({ id, firstName }: User) => ({
       id,
       label: firstName,
-    }))
+    })) || []
 
   const [_, createActionItem] = createMutation(CREATE_ACTION_ITEM)
   const { id: incidentId } = useParams()
@@ -46,7 +46,6 @@ const CreateActionItemsForm: Component<Props> = ({ setShouldDisplay }) => {
     form: FormType.Context<{
       text: string
       ownerId: string
-      incidentId: string
     }>
   ) => {
     const variables = {
@@ -58,7 +57,7 @@ const CreateActionItemsForm: Component<Props> = ({ setShouldDisplay }) => {
     }
 
     await createActionItem(variables)
-    setShouldDisplay(false)
+    onCreateActionItem()
   }
 
   return (
@@ -66,7 +65,6 @@ const CreateActionItemsForm: Component<Props> = ({ setShouldDisplay }) => {
       initialValues={{
         text: '',
         ownerId: '',
-        incidentId: '',
       }}
       validation={{
         text: Yup.string().required(),
