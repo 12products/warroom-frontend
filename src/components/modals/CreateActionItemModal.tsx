@@ -1,12 +1,12 @@
 import { Accessor, Component, Setter, Show } from 'solid-js'
-import CreateIncidentForm from '../forms/CreateIncidentForm'
+import CreateActionItemForm from '../forms/CreateActionItemForm'
 import Modal from './Modal'
 
 type Props = {
   getShouldDisplay: Accessor<Boolean>
   setShouldDisplay: Setter<Boolean>
 }
-const CreateIncidentModal: Component<Props> = ({
+const CreateActionItemModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
@@ -16,10 +16,10 @@ const CreateIncidentModal: Component<Props> = ({
         getShouldDisplay={getShouldDisplay}
         setShouldDisplay={setShouldDisplay}
       >
-        <CreateIncidentForm setShouldDisplay={setShouldDisplay} />
+        <CreateActionItemForm setShouldDisplay={setShouldDisplay} />
       </Modal>
     </Show>
   )
 }
 
-export default CreateIncidentModal
+export default CreateActionItemModal
