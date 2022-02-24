@@ -57,4 +57,5 @@ export const routes: RouteDefinition[] = [
       },
     ],
   },
+  { path: '/:id', component: lazy(() => import('./pages/status')) },
 ]

@@ -1,9 +1,12 @@
+import { Incident } from './incident'
+
 export type Service = {
   id: string
   name: string
   description: string
   private: boolean
   status: ServiceStatus
+  incidents: Incident[]
 }
 
 export enum ServiceStatus {
