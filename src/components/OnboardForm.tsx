@@ -60,7 +60,10 @@ const CreateServiceForm: Component = () => {
             name: organizationName,
           },
         })
-
+        console.log('test', {
+          error1: createUserResult().error,
+          error2: createOrganizationResult().error,
+        })
         if (createUserResult().error || createOrganizationResult().error) {
           alert('Something went wrong, please try again.')
           return

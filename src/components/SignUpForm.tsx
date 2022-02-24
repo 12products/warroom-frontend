@@ -15,7 +15,12 @@ const SignUp: Component = () => {
       initialValues={{ email: '', password: '' }}
       validation={{
         email: Yup.string().email().required(),
-        password: Yup.string().required(),
+        password: Yup.string()
+          .required('Please enter your password')
+          .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/,
+            'Must contain 6 characters, one uppercase, one lowercase, one number and one special case character'
+          ),
       }}
       onSubmit={async ({ values: { email, password } }) => {
         const { error } = await supabase.auth.signUp({
