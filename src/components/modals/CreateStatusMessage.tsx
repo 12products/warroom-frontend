@@ -1,5 +1,5 @@
 import { Accessor, Component, Setter, Show } from 'solid-js'
-import CreateIncidentForm from '../forms/CreateIncidentForm'
+import CreateStatusMessageForm from '../forms/CreateStatusMessageForm'
 import Modal from './Modal'
 
 type Props = {
@@ -10,13 +10,15 @@ const CreateIncidentModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
-  const handleOnCreateIncident = () => {
+  const handleOnCreateStatusMessage = () => {
     setShouldDisplay(false)
   }
   return (
     <Show when={getShouldDisplay()}>
       <Modal setShouldDisplay={setShouldDisplay}>
-        <CreateIncidentForm onCreateIncident={handleOnCreateIncident} />
+        <CreateStatusMessageForm
+          onCreateStatusMessage={handleOnCreateStatusMessage}
+        />
       </Modal>
     </Show>
   )

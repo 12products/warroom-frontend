@@ -16,10 +16,7 @@ const CreateActionItemModal: Component<Props> = ({
 
   return (
     <Show when={getShouldDisplay()}>
-      <Modal
-        getShouldDisplay={getShouldDisplay}
-        setShouldDisplay={setShouldDisplay}
-      >
+      <Modal setShouldDisplay={setShouldDisplay}>
         <CreateActionItemForm onCreateActionItem={handleOnCreateActionItem} />
       </Modal>
     </Show>
