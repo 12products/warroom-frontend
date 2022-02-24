@@ -1,14 +1,8 @@
-import {
-  Accessor,
-  Component,
-  createEffect,
-  createSignal,
-  For,
-  lazy,
-} from 'solid-js'
+import { Accessor, Component, createSignal, For, lazy } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import classnames from 'classnames'
 import { useParams, useNavigate } from 'solid-app-router'
+
 import { Incident } from '../types/incident'
 import CreateStatusMessageButton from './modals/StatusMessageButton'
 import CreateEventButton from './modals/CreateEventButton'

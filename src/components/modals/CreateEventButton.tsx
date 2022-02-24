@@ -1,4 +1,5 @@
 import { Component, createSignal } from 'solid-js'
+
 import CreateButton from './CreateButton'
 import CreateEventModal from './CreateEvent'
 

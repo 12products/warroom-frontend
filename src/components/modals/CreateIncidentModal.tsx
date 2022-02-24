@@ -1,4 +1,5 @@
 import { Accessor, Component, Setter, Show } from 'solid-js'
+
 import CreateIncidentForm from '../forms/CreateIncidentForm'
 import Modal from './Modal'
 
