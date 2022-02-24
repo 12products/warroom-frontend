@@ -6,7 +6,7 @@ type Props = {
   getShouldDisplay: Accessor<Boolean>
   setShouldDisplay: Setter<Boolean>
 }
-const CreateIncidentModal: Component<Props> = ({
+const CreateStatusMessageModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
@@ -24,4 +24,4 @@ const CreateIncidentModal: Component<Props> = ({
   )
 }
 
-export default CreateIncidentModal
+export default CreateStatusMessageModal
