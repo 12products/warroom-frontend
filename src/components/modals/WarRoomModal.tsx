@@ -25,10 +25,7 @@ const GET_ROOM_URL = `
   }
 `
 
-const WarRoomModal: Component<ModalProps> = ({
-  getShouldDisplay,
-  setShouldDisplay,
-}) => {
+const WarRoomModal: Component<ModalProps> = ({ setShouldDisplay }) => {
   const params = useParams()
   const [roomURLResult] = createQuery({
     query: GET_ROOM_URL,

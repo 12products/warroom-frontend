@@ -1,46 +1,39 @@
-import { Accessor, Component, createSignal, For, lazy } from 'solid-js'
+import {
+  Accessor,
+  Component,
+  createEffect,
+  createSignal,
+  For,
+  lazy,
+} from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import classnames from 'classnames'
-import { FiPlus } from 'solid-icons/fi'
 import { useParams, useNavigate } from 'solid-app-router'
 import { Incident } from '../types/incident'
-import CreateStatusMessageModal from './modals/CreateStatusMessage'
+import CreateStatusMessageButton from './modals/StatusMessageButton'
+import CreateEventButton from './modals/CreateEventButton'
 
 enum SECTION_TYPE {
   STATUSES = 'STATUSES',
   EVENTS = 'EVENTS',
   COMMENTS = 'COMMENTS',
 }
-type CreateButtonProps = {
-  handleOnClick: () => void
-}
-
-const CreateButton: Component<CreateButtonProps> = ({ handleOnClick }) => {
-  return (
-    <div
-      class="w-6 h-6 bg-zinc-700 shadow border border-zinc-600 rounded flex justify-center items-center hover:bg-opacity-75 hover:cursor-pointer text-zinc-300"
-      onClick={handleOnClick}
-    >
-      <FiPlus size={16} />
-    </div>
-  )
-}
 
 const SECTIONS = {
   [SECTION_TYPE.STATUSES]: {
     id: SECTION_TYPE.STATUSES,
     component: lazy(() => import('./IncidentStatuses')),
-    createComponent: CreateButton,
+    createComponent: CreateStatusMessageButton,
   },
   [SECTION_TYPE.EVENTS]: {
     id: SECTION_TYPE.EVENTS,
     component: lazy(() => import('./IncidentEvents')),
-    createComponent: CreateButton,
+    createComponent: CreateEventButton,
   },
   [SECTION_TYPE.COMMENTS]: {
     id: SECTION_TYPE.COMMENTS,
     component: lazy(() => import('./IncidentStatuses')),
-    createComponent: CreateButton,
+    createComponent: CreateStatusMessageButton,
   },
 }
 
@@ -51,10 +44,6 @@ type Props = {
 const IncidentDetails: Component<Props> = ({ incident }) => {
   const navigate = useNavigate()
   const { id: incidentId, section } = useParams()
-  const [getShouldDisplayStatusMessage, setShouldDisplayStatusMessage] =
-    createSignal(false)
-
-  const [getShouldDisplayEvent, setShouldDisplayEvent] = createSignal(false)
 
   const currentSection =
     Object.keys(SECTION_TYPE).find((key) => key === section?.toUpperCase()) ||
@@ -64,27 +53,9 @@ const IncidentDetails: Component<Props> = ({ incident }) => {
     currentSection as SECTION_TYPE
   )
 
-  const handleCreateStatusMessage = () => {
-    setShouldDisplayStatusMessage(true)
-  }
-  const handleCreateEvent = () => {
-    setShouldDisplayEvent(true)
-  }
-
   const handleSectionChange = (sectionId: SECTION_TYPE) => {
     setSelectedSection(sectionId)
     navigate(`/incidents/${incidentId}/${sectionId.toLowerCase()}`)
-  }
-
-  const handleOnClickSectionChange = () => {
-    switch (section?.toUpperCase()) {
-      case SECTION_TYPE.STATUSES:
-        return handleCreateStatusMessage
-      case SECTION_TYPE.EVENTS:
-        return handleCreateEvent
-      default:
-        return handleCreateStatusMessage
-    }
   }
 
   return (
@@ -110,19 +81,12 @@ const IncidentDetails: Component<Props> = ({ incident }) => {
           </For>
         </div>
 
-        <Dynamic
-          component={SECTIONS[getSelectedSection()].createComponent}
-          handleOnClick={handleOnClickSectionChange()}
-        />
+        <Dynamic component={SECTIONS[getSelectedSection()].createComponent} />
       </header>
 
       <Dynamic
         component={SECTIONS[getSelectedSection()].component}
         incident={incident}
-      />
-      <CreateStatusMessageModal
-        getShouldDisplay={getShouldDisplayStatusMessage}
-        setShouldDisplay={setShouldDisplayStatusMessage}
       />
     </section>
   )
