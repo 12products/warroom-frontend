@@ -1,4 +1,5 @@
 import { Event } from './event'
+import { Service } from './service'
 import { StatusMessage } from './statusMessage'
 import { DropdownOption } from './ui'
 import { User } from './user'
@@ -14,6 +15,7 @@ export type Incident = {
   events: Event[]
   assignee: User
   statusMessage: StatusMessage[]
+  service: Service
 }
 
 export enum IncidentStatus {
