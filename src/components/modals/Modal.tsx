@@ -6,15 +6,10 @@ import { getUseDirectives } from '../../utils/directives'
 import ModalCloseButton from './CloseButton'
 
 export type ModalProps = {
-  getShouldDisplay: Accessor<Boolean>
   setShouldDisplay: Setter<Boolean>
 }
 
-const Modal: Component<ModalProps> = ({
-  setShouldDisplay,
-  getShouldDisplay,
-  children,
-}) => {
+const Modal: Component<ModalProps> = ({ setShouldDisplay, children }) => {
   return (
     <Portal>
       <div

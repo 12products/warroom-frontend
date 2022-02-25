@@ -1,4 +1,4 @@
-import { Component, createSignal, Show, useContext } from 'solid-js'
+import { Component, createSignal, useContext } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 
 import Logo from '../Logo'

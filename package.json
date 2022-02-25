@@ -30,7 +30,6 @@
     "solid-js": "^1.3.3",
     "solid-js-form": "^0.1.5",
     "solid-urql": "^0.2.0",
-    "yarn": "^1.22.17",
     "yup-password": "^0.2.2"
   }
 }
