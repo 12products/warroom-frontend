@@ -1,6 +1,6 @@
 import { Accessor, Component, For } from 'solid-js'
-import { Incident } from '../types/incident'
 
+import { Incident } from '../types/incident'
 import { StatusMessage } from '../types/statusMessage'
 import IncidentStatus from './IncidentStatus'
 

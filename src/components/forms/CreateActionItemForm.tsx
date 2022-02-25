@@ -1,4 +1,4 @@
-import { Component, Setter } from 'solid-js'
+import { Component } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'

@@ -1,9 +1,11 @@
 import { Accessor, Component, createSignal, For, lazy } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import classnames from 'classnames'
-import { FiPlus } from 'solid-icons/fi'
 import { useParams, useNavigate } from 'solid-app-router'
+
 import { Incident } from '../types/incident'
+import CreateStatusMessageButton from './modals/StatusMessageButton'
+import CreateEventButton from './modals/CreateEventButton'
 
 enum SECTION_TYPE {
   STATUSES = 'STATUSES',
@@ -11,29 +13,21 @@ enum SECTION_TYPE {
   COMMENTS = 'COMMENTS',
 }
 
-const CreateButton: Component = () => {
-  return (
-    <div class="w-6 h-6 bg-zinc-700 shadow border border-zinc-600 rounded flex justify-center items-center hover:bg-opacity-75 hover:cursor-pointer text-zinc-300">
-      <FiPlus size={16} />
-    </div>
-  )
-}
-
 const SECTIONS = {
   [SECTION_TYPE.STATUSES]: {
     id: SECTION_TYPE.STATUSES,
     component: lazy(() => import('./IncidentStatuses')),
-    createComponent: CreateButton,
+    createComponent: CreateStatusMessageButton,
   },
   [SECTION_TYPE.EVENTS]: {
     id: SECTION_TYPE.EVENTS,
     component: lazy(() => import('./IncidentEvents')),
-    createComponent: CreateButton,
+    createComponent: CreateEventButton,
   },
   [SECTION_TYPE.COMMENTS]: {
     id: SECTION_TYPE.COMMENTS,
     component: lazy(() => import('./IncidentStatuses')),
-    createComponent: CreateButton,
+    createComponent: CreateStatusMessageButton,
   },
 }
 
@@ -44,9 +38,11 @@ type Props = {
 const IncidentDetails: Component<Props> = ({ incident }) => {
   const navigate = useNavigate()
   const { id: incidentId, section } = useParams()
+
   const currentSection =
     Object.keys(SECTION_TYPE).find((key) => key === section?.toUpperCase()) ||
     SECTION_TYPE.STATUSES
+
   const [getSelectedSection, setSelectedSection] = createSignal<SECTION_TYPE>(
     currentSection as SECTION_TYPE
   )

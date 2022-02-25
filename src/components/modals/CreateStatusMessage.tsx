@@ -1,26 +1,28 @@
 import { Accessor, Component, Setter, Show } from 'solid-js'
 
-import CreateIncidentForm from '../forms/CreateIncidentForm'
+import CreateStatusMessageForm from '../forms/CreateStatusMessageForm'
 import Modal from './Modal'
 
 type Props = {
   getShouldDisplay: Accessor<Boolean>
   setShouldDisplay: Setter<Boolean>
 }
-const CreateIncidentModal: Component<Props> = ({
+const CreateStatusMessageModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
-  const handleOnCreateIncident = () => {
+  const handleOnCreateStatusMessage = () => {
     setShouldDisplay(false)
   }
   return (
     <Show when={getShouldDisplay()}>
       <Modal setShouldDisplay={setShouldDisplay}>
-        <CreateIncidentForm onCreateIncident={handleOnCreateIncident} />
+        <CreateStatusMessageForm
+          onCreateStatusMessage={handleOnCreateStatusMessage}
+        />
       </Modal>
     </Show>
   )
 }
 
-export default CreateIncidentModal
+export default CreateStatusMessageModal
