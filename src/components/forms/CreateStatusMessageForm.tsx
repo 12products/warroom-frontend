@@ -16,6 +16,7 @@ const CREATE_STATUS_MESSAGE = `
     }
   }
 `
+
 type Props = {
   onCreateStatusMessage: () => void
 }

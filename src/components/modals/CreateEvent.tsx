@@ -6,6 +6,7 @@ type Props = {
   getShouldDisplay: Accessor<Boolean>
   setShouldDisplay: Setter<Boolean>
 }
+
 const CreateEventModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,

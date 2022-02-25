@@ -14,6 +14,7 @@ const CREATE_EVENT = `
     }
   }
 `
+
 type Props = {
   onCreateEvent: () => void
 }
