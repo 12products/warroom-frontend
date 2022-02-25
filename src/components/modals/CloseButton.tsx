@@ -1,11 +1,9 @@
 import { IoClose } from 'solid-icons/io'
-import { Component, Setter } from 'solid-js'
+import { Component } from 'solid-js'
 
-type Props = {
-  setShouldDisplay: Setter<Boolean>
-}
+import { ModalProps } from '../../types/ui'
 
-const CloseButton: Component<Props> = ({ setShouldDisplay }) => {
+const CloseButton: Component<ModalProps> = ({ setShouldDisplay }) => {
   return (
     <div
       class="absolute inset-y-4 right-8"

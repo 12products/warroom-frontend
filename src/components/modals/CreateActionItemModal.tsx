@@ -1,12 +1,10 @@
-import { Accessor, Component, Setter, Show } from 'solid-js'
+import { Component, Show } from 'solid-js'
+
 import CreateActionItemForm from '../forms/CreateActionItemForm'
 import Modal from './Modal'
+import { ModalProps } from '../../types/ui'
 
-type Props = {
-  getShouldDisplay: Accessor<Boolean>
-  setShouldDisplay: Setter<Boolean>
-}
-const CreateActionItemModal: Component<Props> = ({
+const CreateActionItemModal: Component<ModalProps> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {

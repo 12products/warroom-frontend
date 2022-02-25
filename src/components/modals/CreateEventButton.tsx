@@ -8,6 +8,7 @@ const CreateEventButton: Component = () => {
   const handleCreateEvent = () => {
     setShouldDisplayEvent(true)
   }
+
   return (
     <>
       <CreateButton handleOnClick={handleCreateEvent} hasBackground />

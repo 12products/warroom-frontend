@@ -1,23 +1,20 @@
 import { Component, Show } from 'solid-js'
 
-import CreateEventForm from '../forms/CreateEventForm'
+import CreateServiceForm from '../forms/CreateServiceForm'
 import Modal from './Modal'
 import { CreateModalProps } from '../../types/ui'
 
-const CreateEventModal: Component<CreateModalProps> = ({
+const CreateServiceModal: Component<CreateModalProps> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
-  const handleOnCreateEvent = () => {
-    setShouldDisplay(false)
-  }
   return (
     <Show when={getShouldDisplay()}>
       <Modal setShouldDisplay={setShouldDisplay}>
-        <CreateEventForm onCreateEvent={handleOnCreateEvent} />
+        <CreateServiceForm />
       </Modal>
     </Show>
   )
 }
 
-export default CreateEventModal
+export default CreateServiceModal

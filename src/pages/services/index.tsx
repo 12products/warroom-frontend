@@ -3,7 +3,7 @@ import { createQuery } from 'solid-urql'
 
 import AppLayout from '../../components/layouts/AppLayout'
 import { Service } from '../../types/service'
-import CreateServiceButton from '../../components/CreateServiceButton'
+import CreateServiceButton from '../../components/modals/CreateServiceButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const GET_SERVICES = `

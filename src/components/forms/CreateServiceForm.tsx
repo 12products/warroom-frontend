@@ -4,8 +4,8 @@ import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
 import { createMutation } from 'solid-urql'
 
-import Input from './Input'
-import Button from './Button'
+import Input from '../Input'
+import Button from '../Button'
 
 const CREATE_SERVICE_MUTATION = `
   mutation($input: CreateServiceInput!) {

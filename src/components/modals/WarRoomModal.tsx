@@ -14,10 +14,10 @@ import classnames from 'classnames'
 import { FiMaximize2, FiMinimize2 } from 'solid-icons/fi'
 import { FaSolidDoorOpen } from 'solid-icons/fa'
 
-import { ModalProps } from './Modal'
 import onClickOutside from '../../directives/onClickOutside'
 import { getUseDirectives } from '../../utils/directives'
 import { Portal } from 'solid-js/web'
+import { ModalProps } from '../../types/ui'
 
 const GET_ROOM_URL = `
   query incidentRoomURL($id: ID!) {
