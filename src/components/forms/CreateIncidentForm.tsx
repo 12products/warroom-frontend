@@ -1,7 +1,8 @@
-import { Component, Setter } from 'solid-js'
+import { Component, createSignal, onMount } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
+import flatpickr from 'flatpickr'
 
 import Button from '../Button'
 import Input from '../Input'
@@ -59,6 +60,12 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
     await createIncident(variables)
     onCreateIncident()
   }
+  const [el, setEl] = createSignal<HTMLInputElement>()
+  let datePickerRef: HTMLInputElement
+
+  onMount(() => {
+    flatpickr(el() as Node, {})
+  })
 
   return (
     <Form
@@ -77,9 +84,12 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
       onSubmit={async (form) => handleOnSubmit(form)}
     >
       <div class="space-y-4">
-        <Input name="title" label="Title" />
+        <Input name="title" label="Titlez" />
 
         <Input name="description" label="Description" />
+        <input id="date" ref={(el) => setEl(el)}>
+          Hello
+        </input>
 
         <FormDropdown
           options={() => incidentStatusOptions}

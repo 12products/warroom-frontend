@@ -2,9 +2,9 @@ import { Component, Show } from 'solid-js'
 
 import CreateActionItemForm from '../forms/CreateActionItemForm'
 import Modal from './Modal'
-import { ModalProps } from '../../types/ui'
+import { CreateModalProps } from '../../types/ui'
 
-const CreateActionItemModal: Component<ModalProps> = ({
+const CreateActionItemModal: Component<CreateModalProps> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {
