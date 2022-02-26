@@ -1,4 +1,4 @@
-import { Component } from 'solid-js'
+import { Component, Show } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation } from 'solid-urql'
@@ -8,6 +8,7 @@ import Button from '../Button'
 import Input from '../Input'
 import FormDropdown from '../FormDropdown'
 import { incidentStatusOptions } from '../../types/incident'
+import ErrorAlert from '../modals/ErrorAlert'
 
 const CREATE_STATUS_MESSAGE = `
   mutation ($input: CreateStatusMessageInput!) {
@@ -24,7 +25,9 @@ type Props = {
 const CreateStatusMessageForm: Component<Props> = ({
   onCreateStatusMessage,
 }) => {
-  const [_, createStatusMessage] = createMutation(CREATE_STATUS_MESSAGE)
+  const [createStatusMutationResult, createStatusMessage] = createMutation(
+    CREATE_STATUS_MESSAGE
+  )
   const { id: incidentId, section } = useParams()
 
   const handleOnSubmit = async (
@@ -70,6 +73,9 @@ const CreateStatusMessageForm: Component<Props> = ({
       <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">
         Create
       </Button>
+      <Show when={createStatusMutationResult().error}>
+        <ErrorAlert />
+      </Show>
     </Form>
   )
 }

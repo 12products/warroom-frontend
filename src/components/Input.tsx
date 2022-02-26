@@ -3,6 +3,7 @@ import { useField } from 'solid-js-form'
 import classnames from 'classnames'
 
 type Props = {
+  ref?: any
   name: string
   label: string
   type?: string
@@ -10,6 +11,7 @@ type Props = {
 }
 
 const Input: Component<Props> = ({
+  ref,
   name,
   label,
   type = 'text',
@@ -26,6 +28,7 @@ const Input: Component<Props> = ({
 
       <input
         id={name}
+        ref={ref}
         class={classnames([
           'mt-1 shadow-inner shadow-zinc-900/25 bg-transparent border border-zinc-700 outline-none rounded p-2',
           'focus:border-green-400 focus:ring-1 focus:ring-green-800 focus:ring-offset-green-400',

@@ -1,4 +1,4 @@
-import { Component } from 'solid-js'
+import { Component, Show } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
@@ -8,6 +8,7 @@ import Button from '../Button'
 import Input from '../Input'
 import FormDropdown from '../FormDropdown'
 import { User } from '../../types/user'
+import ErrorAlert from '../modals/ErrorAlert'
 
 const GET_USERS = `
   query {
@@ -39,7 +40,8 @@ const CreateActionItemsForm: Component<Props> = ({ onCreateActionItem }) => {
       label: firstName,
     })) || []
 
-  const [_, createActionItem] = createMutation(CREATE_ACTION_ITEM)
+  const [createActionItemResult, createActionItem] =
+    createMutation(CREATE_ACTION_ITEM)
   const { id: incidentId } = useParams()
 
   const handleOnSubmit = async (
@@ -85,6 +87,9 @@ const CreateActionItemsForm: Component<Props> = ({ onCreateActionItem }) => {
       <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">
         Create
       </Button>
+      <Show when={createActionItemResult().error}>
+        <ErrorAlert />
+      </Show>
     </Form>
   )
 }
