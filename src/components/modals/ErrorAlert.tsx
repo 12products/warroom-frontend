@@ -1,15 +1,16 @@
-import { Component, createSignal, Show } from 'solid-js'
-import { CreateModalProps } from '../../types/ui'
-import Modal from './Modal'
+import { Accessor, Component, createSignal, Show } from 'solid-js'
 
 interface CreateErrorAlertProps {
-  message?: string
+  messageAccessor?: Accessor<string>
 }
 
-const ErrorAlert: Component<CreateErrorAlertProps> = ({
-  message = 'Something went wrong. Please try again',
-}) => {
-  return <div class="text-xs text-red-500 mt-2 text-center">{message}</div>
+const ErrorAlert: Component<CreateErrorAlertProps> = ({ messageAccessor }) => {
+  const errorMessage = messageAccessor
+    ? messageAccessor
+    : () => 'Something went wrong. Please try again'
+  return (
+    <div class="text-xs text-red-500 mt-2 text-center">{errorMessage()}</div>
+  )
 }
 
 export default ErrorAlert

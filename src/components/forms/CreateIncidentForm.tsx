@@ -14,12 +14,17 @@ import {
 } from '../../types/incident'
 import { Service } from '../../types/service'
 import ErrorAlert from '../modals/ErrorAlert'
+import { User } from '../../types/user'
 
-const GET_SERVICES = `
+const GET_SERVICES_USERS = `
   query {
     services {
       id
       name
+    }
+    users {
+      id
+      firstName
     }
   }
 `
@@ -36,13 +41,19 @@ type Props = {
 }
 
 const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
-  const [servicesResult] = createQuery({ query: GET_SERVICES })
+  const [servicesUsersResult] = createQuery({ query: GET_SERVICES_USERS })
   const [createMutationResult, createIncident] = createMutation(CREATE_INCIDENT)
 
   const services = () =>
-    servicesResult()?.services.map(({ id, name }: Service) => ({
+    servicesUsersResult()?.services.map(({ id, name }: Service) => ({
       id,
       label: name,
+    })) || []
+
+  const userOptions = () =>
+    servicesUsersResult()?.users.map(({ id, firstName }: User) => ({
+      id,
+      label: firstName,
     })) || []
 
   const handleOnSubmit = async (
@@ -53,6 +64,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
       severity: string
       status: string
       serviceId: string
+      assigneeId: string
     }>
   ) => {
     const variables = {
@@ -63,6 +75,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
         severity: form.values.severity,
         status: form.values.status,
         serviceId: form.values.serviceId,
+        assigneeId: form.values.assigneeId,
       },
     }
     await createIncident(variables)
@@ -91,6 +104,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
           severity: '',
           status: '',
           serviceId: '',
+          assigneeId: '',
         }}
         validation={{
           title: Yup.string().required(),
@@ -99,6 +113,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
           severity: Yup.string(),
           status: Yup.string(),
           serviceId: Yup.string(),
+          assigneeId: Yup.string(),
         }}
         onSubmit={async (form) => handleOnSubmit(form)}
       >
@@ -112,7 +127,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
           <FormDropdown
             options={() => incidentSeverityOptions}
             placeholder="Select severity..."
-            field="serverity"
+            field="severity"
           />
 
           <FormDropdown
@@ -125,6 +140,12 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
             options={services}
             placeholder="Select service..."
             field="serviceId"
+          />
+
+          <FormDropdown
+            options={userOptions}
+            placeholder="Select assignee..."
+            field="assigneeId"
           />
         </div>
 

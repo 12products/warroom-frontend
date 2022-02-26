@@ -17,10 +17,7 @@ const IncidentWarRoom: Component<Props> = ({ roomURL = '' }) => {
       </Button>
 
       <Show when={getShouldDisplay()}>
-        <WarRoomModal
-          getShouldDisplay={getShouldDisplay}
-          setShouldDisplay={setShouldDisplay}
-        />
+        <WarRoomModal setShouldDisplay={setShouldDisplay} />
       </Show>
     </>
   )

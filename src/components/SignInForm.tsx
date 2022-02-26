@@ -1,4 +1,4 @@
-import { Component } from 'solid-js'
+import { Component, createSignal, Show } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
@@ -6,9 +6,11 @@ import { useNavigate } from 'solid-app-router'
 import Input from './Input'
 import Button from './Button'
 import { supabase } from '../lib/supabase'
+import ErrorAlert from './modals/ErrorAlert'
 
 const SignIn: Component = () => {
   const navigate = useNavigate()
+  const [authError, setAuthError] = createSignal('')
 
   return (
     <Form
@@ -24,7 +26,8 @@ const SignIn: Component = () => {
         })
 
         if (error) {
-          throw error
+          setAuthError(error.message)
+          return
         }
 
         navigate('/incidents')
@@ -39,6 +42,9 @@ const SignIn: Component = () => {
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
           Log In
         </Button>
+        <Show when={authError().length}>
+          <ErrorAlert messageAccessor={authError} />
+        </Show>
       </div>
     </Form>
   )
