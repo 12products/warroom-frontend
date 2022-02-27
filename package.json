@@ -24,6 +24,7 @@
     "@urql/core": "^2.4.2",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
+    "flatpickr": "^4.6.9",
     "graphql": "^16.3.0",
     "solid-app-router": "^0.3.0",
     "solid-icons": "^0.3.3",

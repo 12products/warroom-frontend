@@ -6,6 +6,7 @@ import CreateStatusMessageModal from './CreateStatusMessage'
 const CreateStatusMessageButton: Component = () => {
   const [getShouldDisplayStatusMessage, setShouldDisplayStatusMessage] =
     createSignal(false)
+
   const handleCreateStatusMessage = () => {
     setShouldDisplayStatusMessage(true)
   }

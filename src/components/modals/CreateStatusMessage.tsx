@@ -1,13 +1,10 @@
-import { Accessor, Component, Setter, Show } from 'solid-js'
+import { Component, Show } from 'solid-js'
+import { CreateModalProps } from '../../types/ui'
 
 import CreateStatusMessageForm from '../forms/CreateStatusMessageForm'
 import Modal from './Modal'
 
-type Props = {
-  getShouldDisplay: Accessor<Boolean>
-  setShouldDisplay: Setter<Boolean>
-}
-const CreateStatusMessageModal: Component<Props> = ({
+const CreateStatusMessageModal: Component<CreateModalProps> = ({
   setShouldDisplay,
   getShouldDisplay,
 }) => {

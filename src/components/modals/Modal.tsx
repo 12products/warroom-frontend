@@ -1,13 +1,8 @@
-import { Accessor, Component, Setter } from 'solid-js'
+import { Component } from 'solid-js'
 import { Portal } from 'solid-js/web'
 
-import onClickOutside from '../../directives/onClickOutside'
-import { getUseDirectives } from '../../utils/directives'
+import { ModalProps } from '../../types/ui'
 import ModalCloseButton from './CloseButton'
-
-export type ModalProps = {
-  setShouldDisplay: Setter<Boolean>
-}
 
 const Modal: Component<ModalProps> = ({ setShouldDisplay, children }) => {
   return (

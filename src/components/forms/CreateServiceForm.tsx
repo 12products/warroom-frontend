@@ -1,11 +1,12 @@
-import { Component } from 'solid-js'
+import { Component, Show } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
 import { createMutation } from 'solid-urql'
 
-import Input from './Input'
-import Button from './Button'
+import Input from '../Input'
+import Button from '../Button'
+import ErrorAlert from '../modals/ErrorAlert'
 
 const CREATE_SERVICE_MUTATION = `
   mutation($input: CreateServiceInput!) {
@@ -63,6 +64,9 @@ const CreateServiceForm: Component = () => {
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
           Create Service
         </Button>
+        <Show when={createServiceResult().error}>
+          <ErrorAlert />
+        </Show>
       </div>
     </Form>
   )
