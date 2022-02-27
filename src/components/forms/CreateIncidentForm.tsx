@@ -13,10 +13,10 @@ import {
   incidentSeverityOptions,
 } from '../../types/incident'
 import { Service } from '../../types/service'
-import ErrorAlert from '../modals/ErrorAlert'
+import ErrorAlert from '../ErrorAlert'
 import { User } from '../../types/user'
 
-const GET_SERVICES_USERS = `
+const GET_SERVICES_AND_USERS = `
   query {
     services {
       id
@@ -41,7 +41,7 @@ type Props = {
 }
 
 const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
-  const [servicesUsersResult] = createQuery({ query: GET_SERVICES_USERS })
+  const [servicesUsersResult] = createQuery({ query: GET_SERVICES_AND_USERS })
   const [createMutationResult, createIncident] = createMutation(CREATE_INCIDENT)
 
   const services = () =>
