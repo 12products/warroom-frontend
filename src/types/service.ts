@@ -1,4 +1,5 @@
 import { Incident } from './incident'
+import { DropdownOption } from './ui'
 
 export type Service = {
   id: string
@@ -14,3 +15,10 @@ export enum ServiceStatus {
   PARTIAL_OUTAGE = 'PARTIAL_OUTAGE',
   MAJOR_OUTAGE = 'MAJOR_OUTAGE',
 }
+
+export const serviceStatusOptions: DropdownOption[] = Object.keys(
+  ServiceStatus
+).map((status) => ({
+  id: status,
+  label: status,
+}))
