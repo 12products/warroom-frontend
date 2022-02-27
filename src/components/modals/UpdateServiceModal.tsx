@@ -1,7 +1,7 @@
 import { Accessor, Component, Setter, Show } from 'solid-js'
-import { Service } from '../../../types/service'
-import UpdateServiceForm from '../../forms/Service/UpdateService'
-import Modal from '../Modal'
+import { Service } from '../../types/service'
+import UpdateServiceForm from '../forms/UpdateServiceForm'
+import Modal from './Modal'
 
 type Props = {
   getShouldDisplay: Accessor<Boolean>
@@ -9,7 +9,7 @@ type Props = {
   service: Service
 }
 
-const UpdateService: Component<Props> = ({
+const UpdateServiceModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
   service,
@@ -29,4 +29,4 @@ const UpdateService: Component<Props> = ({
   )
 }
 
-export default UpdateService
+export default UpdateServiceModal

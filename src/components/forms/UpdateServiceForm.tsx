@@ -1,12 +1,13 @@
-import { Component } from 'solid-js'
+import { Component, Show } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation } from 'solid-urql'
 
-import Input from '../../Input'
-import Button from '../../Button'
-import FormDropdown from '../../FormDropdown'
-import { Service, serviceStatusOptions } from '../../../types/service'
+import Input from '../Input'
+import Button from '../Button'
+import FormDropdown from '../FormDropdown'
+import { Service, serviceStatusOptions } from '../../types/service'
+import ErrorAlert from '../ErrorAlert'
 
 const UPDATE_SERVICE_MUTATION = `
   mutation($input: UpdateServiceInput!) {
@@ -15,16 +16,6 @@ const UPDATE_SERVICE_MUTATION = `
     }
   }
 `
-
-// const GET_SERVICE = `
-//   query($id: ID!) {
-//     service(id: $id) {
-//       name
-//       description
-//       link
-//     }
-//   }
-// `
 
 type Props = {
   service: Service
@@ -35,10 +26,6 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
   const [updateServiceResult, updateService] = createMutation(
     UPDATE_SERVICE_MUTATION
   )
-  // const [serviceResult] = createQuery({
-  //   query: GET_SERVICE,
-  //   variables: { id: serviceId },
-  // })
 
   return (
     <Form
@@ -95,6 +82,10 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
           Update Service
         </Button>
+
+        <Show when={updateServiceResult().error}>
+          <ErrorAlert />
+        </Show>
       </div>
     </Form>
   )
