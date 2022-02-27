@@ -6,7 +6,7 @@ import { useParams } from 'solid-app-router'
 
 import Button from '../Button'
 import Input from '../Input'
-import ErrorAlert from '../modals/ErrorAlert'
+import ErrorAlert from '../ErrorAlert'
 
 const CREATE_EVENT = `
   mutation ($input: CreateEventInput!) {

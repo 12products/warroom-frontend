@@ -1,15 +1,15 @@
-import { Component, createSignal } from 'solid-js'
+import { Component } from 'solid-js'
 
-import { DropdownPropertyOption } from '../types/incident'
+import { DropdownOption as DropdownOptionType } from '../types/ui'
 
 type Props = {
   onClick: (id: string) => void
-} & DropdownPropertyOption
+} & DropdownOptionType
 
-const IncidentPropertyDropdown: Component<Props> = ({ id, label, onClick }) => {
+const DropdownOption: Component<Props> = ({ id, label, onClick }) => {
   return (
     <div
-      class="hover:bg-zinc-700 p-2 hover:cursor-pointer capitalize"
+      class="hover:bg-zinc-700 p-2 hover:cursor-pointer capitalize text-sm"
       onClick={() => onClick(id)}
     >
       {label.toLowerCase()}
@@ -17,4 +17,4 @@ const IncidentPropertyDropdown: Component<Props> = ({ id, label, onClick }) => {
   )
 }
 
-export default IncidentPropertyDropdown
+export default DropdownOption
