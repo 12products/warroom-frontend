@@ -20,5 +20,5 @@ export const serviceStatusOptions: DropdownOption[] = Object.keys(
   ServiceStatus
 ).map((status) => ({
   id: status,
-  label: status,
+  label: status.split('_').join(' '),
 }))

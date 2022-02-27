@@ -3,12 +3,11 @@ import classnames from 'classnames'
 import { useNavigate } from 'solid-app-router'
 import { BsThreeDots } from 'solid-icons/bs'
 
+import { createMutation } from 'solid-urql'
+
 import { Service } from '../types/service'
 import { getServiceStatusIcon } from './ServiceStatusIcons'
-import Dropdown from './Dropdown'
-import { DropdownOption } from '../types/ui'
 import EditDropdown from './EditDropDown'
-import { createMutation } from 'solid-urql'
 import UpdateService from './modals/Service/UpdateService'
 
 const DELETE_SERVICE = `
@@ -25,12 +24,12 @@ type Props = {
 const ServiceCard: Component<Props> = ({ service }) => {
   const StatusIcon = getServiceStatusIcon(service.status)
   const navigate = useNavigate()
-  const [getDisplay, setDisplay] = createSignal(false)
+  const [getDropdownDisplay, setDropdownDisplay] = createSignal(false)
   const [getDisplayEditModal, setDisplayEditModal] = createSignal(false)
   const [getSelected, setSelected] = createSignal<string | null>(null)
   const [deleteServiceResult, deleteService] = createMutation(DELETE_SERVICE)
   const handleOnClick = () => {
-    setDisplay(true)
+    setDropdownDisplay(true)
   }
 
   const onSelected = (optionId: string) => {
@@ -42,6 +41,7 @@ const ServiceCard: Component<Props> = ({ service }) => {
     if (optionId === 'edit') {
       setDisplayEditModal(true)
     }
+    setDropdownDisplay(false)
   }
 
   return (
@@ -59,7 +59,7 @@ const ServiceCard: Component<Props> = ({ service }) => {
       >
         <div class="absolute top-2 right-12" onClick={handleOnClick}>
           <BsThreeDots size={24} />
-          <Show when={getDisplay()}>
+          <Show when={getDropdownDisplay()}>
             <EditDropdown
               options={() => [
                 { id: 'edit', label: 'edit' },
@@ -70,6 +70,7 @@ const ServiceCard: Component<Props> = ({ service }) => {
             />
           </Show>
         </div>
+
         <div onClick={() => navigate(`/incidents/service/${service.id}`)}>
           <div class="flex justify-between items-center mt-4">
             <h2 class="text-2xl font-bold">{service.name}</h2>
