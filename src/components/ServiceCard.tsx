@@ -24,15 +24,12 @@ type Props = {
 const ServiceCard: Component<Props> = ({ service }) => {
   const StatusIcon = getServiceStatusIcon(service.status)
   const navigate = useNavigate()
-  const [getDropdownDisplay, setDropdownDisplay] = createSignal(false)
-  const [getDisplayEditModal, setDisplayEditModal] = createSignal(false)
-  const [getSelected, setSelected] = createSignal<string | null>(null)
-  const [deleteServiceResult, deleteService] = createMutation(DELETE_SERVICE)
-  const handleOnClick = () => {
-    setDropdownDisplay(true)
-  }
 
-  const onSelected = (optionId: string) => {
+  const [getDisplayEditModal, setDisplayEditModal] = createSignal(false)
+  const [_getSelected, setSelected] = createSignal<string | null>(null)
+  const [_, deleteService] = createMutation(DELETE_SERVICE)
+
+  const handleSelectedAction = (optionId: string) => {
     setSelected(optionId || null)
 
     if (optionId === 'delete') {
@@ -41,7 +38,6 @@ const ServiceCard: Component<Props> = ({ service }) => {
     if (optionId === 'edit') {
       setDisplayEditModal(true)
     }
-    setDropdownDisplay(false)
   }
 
   return (
@@ -53,29 +49,18 @@ const ServiceCard: Component<Props> = ({ service }) => {
       />
       <div
         class={classnames([
-          'bg-zinc-800 border border-zinc-700 rounded p-8 shadow shadow-zinc-900/50 h-32 flex flex-col justify-between relative',
+          'bg-zinc-800 border border-zinc-700 rounded p-4 shadow shadow-zinc-900/50 flex flex-col justify-between relative',
           'hover:cursor-pointer hover:bg-opacity-75 hover:shadow-lg',
         ])}
       >
-        <div class="absolute top-2 right-12" onClick={handleOnClick}>
-          <BsThreeDots size={24} />
-          <Show when={getDropdownDisplay()}>
-            <EditDropdown
-              options={() => [
-                { id: 'edit', label: 'edit' },
-                { id: 'delete', label: 'delete' },
-              ]}
-              selected={getSelected}
-              onSelected={onSelected}
-            />
-          </Show>
+        <div class="flex justify-between items-center">
+          <StatusIcon />
+
+          <EditDropdown onSelected={handleSelectedAction} />
         </div>
 
         <div onClick={() => navigate(`/incidents/service/${service.id}`)}>
-          <div class="flex justify-between items-center mt-4">
-            <h2 class="text-2xl font-bold">{service.name}</h2>
-            <StatusIcon />
-          </div>
+          <h2 class="text-2xl font-bold mt-4">{service.name}</h2>
 
           <p class="text-zinc-300 text-sm">{service.description}</p>
         </div>
