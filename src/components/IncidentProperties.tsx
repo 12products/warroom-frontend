@@ -7,7 +7,7 @@ import {
   incidentStatusOptions,
   incidentSeverityOptions,
   Incident,
-} from '../types/Incident'
+} from '../types/incident'
 import { DropdownOption } from '../types/ui'
 
 type Props = {

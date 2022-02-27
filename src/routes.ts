@@ -5,6 +5,7 @@ export const routes: RouteDefinition[] = [
   { path: '/', component: lazy(() => import('./pages/home')) },
   { path: '/signin', component: lazy(() => import('./pages/signin')) },
   { path: '/signup', component: lazy(() => import('./pages/signup')) },
+  { path: '/:id', component: lazy(() => import('./pages/status')) },
   // Authentication required for all routes below
   {
     path: '/onboard',
