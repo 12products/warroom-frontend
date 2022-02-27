@@ -8,7 +8,7 @@ import Button from '../Button'
 import Input from '../Input'
 import FormDropdown from '../FormDropdown'
 import { User } from '../../types/user'
-import ErrorAlert from '../modals/ErrorAlert'
+import ErrorAlert from '../ErrorAlert'
 
 const GET_USERS = `
   query {

@@ -1,14 +1,12 @@
 import { Component, createSignal, Show } from 'solid-js'
 import classnames from 'classnames'
 import { useNavigate } from 'solid-app-router'
-import { BsThreeDots } from 'solid-icons/bs'
-
 import { createMutation } from 'solid-urql'
 
 import { Service } from '../types/service'
 import { getServiceStatusIcon } from './ServiceStatusIcons'
 import EditDropdown from './EditDropDown'
-import UpdateService from './modals/Service/UpdateService'
+import UpdateService from './modals/UpdateServiceModal'
 
 const DELETE_SERVICE = `
   mutation($id: ID!) {

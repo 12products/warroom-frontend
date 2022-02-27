@@ -6,7 +6,7 @@ import { useNavigate } from 'solid-app-router'
 import Input from './Input'
 import Button from './Button'
 import { supabase } from '../lib/supabase'
-import ErrorAlert from './modals/ErrorAlert'
+import ErrorAlert from './ErrorAlert'
 
 const SignIn: Component = () => {
   const navigate = useNavigate()

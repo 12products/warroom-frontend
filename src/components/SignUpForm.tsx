@@ -8,7 +8,7 @@ YupPassword(Yup) // extend yup
 import Input from './Input'
 import Button from './Button'
 import { supabase } from '../lib/supabase'
-import ErrorAlert from './modals/ErrorAlert'
+import ErrorAlert from './ErrorAlert'
 
 const SignUp: Component = () => {
   const navigate = useNavigate()
