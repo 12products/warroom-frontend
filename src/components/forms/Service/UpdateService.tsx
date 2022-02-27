@@ -1,12 +1,12 @@
 import { Component } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
-import { createMutation, createQuery } from 'solid-urql'
+import { createMutation } from 'solid-urql'
 
 import Input from '../../Input'
 import Button from '../../Button'
 import FormDropdown from '../../FormDropdown'
-import { serviceStatusOptions } from '../../../types/service'
+import { Service, serviceStatusOptions } from '../../../types/service'
 
 const UPDATE_SERVICE_MUTATION = `
   mutation($input: UpdateServiceInput!) {
@@ -16,41 +16,38 @@ const UPDATE_SERVICE_MUTATION = `
   }
 `
 
-const GET_SERVICE = `
-  query($id: ID!) {
-    service(id: $id) {
-      name
-      description
-      link
-    }
-  }
-`
+// const GET_SERVICE = `
+//   query($id: ID!) {
+//     service(id: $id) {
+//       name
+//       description
+//       link
+//     }
+//   }
+// `
 
 type Props = {
-  serviceId: string
+  service: Service
   onUpdateService: () => void
 }
 
-const UpdateServiceForm: Component<Props> = ({
-  serviceId,
-  onUpdateService,
-}) => {
+const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
   const [updateServiceResult, updateService] = createMutation(
     UPDATE_SERVICE_MUTATION
   )
-  const [serviceResult] = createQuery({
-    query: GET_SERVICE,
-    variables: { id: serviceId },
-  })
+  // const [serviceResult] = createQuery({
+  //   query: GET_SERVICE,
+  //   variables: { id: serviceId },
+  // })
 
   return (
     <Form
       initialValues={{
-        name: serviceResult()?.service.name || '',
-        description: serviceResult()?.service.description || '',
-        link: serviceResult()?.service.link || '',
-        status: serviceResult()?.service.status || '',
-        private: serviceResult()?.service.private ? 'true' : 'false',
+        name: service.name || '',
+        description: service.description || '',
+        link: service.link || '',
+        status: service.status || '',
+        private: service.private ? 'true' : 'false',
       }}
       validation={{
         name: Yup.string(),
@@ -64,7 +61,7 @@ const UpdateServiceForm: Component<Props> = ({
       }) => {
         await updateService({
           input: {
-            id: serviceId,
+            id: service.id,
             name,
             description,
             link,

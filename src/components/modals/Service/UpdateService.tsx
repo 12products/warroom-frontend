@@ -1,17 +1,18 @@
 import { Accessor, Component, Setter, Show } from 'solid-js'
+import { Service } from '../../../types/service'
 import UpdateServiceForm from '../../forms/Service/UpdateService'
 import Modal from '../Modal'
 
 type Props = {
   getShouldDisplay: Accessor<Boolean>
   setShouldDisplay: Setter<Boolean>
-  id: string
+  service: Service
 }
 
 const UpdateService: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
-  id,
+  service,
 }) => {
   const onUpdateService = () => {
     setShouldDisplay(false)
@@ -19,7 +20,10 @@ const UpdateService: Component<Props> = ({
   return (
     <Show when={getShouldDisplay()}>
       <Modal setShouldDisplay={setShouldDisplay}>
-        <UpdateServiceForm serviceId={id} onUpdateService={onUpdateService} />
+        <UpdateServiceForm
+          service={service}
+          onUpdateService={onUpdateService}
+        />
       </Modal>
     </Show>
   )

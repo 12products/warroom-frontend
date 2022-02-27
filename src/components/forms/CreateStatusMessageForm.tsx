@@ -8,7 +8,7 @@ import Button from '../Button'
 import Input from '../Input'
 import FormDropdown from '../FormDropdown'
 import { incidentStatusOptions } from '../../types/incident'
-import ErrorAlert from '../modals/ErrorAlert'
+import ErrorAlert from '../ErrorAlert'
 
 const CREATE_STATUS_MESSAGE = `
   mutation ($input: CreateStatusMessageInput!) {

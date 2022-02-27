@@ -8,6 +8,7 @@ export type Service = {
   private: boolean
   status: ServiceStatus
   incidents: Incident[]
+  link: string
 }
 
 export enum ServiceStatus {

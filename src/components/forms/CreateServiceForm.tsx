@@ -6,7 +6,7 @@ import { createMutation } from 'solid-urql'
 
 import Input from '../Input'
 import Button from '../Button'
-import ErrorAlert from '../modals/ErrorAlert'
+import ErrorAlert from '../ErrorAlert'
 
 const CREATE_SERVICE_MUTATION = `
   mutation($input: CreateServiceInput!) {

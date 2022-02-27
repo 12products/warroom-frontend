@@ -47,9 +47,9 @@ const ServiceCard: Component<Props> = ({ service }) => {
   return (
     <>
       <UpdateService
-        id={service.id}
         setShouldDisplay={setDisplayEditModal}
         getShouldDisplay={getDisplayEditModal}
+        service={service}
       />
       <div
         class={classnames([
