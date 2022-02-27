@@ -8,6 +8,7 @@ import Button from '../Button'
 import FormDropdown from '../FormDropdown'
 import { Service, serviceStatusOptions } from '../../types/service'
 import ErrorAlert from '../ErrorAlert'
+import FormToggle from '../FormToggle'
 
 const UPDATE_SERVICE_MUTATION = `
   mutation($input: UpdateServiceInput!) {
@@ -34,7 +35,7 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
         description: service.description || '',
         link: service.link || '',
         status: service.status || '',
-        private: service.private ? 'true' : 'false',
+        private: service.private,
       }}
       validation={{
         name: Yup.string(),
@@ -53,7 +54,7 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
             description,
             link,
             status,
-            private: privateStatus === 'true',
+            private: privateStatus,
           },
         })
         onUpdateService()
@@ -62,21 +63,18 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
       <div class="flex flex-col">
         <div class="space-y-4">
           <Input name="name" label="Name" />
+
           <Input name="description" label="Description" />
+
           <Input name="link" label="Link" />
+
           <FormDropdown
             options={() => serviceStatusOptions}
             placeholder="Select status..."
             field="status"
           />
-          <FormDropdown
-            options={() => [
-              { id: 'true', label: 'true' },
-              { id: 'false', label: 'false' },
-            ]}
-            placeholder="Set private status..."
-            field="private"
-          />
+
+          <FormToggle label="Private" field="private" value={service.private} />
         </div>
 
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
