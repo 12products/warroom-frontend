@@ -4,40 +4,33 @@ import IncidentsSidebar from '../../components/IncidentsSidebar'
 import AppLayout from '../../components/layouts/AppLayout'
 import { Incident, IncidentSeverity } from '../../types/incident'
 import IncidentsTable from '../../components/IncidentsTable'
+import { createQuery } from 'solid-urql'
 
-const INCIDENTS = [
-  {
-    id: 'BAT-1',
-    title: 'Incident 1',
-    incidentDate: new Date(),
-    severity: IncidentSeverity.HIGH,
-  },
-  {
-    id: 'BAT-2',
-    title: 'Incident 2',
-    incidentDate: new Date(),
-    severity: IncidentSeverity.MEDIUM,
-  },
-  {
-    id: 'BAT-3',
-    title: 'Incident 3',
-    incidentDate: new Date(),
-    severity: IncidentSeverity.CRITICAL,
-  },
-  {
-    id: 'BAT-4',
-    title: 'Incident 4',
-    incidentDate: new Date(),
-    severity: IncidentSeverity.LOW,
-  },
-] as Incident[]
+const GET_ASSIGNED_INCIDENTS = `
+  query {
+    assignedIncidents {
+      id
+      description
+      status
+      title
+      incidentDate
+      severity
+    }
+  }
+`
 
 const AssignedIncidents: Component = () => {
+  const [assignedIncidentsResult] = createQuery({
+    query: GET_ASSIGNED_INCIDENTS,
+  })
+
+  const incidents = () => assignedIncidentsResult()?.assignedIncidents
+
   return (
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        {/* <IncidentsTable incidents={()=> {incidents: INCIDENTS}} /> */}
+        <IncidentsTable incidents={incidents} />
       </main>
     </AppLayout>
   )
