@@ -17,6 +17,7 @@ const GET_OPEN_INCIDENTS = `
     }
   }
 `
+
 const OpenIncidents: Component = () => {
   const [incidentsByOpenResult] = createQuery({
     query: GET_OPEN_INCIDENTS,
