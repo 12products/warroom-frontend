@@ -1,11 +1,5 @@
-import {
-  Component,
-  createEffect,
-  createRenderEffect,
-  createResource,
-  createSignal,
-} from 'solid-js'
-import { createQuery, useClient } from 'solid-urql'
+import { Component, createEffect, createSignal } from 'solid-js'
+import { useClient } from 'solid-urql'
 import { useParams } from 'solid-app-router'
 
 import IncidentsSidebar from '../../components/IncidentsSidebar'
@@ -24,42 +18,33 @@ const GET_INCIDENTS_BY_SERVICES = `
     }
   }
 `
+
+const fetchIncidentsByServiceId = async (serviceId: string) => {
+  const client = useClient()
+  const { data } = await client
+    .query(GET_INCIDENTS_BY_SERVICES, { id: serviceId })
+    .toPromise()
+
+  return data.incidentsByServiceId
+}
+
 const Incidents: Component = () => {
   const params = useParams()
-  const [getId, setId] = createSignal(params.id)
-  const client = useClient()
-  const variables = () => ({
-    id: params.id,
-  })
-  const [incidentsByServiceResult, eyyyyy, reexecuteQuery] = createQuery({
-    query: GET_INCIDENTS_BY_SERVICES,
-    variables: {
-      id: params.id,
-    },
-  })
+  const [getServiceId, setServiceId] = createSignal<string | null>(null)
+  const [getIncidents, setIncidents] = createSignal([])
+
   createEffect(async () => {
-    if (params.id !== getId()) {
-      console.log('fuck you', params.id)
-      reexecuteQuery()
-      console.log(incidentsByServiceResult(), eyyyyy(), reexecuteQuery())
+    if (params.id !== getServiceId()) {
+      setIncidents(await fetchIncidentsByServiceId(params.id))
+      setServiceId(params.id)
     }
-    setId(params.id)
   })
 
-  // createRenderEffect(() => {
-  //   console.log(params.id)
-  //   setId(params.id)
-  //   reexecuteQuery({
-  //     requestPolicy: 'network-only',
-  //     variables: { id: getId() },
-  //   })
-  // })
-  const incidents = () => incidentsByServiceResult()?.incidentsByServiceId
   return (
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        <IncidentsTable incidents={incidents} />
+        <IncidentsTable incidents={getIncidents} />
       </main>
     </AppLayout>
   )
