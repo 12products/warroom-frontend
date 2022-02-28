@@ -125,24 +125,28 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
           <Input name="incidentDate" label="Date" ref={datePicker} />
 
           <FormDropdown
+            label="Severity"
             options={() => incidentSeverityOptions}
             placeholder="Select severity..."
             field="severity"
           />
 
           <FormDropdown
+            label="Status"
             options={() => incidentStatusOptions}
             placeholder="Select status..."
             field="status"
           />
 
           <FormDropdown
+            label="Service"
             options={services}
             placeholder="Select service..."
             field="serviceId"
           />
 
           <FormDropdown
+            label="Assignee"
             options={userOptions}
             placeholder="Select assignee..."
             field="assigneeId"

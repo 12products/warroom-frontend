@@ -8,7 +8,7 @@ type Props = {
   value: boolean
 }
 
-const FormDropdown: Component<Props> = ({ field, label, value }) => {
+const FormToggle: Component<Props> = ({ field, label, value }) => {
   const { form } = useField(field)
   const [getSelected, setSelected] = createSignal(value)
 
@@ -39,4 +39,4 @@ const FormDropdown: Component<Props> = ({ field, label, value }) => {
   )
 }
 
-export default FormDropdown
+export default FormToggle

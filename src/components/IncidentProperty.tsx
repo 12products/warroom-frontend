@@ -49,7 +49,7 @@ const IncidentProperty: Component<Props> = ({ label, selected, options }) => {
           selected={getSelected as Accessor<string>}
           options={options}
           onSelected={onSelected}
-          dropdownClass="border border-transparent"
+          dropdownClass="border-transparent hover:border-zinc-400 hover:border-opacity-25"
         />
       </div>
     </div>

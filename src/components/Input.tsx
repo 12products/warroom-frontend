@@ -30,7 +30,7 @@ const Input: Component<Props> = ({
         id={name}
         ref={ref}
         class={classnames([
-          'mt-1 shadow-inner shadow-zinc-900/25 bg-transparent border border-zinc-700 outline-none rounded p-2',
+          'mt-1 shadow-inner shadow-zinc-900/25 bg-transparent border border-zinc-700 outline-none rounded p-2 text-sm',
           'focus:border-green-400 focus:ring-1 focus:ring-green-800 focus:ring-offset-green-400',
           inputClass,
         ])}
