@@ -37,7 +37,6 @@ const FormDropdown: Component<Props> = ({
           selected={getSelected}
           options={options}
           onSelected={onSelected}
-          // dropdownClass="border border-zinc-700"
         />
       </div>
     </div>
