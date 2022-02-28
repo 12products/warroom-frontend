@@ -8,7 +8,7 @@ import { createQuery } from 'solid-urql'
 
 const GET_ASSIGNED_INCIDENTS = `
   query {
-    incidentsByAssignedId {
+    assignedIncidents {
       id
       description
       status
@@ -20,11 +20,11 @@ const GET_ASSIGNED_INCIDENTS = `
 `
 
 const AssignedIncidents: Component = () => {
-  const [incidentsByAssignedIdResult] = createQuery({
+  const [assignedIncidentsResult] = createQuery({
     query: GET_ASSIGNED_INCIDENTS,
   })
 
-  const incidents = () => incidentsByAssignedIdResult()?.incidentsByAssignedId
+  const incidents = () => assignedIncidentsResult()?.assignedIncidents
 
   return (
     <AppLayout>
