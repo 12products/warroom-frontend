@@ -2,7 +2,7 @@ import { Component } from 'solid-js'
 import { Portal } from 'solid-js/web'
 
 import { ModalProps } from '../../types/ui'
-import ModalCloseButton from './CloseButton'
+import CloseButton from './CloseButton'
 
 const Modal: Component<ModalProps> = ({ setShouldDisplay, children }) => {
   return (
@@ -12,7 +12,7 @@ const Modal: Component<ModalProps> = ({ setShouldDisplay, children }) => {
         // ref={getUseDirectives([onClickOutside, () => setShouldDisplay(false)])}
       >
         <div class="bg-zinc-800 border border-zinc-700 rounded p-8 shadow-2xl shadow-zinc-900 w-1/2 mx-auto relative">
-          <ModalCloseButton setShouldDisplay={setShouldDisplay} />
+          <CloseButton setShouldDisplay={setShouldDisplay} />
           {children}
         </div>
       </div>

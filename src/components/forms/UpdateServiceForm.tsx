@@ -69,6 +69,7 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
           <Input name="link" label="Link" />
 
           <FormDropdown
+            label="Status"
             options={() => serviceStatusOptions}
             placeholder="Select status..."
             field="status"

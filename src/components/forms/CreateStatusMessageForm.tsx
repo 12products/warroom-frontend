@@ -64,6 +64,7 @@ const CreateStatusMessageForm: Component<Props> = ({
         <Input name="text" label="Text" />
 
         <FormDropdown
+          label="Status"
           options={() => incidentStatusOptions}
           placeholder="Select status..."
           field="status"

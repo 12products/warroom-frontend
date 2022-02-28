@@ -31,16 +31,16 @@ const Dropdown: Component<Props> = ({
   }
 
   return (
-    <div class="relative">
+    <div class="relative text-sm">
       <div
         ref={getUseDirectives([
           onClickOutside,
           () => setShouldDisplayOptions(false),
         ])}
         class={classnames(
-          'p-2 rounded hover:cursor-pointer capitalize',
+          'p-2 rounded hover:cursor-pointer capitalize border border-zinc-700',
           {
-            'border-zinc-400 border-opacity-25': getShouldDisplayOptions(),
+            'border-green-500': getShouldDisplayOptions(),
           },
           dropdownClass
         )}
@@ -48,7 +48,7 @@ const Dropdown: Component<Props> = ({
       >
         <Show
           when={selected()}
-          fallback={<span class="text-zinc-500">{placeholder}</span>}
+          fallback={<span class="text-zinc-600">{placeholder}</span>}
         >
           {selected()?.toLowerCase()}
         </Show>

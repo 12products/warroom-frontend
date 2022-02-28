@@ -26,4 +26,8 @@ body {
   @apply text-green-500;
 }
 
+a.active {
+  @apply text-white;
+}
+
 @tailwind utilities;

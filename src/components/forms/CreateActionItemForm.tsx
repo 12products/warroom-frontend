@@ -78,6 +78,7 @@ const CreateActionItemsForm: Component<Props> = ({ onCreateActionItem }) => {
         <Input name="text" label="Text" />
 
         <FormDropdown
+          label="Owner"
           options={userOptions}
           placeholder="Select owner..."
           field="ownerId"

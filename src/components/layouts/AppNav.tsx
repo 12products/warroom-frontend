@@ -1,10 +1,10 @@
-import { Component, createSignal, useContext } from 'solid-js'
-import { useNavigate } from 'solid-app-router'
+import { Component, useContext } from 'solid-js'
+import { useNavigate, NavLink } from 'solid-app-router'
 
 import Logo from '../Logo'
-import Button from '../Button'
 import { AuthContext } from '../../context/AuthProvider'
-import CreateIncidentModal from '../modals/CreateIncidentModal'
+import Button from '../Button'
+import CreateButton from '../modals/CreateButton'
 
 const Nav: Component = () => {
   const navigate = useNavigate()
@@ -15,27 +15,28 @@ const Nav: Component = () => {
     navigate('/signin')
   }
 
-  const [getShouldDisplay, setShouldDisplay] = createSignal(false)
-
-  const handleCreateIncident = () => {
-    setShouldDisplay(true)
-  }
-
   return (
     <>
       <nav class="flex justify-between items-center mb-4">
         <Logo />
-        <div class="space-x-4">
-          <Button onClick={handleCreateIncident}>Create Incident</Button>
 
-          <Button onClick={handleSignOut}>Sign Out</Button>
+        <div class="space-x-4">
+          <NavLink href="/incidents" class="hover:text-green-500 text-zinc-400">
+            Incidents
+          </NavLink>
+
+          <NavLink href="/services" class="hover:text-green-500 text-zinc-400">
+            Services
+          </NavLink>
+
+          <span
+            class="hover:text-green-500 text-zinc-400 hover:cursor-pointer"
+            onClick={handleSignOut}
+          >
+            Sign out
+          </span>
         </div>
       </nav>
-
-      <CreateIncidentModal
-        getShouldDisplay={getShouldDisplay}
-        setShouldDisplay={setShouldDisplay}
-      />
     </>
   )
 }
