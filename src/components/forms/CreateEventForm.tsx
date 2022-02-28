@@ -26,12 +26,12 @@ const CreateEventForm: Component<Props> = ({ onCreateEvent }) => {
 
   const handleOnSubmit = async (
     form: FormType.Context<{
-      text: string
+      message: string
     }>
   ) => {
     const variables = {
       input: {
-        text: form.values.text,
+        text: form.values.message,
         incidentId,
       },
     }
@@ -43,15 +43,15 @@ const CreateEventForm: Component<Props> = ({ onCreateEvent }) => {
   return (
     <Form
       initialValues={{
-        text: '',
+        message: '',
       }}
       validation={{
-        text: Yup.string().required(),
+        message: Yup.string().required(),
       }}
       onSubmit={async (form) => handleOnSubmit(form)}
     >
       <div class="space-y-4">
-        <Input name="text" label="Text" />
+        <Input name="message" label="Message" />
       </div>
 
       <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">

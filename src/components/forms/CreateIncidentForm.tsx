@@ -1,4 +1,4 @@
-import { Component, createSignal, onMount, Show } from 'solid-js'
+import { Component, onMount, Show } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
@@ -122,7 +122,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
 
           <Input name="description" label="Description" />
           {/*@ts-ignore*/}
-          <Input name="incidentDate" label="Date" ref={datePicker} />
+          <Input name="incidentDate" label="Incident Date" ref={datePicker} />
 
           <FormDropdown
             options={() => incidentSeverityOptions}

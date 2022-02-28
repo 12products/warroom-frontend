@@ -28,17 +28,17 @@ const CreateStatusMessageForm: Component<Props> = ({
   const [createStatusMutationResult, createStatusMessage] = createMutation(
     CREATE_STATUS_MESSAGE
   )
-  const { id: incidentId, section } = useParams()
+  const { id: incidentId } = useParams()
 
   const handleOnSubmit = async (
     form: FormType.Context<{
-      text: string
+      message: string
       status: string
     }>
   ) => {
     const variables = {
       input: {
-        text: form.values.text,
+        text: form.values.message,
         status: form.values.status,
         incidentId,
       },
@@ -51,23 +51,23 @@ const CreateStatusMessageForm: Component<Props> = ({
   return (
     <Form
       initialValues={{
-        text: '',
+        message: '',
         status: '',
       }}
       validation={{
-        text: Yup.string().required(),
+        message: Yup.string().required(),
         status: Yup.string().required(),
       }}
       onSubmit={async (form) => handleOnSubmit(form)}
     >
       <div class="space-y-4">
-        <Input name="text" label="Text" />
-
         <FormDropdown
           options={() => incidentStatusOptions}
           placeholder="Select status..."
           field="status"
         />
+
+        <Input name="message" label="Message" />
       </div>
 
       <Button type="submit" buttonClass="py-2 mt-8 font-semibold w-full">
