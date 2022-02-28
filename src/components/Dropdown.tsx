@@ -38,7 +38,7 @@ const Dropdown: Component<Props> = ({
           () => setShouldDisplayOptions(false),
         ])}
         class={classnames(
-          'p-2 rounded hover:cursor-pointer capitalize border border-zinc-700 hover:border-green-500',
+          'p-2 rounded hover:cursor-pointer capitalize border border-zinc-700',
           {
             'border-green-500': getShouldDisplayOptions(),
           },
