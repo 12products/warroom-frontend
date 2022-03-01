@@ -46,13 +46,13 @@ const CreateActionItemsForm: Component<Props> = ({ onCreateActionItem }) => {
 
   const handleOnSubmit = async (
     form: FormType.Context<{
-      text: string
+      action: string
       ownerId: string
     }>
   ) => {
     const variables = {
       input: {
-        text: form.values.text,
+        text: form.values.action,
         ownerId: form.values.ownerId,
         incidentId,
       },
@@ -65,17 +65,17 @@ const CreateActionItemsForm: Component<Props> = ({ onCreateActionItem }) => {
   return (
     <Form
       initialValues={{
-        text: '',
+        action: '',
         ownerId: '',
       }}
       validation={{
-        text: Yup.string().required(),
+        action: Yup.string().required(),
         ownerId: Yup.string().required(),
       }}
       onSubmit={async (form) => handleOnSubmit(form)}
     >
       <div class="space-y-4">
-        <Input name="text" label="Text" />
+        <Input name="action" label="Action" />
 
         <FormDropdown
           label="Owner"
