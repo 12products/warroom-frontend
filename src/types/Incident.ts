@@ -11,6 +11,7 @@ export type Incident = {
   status: IncidentStatus
   severity: IncidentSeverity
   incidentDate: Date
+  tag: string
   actionItems: IncidentActionItem[]
   events: Event[]
   assignee: User

@@ -10,7 +10,7 @@ const IncidentSummary: Component<Props> = ({ incident }) => {
     <section class="border border-zinc-700 rounded p-8 space-y-4 shadow shadow-zinc-900/50">
       <div class="flex justify-between">
         <div>
-          <label class="text-sm text-zinc-500">BAT-66</label>
+          <label class="text-sm text-zinc-500">{incident().tag}</label>
           <h1 class="text-2xl font-bold">{incident().title}</h1>
         </div>
 

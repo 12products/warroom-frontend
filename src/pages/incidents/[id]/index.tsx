@@ -19,6 +19,7 @@ const INCIDENT_QUERY = `
       status
       severity
       roomURL
+      tag
       statusMessage {
         text
         status
@@ -41,7 +42,6 @@ const INCIDENT_QUERY = `
 
 const Incident: Component = () => {
   const params = useParams()
-  const navigate = useNavigate()
   const [incidentResult, incidentState] = createQuery({
     query: INCIDENT_QUERY,
     variables: { id: params.id },
