@@ -30,7 +30,6 @@ const IncidentsTableEmptyState: Component = () => {
 }
 
 const IncidentsTable: Component<Props> = ({ incidents }) => {
-  console.log('incidents', {incidents})
   return (
     <div class="col-span-3 ">
       <section class="border border-zinc-700 rounded text-sm text-zinc-300 shadow shadow-zinc-900/50">
