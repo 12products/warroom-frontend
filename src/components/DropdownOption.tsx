@@ -9,7 +9,7 @@ type Props = {
 const DropdownOption: Component<Props> = ({ id, label, onClick }) => {
   return (
     <div
-      class="hover:bg-zinc-700 p-2 hover:cursor-pointer capitalize text-sm"
+      class="hover:bg-zinc-700 hover:text-white p-2 hover:cursor-pointer capitalize text-sm"
       onClick={() => onClick(id)}
     >
       {label.toLowerCase()}

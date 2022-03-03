@@ -1,26 +1,16 @@
-import { Component, useContext } from 'solid-js'
-import { useNavigate, NavLink } from 'solid-app-router'
+import { Component } from 'solid-js'
+import { NavLink } from 'solid-app-router'
 
 import Logo from '../Logo'
-import { AuthContext } from '../../context/AuthProvider'
-import Button from '../Button'
-import CreateButton from '../modals/CreateButton'
+import UserMenu from '../UserMenu'
 
 const Nav: Component = () => {
-  const navigate = useNavigate()
-  const [_, { signOut }] = useContext(AuthContext)
-
-  const handleSignOut = () => {
-    signOut()
-    navigate('/signin')
-  }
-
   return (
     <>
-      <nav class="flex justify-between items-center mb-4">
+      <nav class="flex justify-between items-center mb-4 text-sm">
         <Logo />
 
-        <div class="space-x-4">
+        <div class="space-x-4 flex items-center">
           <NavLink href="/incidents" class="hover:text-green-500 text-zinc-400">
             Incidents
           </NavLink>
@@ -29,12 +19,7 @@ const Nav: Component = () => {
             Services
           </NavLink>
 
-          <span
-            class="hover:text-green-500 text-zinc-400 hover:cursor-pointer"
-            onClick={handleSignOut}
-          >
-            Sign out
-          </span>
+          <UserMenu />
         </div>
       </nav>
     </>

@@ -3,7 +3,7 @@ import { useNavigate } from 'solid-app-router'
 import { createQuery } from 'solid-urql'
 
 import AuthLayout from '../components/layouts/AuthLayout'
-import OnboardForm from '../components/OnboardForm'
+import OnboardForm from '../components/forms/OnboardForm'
 import { AuthContext } from '../context/AuthProvider'
 
 const GET_USER = `

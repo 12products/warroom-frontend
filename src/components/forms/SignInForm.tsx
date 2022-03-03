@@ -3,10 +3,10 @@ import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
 
-import Input from './Input'
-import Button from './Button'
-import { supabase } from '../lib/supabase'
-import ErrorAlert from './ErrorAlert'
+import Input from '../Input'
+import Button from '../Button'
+import { supabase } from '../../lib/supabase'
+import ErrorAlert from '../ErrorAlert'
 
 const SignIn: Component = () => {
   const navigate = useNavigate()
@@ -40,7 +40,7 @@ const SignIn: Component = () => {
         </div>
 
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
-          Log In
+          Sign In
         </Button>
         <Show when={authError().length}>
           <ErrorAlert messageAccessor={authError} />

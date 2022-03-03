@@ -54,4 +54,8 @@ export const routes: RouteDefinition[] = [
       },
     ],
   },
+  {
+    path: '/settings',
+    component: lazy(() => import('./pages/settings')),
+  },
 ]
