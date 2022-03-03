@@ -28,10 +28,10 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
     UPDATE_SERVICE_MUTATION
   )
 
-  const [privateStatus, setPrivateStatus] = createSignal(service.private)
+  const [privateSetting, setPrivateSetting] = createSignal(service.private)
 
   const onPrivateStatusSelected = (selected: boolean) => {
-    setPrivateStatus(selected)
+    setPrivateSetting(selected)
   }
 
   return (
@@ -84,7 +84,7 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
           <FormToggle
             label="Private"
             field="private"
-            value={privateStatus}
+            value={privateSetting}
             onSelected={onPrivateStatusSelected}
           />
         </div>
