@@ -4,9 +4,9 @@ import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
 import { createMutation } from 'solid-urql'
 
-import Input from './Input'
-import Button from './Button'
-import { AuthContext } from '../context/AuthProvider'
+import Input from '../Input'
+import Button from '../Button'
+import { AuthContext } from '../../context/AuthProvider'
 
 const CREATE_USER = `
   mutation($input: CreateUserInput!) {

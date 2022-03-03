@@ -5,10 +5,10 @@ import { useNavigate } from 'solid-app-router'
 import YupPassword from 'yup-password'
 YupPassword(Yup) // extend yup
 
-import Input from './Input'
-import Button from './Button'
-import { supabase } from '../lib/supabase'
-import ErrorAlert from './ErrorAlert'
+import Input from '../Input'
+import Button from '../Button'
+import { supabase } from '../../lib/supabase'
+import ErrorAlert from '../ErrorAlert'
 
 const SignUp: Component = () => {
   const navigate = useNavigate()

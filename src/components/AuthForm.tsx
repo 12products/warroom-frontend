@@ -1,8 +1,8 @@
 import { Component, createSignal } from 'solid-js'
 
 import AuthLayout from './layouts/AuthLayout'
-import SignInForm from './SignInForm'
-import SignUpForm from '../components/SignUpForm'
+import SignInForm from './forms/SignInForm'
+import SignUpForm from './forms/SignUpForm'
 
 export enum STATES {
   SIGN_IN = 'Sign In',
@@ -43,7 +43,7 @@ const AuthForm: Component<Props> = ({ state: initialState }) => {
               class="hover:text-green-500 hover:cursor-pointer font-semibold"
               onClick={() => setState(STATES.SIGN_IN)}
             >
-              Log in
+              Sign in
             </span>
           </span>
         )}
