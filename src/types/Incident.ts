@@ -11,11 +11,14 @@ export type Incident = {
   status: IncidentStatus
   severity: IncidentSeverity
   incidentDate: Date
+  tag: string
   actionItems: IncidentActionItem[]
   events: Event[]
   assignee: User
   statusMessage: StatusMessage[]
   service: Service
+  TTR: string
+  TTD: string
 }
 
 export enum IncidentStatus {

@@ -19,6 +19,7 @@ const INCIDENT_QUERY = `
       status
       severity
       roomURL
+      tag
       statusMessage {
         text
         status
@@ -36,17 +37,23 @@ const INCIDENT_QUERY = `
         createdAt
       }
     }
+    incidentEventTime(id: $id) {
+      TTR
+      TTD
+    }
   }
 `
 
 const Incident: Component = () => {
   const params = useParams()
-  const navigate = useNavigate()
   const [incidentResult, incidentState] = createQuery({
     query: INCIDENT_QUERY,
     variables: { id: params.id },
   })
-  const incident = () => incidentResult()?.incident
+  const incident = () => ({
+    ...incidentResult()?.incident,
+    ...incidentResult()?.incidentEventTime,
+  })
 
   return (
     <AppLayout>

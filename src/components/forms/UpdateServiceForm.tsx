@@ -1,4 +1,4 @@
-import { Component, Show } from 'solid-js'
+import { Component, createSignal, Show } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation } from 'solid-urql'
@@ -27,6 +27,12 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
   const [updateServiceResult, updateService] = createMutation(
     UPDATE_SERVICE_MUTATION
   )
+
+  const [privateSetting, setPrivateSetting] = createSignal(service.private)
+
+  const onPrivateStatusSelected = (selected: boolean) => {
+    setPrivateSetting(selected)
+  }
 
   return (
     <Form
@@ -75,7 +81,12 @@ const UpdateServiceForm: Component<Props> = ({ service, onUpdateService }) => {
             field="status"
           />
 
-          <FormToggle label="Private" field="private" value={service.private} />
+          <FormToggle
+            label="Private"
+            field="private"
+            value={privateSetting}
+            onSelected={onPrivateStatusSelected}
+          />
         </div>
 
         <Button type="submit" buttonClass="py-2 mt-8 font-semibold">
