@@ -17,6 +17,8 @@ export type Incident = {
   assignee: User
   statusMessage: StatusMessage[]
   service: Service
+  TTR: string
+  TTD: string
 }
 
 export enum IncidentStatus {

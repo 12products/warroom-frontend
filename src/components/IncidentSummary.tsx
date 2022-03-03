@@ -17,12 +17,12 @@ const IncidentSummary: Component<Props> = ({ incident }) => {
         <div class="text-sm">
           <div class="grid gap-4 grid-cols-3">
             <div class="text-zinc-500">TTD</div>
-            <div class="col-span-2">10 minutes</div>
+            <div class="col-span-2">{incident().TTD}</div>
           </div>
 
           <div class="grid gap-4 grid-cols-3">
             <div class="text-zinc-500">TTR</div>
-            <div class="col-span-2">12 minutes</div>
+            <div class="col-span-2">{incident().TTR}</div>
           </div>
         </div>
       </div>

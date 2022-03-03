@@ -37,6 +37,10 @@ const INCIDENT_QUERY = `
         createdAt
       }
     }
+    incidentEventTime(id: $id) {
+      TTR
+      TTD
+    }
   }
 `
 
@@ -46,7 +50,10 @@ const Incident: Component = () => {
     query: INCIDENT_QUERY,
     variables: { id: params.id },
   })
-  const incident = () => incidentResult()?.incident
+  const incident = () => ({
+    ...incidentResult()?.incident,
+    ...incidentResult()?.incidentEventTime,
+  })
 
   return (
     <AppLayout>

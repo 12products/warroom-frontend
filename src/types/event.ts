@@ -3,3 +3,10 @@ export type Event = {
   text: string
   createdAt: string
 }
+
+export enum EventType {
+  CAUSE = 'CAUSE',
+  DETECTION = 'DETECTION',
+  RESOLUTION = 'RESOLUTION',
+  GENERIC = 'GENERIC',
+}
