@@ -9,9 +9,11 @@ const GET_INCIDENTS = `
   query {
     incidents {
       id
+      status
       title
       incidentDate
       severity
+      tag
     }
   }
 `

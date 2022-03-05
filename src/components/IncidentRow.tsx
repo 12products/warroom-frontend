@@ -22,7 +22,7 @@ const IncidentRow: Component<Props> = ({ incident }) => {
         <div class="flex justify-center items-center">
           <SeverityIcon />
         </div>
-        <div class="text-zinc-500">{incident.id}</div>
+        <div class="text-zinc-500">{incident.tag || incident.id}</div>
         <div>{incident.title}</div>
       </div>
 
