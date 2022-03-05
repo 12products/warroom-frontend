@@ -17,15 +17,18 @@ type Props = {
 }
 
 const CurrentStatus: Component<Props> = ({ incidents }) => {
+  const [getHasLoadedTodaysIncidents, setHasLoadedTodaysIncidents] =
+    createSignal(false)
   const [getTodaysIncidents, setTodaysIncidents] = createSignal<Incident[]>([])
 
   createEffect(() => {
-    if (incidents()?.length && !getTodaysIncidents()?.length) {
+    if (incidents()?.length && !getHasLoadedTodaysIncidents()) {
       setTodaysIncidents(
         incidents()?.filter((incident) =>
           isToday(new Date(incident.incidentDate))
         )
       )
+      setHasLoadedTodaysIncidents(true)
     }
   })
 
