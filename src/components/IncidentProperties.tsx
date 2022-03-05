@@ -1,14 +1,14 @@
 import { Accessor, Component } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
-import { User } from '../types/user'
 import IncidentProperty from './IncidentProperty'
 import {
   incidentStatusOptions,
   incidentSeverityOptions,
   Incident,
-} from '../types/incident'
-import { DropdownOption } from '../types/ui'
+  User,
+  DropdownOption,
+} from '../types'
 
 type Props = {
   incident: Accessor<Incident | undefined>

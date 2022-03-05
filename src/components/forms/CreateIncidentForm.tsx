@@ -11,10 +11,10 @@ import FormDropdown from '../FormDropdown'
 import {
   incidentStatusOptions,
   incidentSeverityOptions,
-} from '../../types/incident'
-import { Service } from '../../types/service'
+  Service,
+  User,
+} from '../../types'
 import ErrorAlert from '../ErrorAlert'
-import { User } from '../../types/user'
 
 const GET_SERVICES_AND_USERS = `
   query {

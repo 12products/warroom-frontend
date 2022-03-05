@@ -7,8 +7,8 @@ import { useParams } from 'solid-app-router'
 import Button from '../Button'
 import Input from '../Input'
 import FormDropdown from '../FormDropdown'
-import { incidentStatusOptions } from '../../types/incident'
 import ErrorAlert from '../ErrorAlert'
+import { HandleOnUpdateProps, incidentStatusOptions } from '../../types'
 
 const CREATE_STATUS_MESSAGE = `
   mutation ($input: CreateStatusMessageInput!) {
@@ -18,11 +18,12 @@ const CREATE_STATUS_MESSAGE = `
   }
 `
 
-type Props = {
+type Props = HandleOnUpdateProps & {
   onCreateStatusMessage: () => void
 }
 
 const CreateStatusMessageForm: Component<Props> = ({
+  handleOnUpdate,
   onCreateStatusMessage,
 }) => {
   const [createStatusMutationResult, createStatusMessage] = createMutation(
@@ -45,6 +46,7 @@ const CreateStatusMessageForm: Component<Props> = ({
     }
 
     await createStatusMessage(variables)
+    handleOnUpdate({ statusMessage: createStatusMutationResult().data })
     onCreateStatusMessage()
   }
 

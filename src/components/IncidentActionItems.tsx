@@ -3,7 +3,7 @@ import { Accessor, Component, createSignal, For } from 'solid-js'
 import {
   Incident,
   IncidentActionItem as IncidentActionItemType,
-} from '../types/incident'
+} from '../types'
 import IncidentActionItem from './IncidentActionItem'
 import CreateActionItemModal from './modals/CreateActionItemModal'
 import CreateButton from './modals/CreateButton'

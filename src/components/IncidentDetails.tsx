@@ -3,7 +3,7 @@ import { Dynamic } from 'solid-js/web'
 import classnames from 'classnames'
 import { useParams, useNavigate } from 'solid-app-router'
 
-import { Incident, Event, HandleOnUpdateProps } from '../types'
+import { Incident, HandleOnUpdateProps } from '../types'
 import CreateStatusMessageButton from './modals/StatusMessageButton'
 import CreateEventButton from './modals/CreateEventButton'
 
@@ -31,9 +31,8 @@ const SECTIONS = {
   },
 }
 
-type Props = {
+type Props = HandleOnUpdateProps & {
   incident: Accessor<Incident | undefined>
-  handleOnUpdate: (args?: HandleOnUpdateProps) => void
 }
 
 const IncidentDetails: Component<Props> = ({ incident, handleOnUpdate }) => {

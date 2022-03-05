@@ -1,7 +1,6 @@
 import { Accessor, Component, For } from 'solid-js'
 
-import { Incident } from '../types/incident'
-import { StatusMessage } from '../types/statusMessage'
+import { Incident, StatusMessage } from '../types'
 import IncidentStatus from './IncidentStatus'
 
 const IncidentStatusesEmptyState: Component = () => {

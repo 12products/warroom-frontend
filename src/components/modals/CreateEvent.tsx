@@ -4,16 +4,11 @@ import CreateEventForm from '../forms/CreateEventForm'
 import Modal from './Modal'
 import { CreateModalProps, HandleOnUpdateProps, Event } from '../../types'
 
-type ArgProps = {
-  event?: Event
-}
-type Props = CreateModalProps & {
-  handleOnUpdate: (args?: HandleOnUpdateProps) => void
-}
+type Props = CreateModalProps & HandleOnUpdateProps
 const CreateEventModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
-  reexecuteQuery,
+  handleOnUpdate,
 }) => {
   const handleOnCreateEvent = () => {
     setShouldDisplay(false)
@@ -23,7 +18,7 @@ const CreateEventModal: Component<Props> = ({
       <Modal setShouldDisplay={setShouldDisplay}>
         <CreateEventForm
           onCreateEvent={handleOnCreateEvent}
-          reexecuteQuery={reexecuteQuery}
+          handleOnUpdate={handleOnUpdate}
         />
       </Modal>
     </Show>

@@ -21,7 +21,11 @@ export type ModalProps = {
   setShouldDisplay: Setter<Boolean>
 }
 
-export type HandleOnUpdateProps = {
+export type IncidentUpdateProps = {
   event?: Event
   statusMessage?: StatusMessage
+}
+
+export type HandleOnUpdateProps = {
+  handleOnUpdate: (args: IncidentUpdateProps) => void
 }

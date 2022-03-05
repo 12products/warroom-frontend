@@ -1,7 +1,7 @@
 import { Component, createSignal, Show, For, Accessor } from 'solid-js'
 import classnames from 'classnames'
 
-import { DropdownOption as DropdownOptionType } from '../types/ui'
+import { DropdownOption as DropdownOptionType } from '../types'
 import DropdownOption from './DropdownOption'
 import onClickOutside from '../directives/onClickOutside'
 import { getUseDirectives } from '../utils/directives'

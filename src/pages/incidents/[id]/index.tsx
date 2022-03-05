@@ -8,8 +8,11 @@ import IncidentProperties from '../../../components/IncidentProperties'
 import IncidentActionItems from '../../../components/IncidentActionItems'
 import IncidentSummary from '../../../components/IncidentSummary'
 import IncidentWarRoom from '../../../components/IncidentWarRoom'
-import { HandleOnUpdateProps } from '../../../types/ui'
-import { Incident as IncidentType } from '../../../types/incident'
+import {
+  HandleOnUpdateProps,
+  Incident as IncidentType,
+  IncidentUpdateProps,
+} from '../../../types'
 
 const INCIDENT_QUERY = `
   query ($id: ID!) {
@@ -61,7 +64,7 @@ const Incident: Component = () => {
     })
   })
   //handleCreateEvent
-  const handleOnUpdate = ({ event, statusMessage }: HandleOnUpdateProps) => {
+  const handleOnUpdate = ({ event, statusMessage }: IncidentUpdateProps) => {
     if (incident()) {
       const prevIncident = incident() as IncidentType
 
