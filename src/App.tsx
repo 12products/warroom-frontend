@@ -5,6 +5,7 @@ import { Provider as GraphQLProvider } from 'solid-urql'
 import { routes } from './routes'
 import { AuthProvider } from './context/AuthProvider'
 import { client } from './lib/urql'
+import { WarRoomProvider } from './context/WarRoomProvider'
 
 const App: Component = () => {
   const Routes = useRoutes(routes)
@@ -12,7 +13,9 @@ const App: Component = () => {
   return (
     <AuthProvider>
       <GraphQLProvider value={client}>
-        <Routes />
+        <WarRoomProvider>
+          <Routes />
+        </WarRoomProvider>
       </GraphQLProvider>
     </AuthProvider>
   )
