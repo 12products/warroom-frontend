@@ -1,4 +1,4 @@
-import { createContext, Component, onCleanup, Accessor } from 'solid-js'
+import { createContext, Component, onCleanup } from 'solid-js'
 import { createStore, Store } from 'solid-js/store'
 import { User, Session } from '@supabase/supabase-js'
 

@@ -47,7 +47,11 @@ const Nav: Component = () => {
             </NavLink>
           </Show>
 
-          <NavLink href="/incidents" class="hover:text-green-500 text-zinc-400">
+          <NavLink
+            href="/incidents"
+            class="hover:text-green-500 text-zinc-400"
+            end
+          >
             Incidents
           </NavLink>
 
