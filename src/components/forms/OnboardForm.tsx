@@ -24,7 +24,7 @@ const CREATE_ORGANIZATION = `
   }
 `
 
-const CreateServiceForm: Component = () => {
+const OnboardForm: Component = () => {
   const [{ user }] = useContext(AuthContext)
   const navigate = useNavigate()
   const [createUserResult, createUser] = createMutation(CREATE_USER)
@@ -84,4 +84,4 @@ const CreateServiceForm: Component = () => {
   )
 }
 
-export default CreateServiceForm
+export default OnboardForm

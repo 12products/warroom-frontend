@@ -56,7 +56,7 @@ const Status: Component = () => {
         }
       : null
   const services: Accessor<Service[]> = () =>
-    statusResult()?.organizationStatus.services
+    statusResult()?.organizationStatus?.services
   // Create a flap map of incidents but ensure they also have service data
   const incidents: Accessor<Incident[]> = () =>
     services()?.flatMap((service) =>
