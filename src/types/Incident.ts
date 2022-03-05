@@ -19,6 +19,7 @@ export type Incident = {
   service: Service
   TTR: string
   TTD: string
+  roomURL: string
 }
 
 export enum IncidentStatus {

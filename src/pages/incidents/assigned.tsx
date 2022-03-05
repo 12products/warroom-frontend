@@ -10,6 +10,7 @@ const GET_ASSIGNED_INCIDENTS = `
     assignedIncidents {
       id
       status
+      tag
       title
       incidentDate
       severity

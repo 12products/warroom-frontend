@@ -8,6 +8,7 @@ type Props = {
 }
 
 const IncidentEvent: Component<Props> = ({ event }) => {
+  console.log({ event })
   return (
     <div class="grid grid-cols-4 gap-4 border-b last:border-b-0 pb-8 last:pb-0 border-zinc-600">
       <div class="col-span-1 grid grid-cols-2 gap-1 text-zinc-400">

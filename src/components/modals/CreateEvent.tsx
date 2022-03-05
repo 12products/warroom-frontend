@@ -2,11 +2,18 @@ import { Component, Show } from 'solid-js'
 
 import CreateEventForm from '../forms/CreateEventForm'
 import Modal from './Modal'
-import { CreateModalProps } from '../../types/ui'
+import { CreateModalProps, HandleOnUpdateProps, Event } from '../../types'
 
-const CreateEventModal: Component<CreateModalProps> = ({
+type ArgProps = {
+  event?: Event
+}
+type Props = CreateModalProps & {
+  handleOnUpdate: (args?: HandleOnUpdateProps) => void
+}
+const CreateEventModal: Component<Props> = ({
   setShouldDisplay,
   getShouldDisplay,
+  reexecuteQuery,
 }) => {
   const handleOnCreateEvent = () => {
     setShouldDisplay(false)
@@ -14,7 +21,10 @@ const CreateEventModal: Component<CreateModalProps> = ({
   return (
     <Show when={getShouldDisplay()}>
       <Modal setShouldDisplay={setShouldDisplay}>
-        <CreateEventForm onCreateEvent={handleOnCreateEvent} />
+        <CreateEventForm
+          onCreateEvent={handleOnCreateEvent}
+          reexecuteQuery={reexecuteQuery}
+        />
       </Modal>
     </Show>
   )

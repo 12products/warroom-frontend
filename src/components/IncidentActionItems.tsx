@@ -9,7 +9,7 @@ import CreateActionItemModal from './modals/CreateActionItemModal'
 import CreateButton from './modals/CreateButton'
 
 type Props = {
-  incident: Accessor<Incident>
+  incident: Accessor<Incident | undefined>
 }
 
 const IncidentActionItems: Component<Props> = ({ incident }) => {

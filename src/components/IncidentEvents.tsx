@@ -5,7 +5,7 @@ import { Incident } from '../types/incident'
 import IncidentEvent from './IncidentEvent'
 
 type Props = {
-  incident: Accessor<Incident>
+  incident: Accessor<Incident | undefined>
 }
 
 const IncidentEventsEmptyState: Component = () => {
@@ -20,7 +20,7 @@ const IncidentEventsEmptyState: Component = () => {
 const IncidentEvents: Component<Props> = ({ incident }) => {
   return (
     <section class="text-sm p-8 space-y-8">
-      <For each={incident().events} fallback={<IncidentEventsEmptyState />}>
+      <For each={incident()?.events} fallback={<IncidentEventsEmptyState />}>
         {(event: Event) => <IncidentEvent event={event} />}
       </For>
     </section>

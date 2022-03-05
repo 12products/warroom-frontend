@@ -14,7 +14,7 @@ const IncidentStatusesEmptyState: Component = () => {
 }
 
 type Props = {
-  incident: Accessor<Incident>
+  incident: Accessor<Incident | undefined>
 }
 
 const IncidentStatuses: Component<Props> = ({ incident }) => {

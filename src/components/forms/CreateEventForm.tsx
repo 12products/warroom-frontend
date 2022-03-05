@@ -8,7 +8,7 @@ import Button from '../Button'
 import Input from '../Input'
 import ErrorAlert from '../ErrorAlert'
 import FormToggle from '../FormToggle'
-import { EventType } from '../../types/event'
+import { EventType, Event } from '../../types/event'
 
 const CREATE_EVENT = `
   mutation ($input: CreateEventInput!) {
@@ -17,12 +17,18 @@ const CREATE_EVENT = `
     }
   }
 `
-
+type ArgProps = {
+  event?: Event
+}
 type Props = {
   onCreateEvent: () => void
+  reexecuteQuery: (args?: ArgProps) => void
 }
 
-const CreateEventForm: Component<Props> = ({ onCreateEvent }) => {
+const CreateEventForm: Component<Props> = ({
+  onCreateEvent,
+  reexecuteQuery,
+}) => {
   const [createMutationResult, createEvent] = createMutation(CREATE_EVENT)
   const { id: incidentId } = useParams()
 
@@ -86,8 +92,14 @@ const CreateEventForm: Component<Props> = ({ onCreateEvent }) => {
         incidentId,
       },
     }
-
+    const newEvent: Event = {
+      id: '123',
+      text: form.values.message,
+      createdAt: new Date().toISOString(),
+    }
+    reexecuteQuery({ event: newEvent })
     await createEvent(variables)
+
     onCreateEvent()
   }
 

@@ -11,7 +11,7 @@ import {
 import { DropdownOption } from '../types/ui'
 
 type Props = {
-  incident: Accessor<Incident>
+  incident: Accessor<Incident | undefined>
 }
 
 const GET_USERS = `
@@ -29,8 +29,8 @@ const IncidentProperties: Component<Props> = ({ incident }) => {
 
   if (incident()?.assignee) {
     defaultUserOptions.push({
-      id: incident().assignee.id,
-      label: incident().assignee.firstName,
+      id: incident()?.assignee.id || '',
+      label: incident()?.assignee.firstName || '',
     })
   }
 
@@ -44,19 +44,19 @@ const IncidentProperties: Component<Props> = ({ incident }) => {
     <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm shadow shadow-zinc-900/50">
       <IncidentProperty
         label="Status"
-        selected={incident()?.status}
+        selected={incident()?.status || null}
         options={() => incidentStatusOptions}
       />
 
       <IncidentProperty
         label="Severity"
-        selected={incident()?.severity}
+        selected={incident()?.severity || null}
         options={() => incidentSeverityOptions}
       />
 
       <IncidentProperty
         label="Assignee"
-        selected={incident()?.assignee?.id}
+        selected={incident()?.assignee?.id || null}
         options={userOptions}
       />
     </section>
