@@ -1,9 +1,11 @@
-import { Component, For, Show } from 'solid-js'
+import { Component, For } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
 import IncidentsSidebarItem from './IncidentsSidebarItem'
-import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/ui'
-import { Service } from '../types/service'
+import {
+  IncidentsSidebarItem as IncidentsSidebarItemType,
+  Service,
+} from '../types'
 
 const GET_SERVICES = `
   query {
