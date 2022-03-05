@@ -67,13 +67,13 @@ const Status: Component = () => {
         },
       }))
     )
-  const [getIncidentsByDate, setIncidentsByDate] =
+  const [incidentsByDate, setIncidentsByDate] =
     createSignal<IncidentsByDateType>({})
 
   createEffect(() => {
     // Create data structure containing incidents
     // for the past 15 days grouped by date
-    if (incidents()?.length && !Object.values(getIncidentsByDate()).length) {
+    if (incidents()?.length && !Object.values(incidentsByDate()).length) {
       const incidentsByDate: IncidentsByDateType = {}
       for (let i = 0; i < 14; i++) {
         const date = format(sub(new Date(), { days: i }), 'MM-dd-yyyy')
@@ -108,7 +108,7 @@ const Status: Component = () => {
       </section>
 
       <section class="border border-zinc-700 rounded p-8 shadow shadow-zinc-900 w-1/2 mx-auto relative space-y-8">
-        <For each={Object.values(getIncidentsByDate())}>
+        <For each={Object.values(incidentsByDate())}>
           {({ date, incidents }) => (
             <IncidentsByDate date={date} incidents={incidents} />
           )}

@@ -9,11 +9,11 @@ const GET_OPEN_INCIDENTS = `
   query {
     openIncidents {
       id
-      description
       status
       title
       incidentDate
       severity
+      tag
     }
   }
 `

@@ -22,20 +22,23 @@ const IncidentsByDate: Component<Props> = ({ date, incidents }) => {
           each={incidents}
           fallback={<div class="text-zinc-400">No incidents reported</div>}
         >
-          {({ id, title, description, severity, service }) => (
-            <div>
-              <div class="text-xs font-semibold text-zinc-400 mb-1">
-                {service.name}
-              </div>
+          {({ id, title, description, severity, service }) => {
+            const SeverityIcon = getIncidentSeverityIcon(severity)
+            return (
+              <div>
+                <div class="text-xs font-semibold text-zinc-400 mb-1">
+                  {service.name}
+                </div>
 
-              <div class="flex items-center justify-between mb-1">
-                <Link href={`/incidents/${id}`}>{title}</Link>
-                {getIncidentSeverityIcon(severity)}
-              </div>
+                <div class="flex items-center justify-between mb-1">
+                  <Link href={`/incidents/${id}`}>{title}</Link>
+                  <SeverityIcon />
+                </div>
 
-              <div class="text-xs text-zinc-300">{description}</div>
-            </div>
-          )}
+                <div class="text-xs text-zinc-300">{description}</div>
+              </div>
+            )
+          }}
         </For>
       </div>
     </div>

@@ -10,11 +10,11 @@ const GET_INCIDENTS_BY_SERVICES = `
   query($id: ID!) {
     incidentsByServiceId(serviceId: $id) {
       id
-      description
       status
       title
       incidentDate
       severity
+      tag
     }
   }
 `
