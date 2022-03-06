@@ -8,7 +8,7 @@ import { getServiceStatusIcon } from './ServiceStatusIcons'
 import EditDropdown from './EditDropDown'
 import UpdateService from './modals/UpdateServiceModal'
 
-const DELETE_SERVICE = `
+const REMOVE_SERVICE = `
   mutation($id: ID!) {
     removeService(id: $id){
       id
@@ -25,13 +25,13 @@ const ServiceCard: Component<Props> = ({ service }) => {
 
   const [getDisplayEditModal, setDisplayEditModal] = createSignal(false)
   const [_getSelected, setSelected] = createSignal<string | null>(null)
-  const [_, deleteService] = createMutation(DELETE_SERVICE)
+  const [_, removeService] = createMutation(REMOVE_SERVICE)
 
   const handleSelectedAction = (optionId: string) => {
     setSelected(optionId || null)
 
     if (optionId === 'delete') {
-      deleteService({ id: service.id })
+      removeService({ id: service.id })
     }
     if (optionId === 'edit') {
       setDisplayEditModal(true)
