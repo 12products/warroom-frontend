@@ -42,9 +42,9 @@ const CurrentStatus: Component<Props> = ({ incidents }) => {
         <For each={Object.values(openIncidentsByService())}>
           {({ name, incidents }) => (
             <div>
-              <div class="font-semibold text-xl mb-1 text-zinc-300">{name}</div>
+              <div class="font-semibold mb-1">{name}</div>
 
-              <div class="space-y-2">
+              <div class="space-y-4">
                 <For each={incidents}>
                   {(incident) => {
                     const [incidentBackgroundColor, incidentBorderColor] =

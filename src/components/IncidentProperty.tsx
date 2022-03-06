@@ -8,7 +8,7 @@ import { getOption } from '../utils/getOption'
 
 const UPDATE_INCIDENT_MUTATION = `
   mutation($input: UpdateIncidentInput!) {
-    updateIncident(updateIncidentInput: $input){
+    updateIncident(updateIncidentInput: $input) {
       id
     }
   }

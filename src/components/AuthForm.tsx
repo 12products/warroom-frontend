@@ -1,4 +1,5 @@
-import { Component, createSignal } from 'solid-js'
+import { Component, createEffect, createSignal } from 'solid-js'
+import { useSearchParams } from 'solid-app-router'
 
 import AuthLayout from './layouts/AuthLayout'
 import SignInForm from './forms/SignInForm'
@@ -14,7 +15,14 @@ type Props = {
 }
 
 const AuthForm: Component<Props> = ({ state: initialState }) => {
+  const [searchParams] = useSearchParams()
   const [getState, setState] = createSignal(initialState)
+
+  createEffect(() => {
+    if (searchParams.invite) {
+      localStorage.setItem('inviteCode', searchParams.invite)
+    }
+  })
 
   return (
     <AuthLayout>

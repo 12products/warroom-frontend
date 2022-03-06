@@ -38,10 +38,15 @@ const Nav: Component = () => {
         <Logo />
 
         <div class="space-x-4 flex items-center">
-          <Show when={user()?.organization.id}>
+          <Show
+            when={user()?.organization.id}
+            fallback={
+              <div class="hover:cursor-not-allowed text-zinc-500">Status</div>
+            }
+          >
             <NavLink
               href={`/${user()?.organization.id}`}
-              class="hover:text-green-500 text-zinc-400"
+              class="hover:text-green-500 text-zinc-500"
             >
               Status
             </NavLink>
@@ -49,13 +54,13 @@ const Nav: Component = () => {
 
           <NavLink
             href="/incidents"
-            class="hover:text-green-500 text-zinc-400"
+            class="hover:text-green-500 text-zinc-500"
             end
           >
             Incidents
           </NavLink>
 
-          <NavLink href="/services" class="hover:text-green-500 text-zinc-400">
+          <NavLink href="/services" class="hover:text-green-500 text-zinc-500">
             Services
           </NavLink>
 
