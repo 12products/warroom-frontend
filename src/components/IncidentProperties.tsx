@@ -1,14 +1,14 @@
 import { Accessor, Component } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
-import { User } from '../types/user'
 import IncidentProperty from './IncidentProperty'
 import {
   incidentStatusOptions,
   incidentSeverityOptions,
   Incident,
-} from '../types/incident'
-import { DropdownOption } from '../types/ui'
+  User,
+  DropdownOption,
+} from '../types'
 
 type Props = {
   incident: Accessor<Incident>
@@ -29,8 +29,8 @@ const IncidentProperties: Component<Props> = ({ incident }) => {
 
   if (incident()?.assignee) {
     defaultUserOptions.push({
-      id: incident().assignee.id,
-      label: incident().assignee.firstName,
+      id: incident()?.assignee.id,
+      label: incident()?.assignee.firstName,
     })
   }
 

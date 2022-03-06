@@ -1,13 +1,12 @@
 import { Component, Show } from 'solid-js'
-import { CreateModalProps } from '../../types/ui'
+import { CreateModalProps, HandleOnUpdateProps } from '../../types'
 
 import CreateStatusMessageForm from '../forms/CreateStatusMessageForm'
 import Modal from './Modal'
 
-const CreateStatusMessageModal: Component<CreateModalProps> = ({
-  setShouldDisplay,
-  getShouldDisplay,
-}) => {
+const CreateStatusMessageModal: Component<
+  CreateModalProps & HandleOnUpdateProps
+> = ({ setShouldDisplay, getShouldDisplay, handleOnUpdate }) => {
   const handleOnCreateStatusMessage = () => {
     setShouldDisplay(false)
   }
@@ -16,6 +15,7 @@ const CreateStatusMessageModal: Component<CreateModalProps> = ({
       <Modal setShouldDisplay={setShouldDisplay}>
         <CreateStatusMessageForm
           onCreateStatusMessage={handleOnCreateStatusMessage}
+          handleOnUpdate={handleOnUpdate}
         />
       </Modal>
     </Show>

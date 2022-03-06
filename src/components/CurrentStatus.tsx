@@ -1,8 +1,7 @@
 import { Component, Show, For, Accessor } from 'solid-js'
 
-import { Incident, IncidentStatus } from '../types/incident'
+import { Incident, IncidentStatus } from '../types'
 import { getIncidentStyles } from '../utils/incidents'
-import { getIncidentSeverityIcon } from './IncidentSeverityIcons'
 
 type Props = {
   incidents: Accessor<Incident[]>

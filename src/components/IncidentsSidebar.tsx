@@ -1,9 +1,12 @@
-import { Component, For, Show } from 'solid-js'
+import { Component, For } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
 import IncidentsSidebarItem from './IncidentsSidebarItem'
-import { IncidentsSidebarItem as IncidentsSidebarItemType } from '../types/ui'
-import { Service } from '../types/service'
+import {
+  IncidentsSidebarItem as IncidentsSidebarItemType,
+  Service,
+} from '../types'
+import CreateIncidentButton from './modals/CreateIncidentButton'
 
 const GET_SERVICES = `
   query {
@@ -27,6 +30,7 @@ const IncidentsSidebar: Component = () => {
   return (
     <aside class="col-span-1">
       <div class="shadow shadow-zinc-900/50 bg-zinc-800 border border-zinc-700 rounded p-4 text-sm text-zinc-300 space-y-4">
+        <CreateIncidentButton />
         <section class="space-y-1">
           <For each={SIDEBAR_ITEMS}>
             {(sidebarItem) => <IncidentsSidebarItem item={sidebarItem} />}
