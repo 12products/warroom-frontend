@@ -25,12 +25,15 @@ const FormToggle: Component<Props> = ({ field, label, value, onSelected }) => {
   }
 
   return (
-    <div
-      class="hover:cursor-pointer space-y-2 text-zinc-500 text-sm"
-      onClick={handleToggle}
-    >
-      <div>{label}</div>
-      <div class="rounded-full w-10 bg-zinc-700 border border-zinc-400 border-opacity-25 flex relative">
+    <div class="space-y-2 text-zinc-500 text-sm">
+      <div class="hover:cursor-pointer" onClick={handleToggle}>
+        {label}
+      </div>
+
+      <div
+        onClick={handleToggle}
+        class="hover:cursor-pointer rounded-full w-10 bg-zinc-700 border border-zinc-400 border-opacity-25 flex relative"
+      >
         <div
           style={{ 'margin-left': value() ? '1.07rem' : '0' }}
           class={classnames([

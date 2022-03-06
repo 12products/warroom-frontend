@@ -1,4 +1,4 @@
-import { Component, createSignal, Show } from 'solid-js'
+import { Component, createSignal, onMount, Show } from 'solid-js'
 import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation } from 'solid-urql'
@@ -9,6 +9,7 @@ import Input from '../Input'
 import ErrorAlert from '../ErrorAlert'
 import FormToggle from '../FormToggle'
 import { HandleOnUpdateProps, EventType } from '../../types'
+import flatpickr from 'flatpickr'
 
 const CREATE_EVENT = `
   mutation ($input: CreateEventInput!) {
@@ -64,12 +65,25 @@ const CreateEventForm: Component<Props> = ({
     }
   }
 
+  let datePicker: HTMLInputElement
+
+  onMount(() => {
+    flatpickr(datePicker as Node, {
+      defaultDate: 'today',
+      enableTime: true,
+      altInput: true,
+      altFormat: 'F j, Y  H:i',
+      dateFormat: 'Y-m-d H:i',
+    })
+  })
+
   const handleOnSubmit = async (
     form: FormType.Context<{
       message: string
       detectionEvent: boolean
       causeEvent: boolean
       resolutionEvent: boolean
+      eventDate: string
     }>
   ) => {
     let eventType = EventType.GENERIC
@@ -87,10 +101,11 @@ const CreateEventForm: Component<Props> = ({
         text: form.values.message,
         type: eventType,
         incidentId,
+        eventDate: new Date(form.values.eventDate),
       },
     }
-
     await createEvent(variables)
+
     handleOnUpdate(createMutationResult().data)
     onCreateEvent()
   }
@@ -102,17 +117,21 @@ const CreateEventForm: Component<Props> = ({
         detectionEvent: false,
         causeEvent: false,
         resolutionEvent: false,
+        eventDate: '',
       }}
       validation={{
         message: Yup.string().required(),
         detectionEvent: Yup.boolean(),
         causeEvent: Yup.boolean(),
         resolutionEvent: Yup.boolean(),
+        eventDate: Yup.string(),
       }}
       onSubmit={async (form) => handleOnSubmit(form)}
     >
       <div class="space-y-4">
         <Input name="message" label="Message" />
+        {/*@ts-ignore*/}
+        <Input name="eventDate" label="Event Date" ref={datePicker} />
         <FormToggle
           label="Cause Event"
           field="causeEvent"

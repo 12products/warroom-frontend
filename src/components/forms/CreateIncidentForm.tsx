@@ -91,6 +91,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
       altInput: true,
       altFormat: 'F j, Y',
       dateFormat: 'Y-m-d',
+      defaultDate: 'today',
     })
   })
 
