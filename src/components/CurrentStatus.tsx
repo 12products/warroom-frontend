@@ -1,6 +1,6 @@
 import { Component, Show, For, Accessor } from 'solid-js'
 
-import { Incident, IncidentStatus } from '../types/incident'
+import { Incident, IncidentStatus } from '../types'
 import { getIncidentStyles } from '../utils/incidents'
 
 type Props = {

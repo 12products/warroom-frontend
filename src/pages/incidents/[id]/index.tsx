@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Component, createEffect, createSignal, Show } from 'solid-js'
 import { useParams } from 'solid-app-router'
 import { createQuery } from 'solid-urql'
@@ -8,11 +9,7 @@ import IncidentProperties from '../../../components/IncidentProperties'
 import IncidentActionItems from '../../../components/IncidentActionItems'
 import IncidentSummary from '../../../components/IncidentSummary'
 import IncidentWarRoom from '../../../components/IncidentWarRoom'
-import {
-  HandleOnUpdateProps,
-  Incident as IncidentType,
-  IncidentUpdateProps,
-} from '../../../types'
+import { Incident as IncidentType, IncidentUpdateProps } from '../../../types'
 
 const INCIDENT_QUERY = `
   query ($id: ID!) {
@@ -63,7 +60,7 @@ const Incident: Component = () => {
       ...incidentResult()?.incidentEventTime,
     })
   })
-  //handleCreateEvent
+
   const handleOnUpdate = ({ event, statusMessage }: IncidentUpdateProps) => {
     if (incident()) {
       const prevIncident = incident() as IncidentType
@@ -83,17 +80,13 @@ const Incident: Component = () => {
     }
   }
 
-  // signal: incident
-  // create effect sets the incident after fetch
-  // handler functions for messages, events that update incident signal
-  // add date to event
-
   return (
     <AppLayout>
-      <Show when={!incidentState().fetching} fallback={<p>Loading...</p>}>
+      <Show when={incident()} fallback={<p>Loading...</p>}>
         <div class="grid grid-cols-4 gap-4">
           <div class="col-span-3 space-y-4">
             <IncidentSummary incident={incident} />
+
             <IncidentDetails
               incident={incident}
               handleOnUpdate={handleOnUpdate}
@@ -104,7 +97,6 @@ const Incident: Component = () => {
             <IncidentProperties incident={incident} />
 
             <IncidentWarRoom roomURL={incident()?.roomURL} />
-
             <IncidentActionItems incident={incident} />
           </div>
         </div>

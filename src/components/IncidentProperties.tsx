@@ -11,7 +11,7 @@ import {
 } from '../types'
 
 type Props = {
-  incident: Accessor<Incident | undefined>
+  incident: Accessor<Incident>
 }
 
 const GET_USERS = `
@@ -29,8 +29,8 @@ const IncidentProperties: Component<Props> = ({ incident }) => {
 
   if (incident()?.assignee) {
     defaultUserOptions.push({
-      id: incident()?.assignee.id || '',
-      label: incident()?.assignee.firstName || '',
+      id: incident()?.assignee.id,
+      label: incident()?.assignee.firstName,
     })
   }
 
@@ -44,19 +44,19 @@ const IncidentProperties: Component<Props> = ({ incident }) => {
     <section class="bg-zinc-800 border border-zinc-700 rounded p-4 text-sm shadow shadow-zinc-900/50">
       <IncidentProperty
         label="Status"
-        selected={incident()?.status || null}
+        selected={incident()?.status}
         options={() => incidentStatusOptions}
       />
 
       <IncidentProperty
         label="Severity"
-        selected={incident()?.severity || null}
+        selected={incident()?.severity}
         options={() => incidentSeverityOptions}
       />
 
       <IncidentProperty
         label="Assignee"
-        selected={incident()?.assignee?.id || null}
+        selected={incident()?.assignee?.id}
         options={userOptions}
       />
     </section>

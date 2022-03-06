@@ -32,7 +32,7 @@ const SECTIONS = {
 }
 
 type Props = HandleOnUpdateProps & {
-  incident: Accessor<Incident | undefined>
+  incident: Accessor<Incident>
 }
 
 const IncidentDetails: Component<Props> = ({ incident, handleOnUpdate }) => {

@@ -4,7 +4,7 @@ import { Event, Incident } from '../types'
 import IncidentEvent from './IncidentEvent'
 
 type Props = {
-  incident: Accessor<Incident | undefined>
+  incident: Accessor<Incident>
 }
 
 const IncidentEventsEmptyState: Component = () => {
