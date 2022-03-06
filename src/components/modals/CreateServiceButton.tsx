@@ -2,7 +2,7 @@ import { Component, createSignal } from 'solid-js'
 import { FiPlus } from 'solid-icons/fi'
 import classnames from 'classnames'
 
-import CreateServiceModal from './createServiceModal'
+import CreateServiceModal from '../modals/CreateServiceModal'
 
 const CreateServiceButton: Component = () => {
   const [getShouldDisplayServiceForm, setShouldDisplayServiceForm] =
