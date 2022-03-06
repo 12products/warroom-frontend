@@ -1,11 +1,11 @@
 import { useContext } from 'solid-js'
 import { createClient } from 'solid-urql'
-const { GQL_URL } = import.meta.env
+const { VITE_GQL_URL } = import.meta.env
 
 import { AuthContext } from '../context/AuthProvider'
 
 export const client = createClient({
-  url: GQL_URL,
+  url: VITE_GQL_URL,
   fetchOptions: () => {
     const [{ session }, _] = useContext(AuthContext)
     const token = session?.access_token || ''
