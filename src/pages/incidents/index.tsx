@@ -1,4 +1,4 @@
-import { Component, Suspense } from 'solid-js'
+import { Component } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
 import AppLayout from '../../components/layouts/AppLayout'
@@ -9,9 +9,11 @@ const GET_INCIDENTS = `
   query {
     incidents {
       id
+      status
       title
       incidentDate
       severity
+      tag
     }
   }
 `

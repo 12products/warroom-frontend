@@ -5,7 +5,6 @@ import { IoPersonCircleOutline } from 'solid-icons/io'
 import { AuthContext } from '../context/AuthProvider'
 import { getUseDirectives } from '../utils/directives'
 import onClickOutside from '../directives/onClickOutside'
-import DropdownOption from './DropdownOption'
 
 const UserMenu: Component = () => {
   const navigate = useNavigate()
@@ -21,7 +20,7 @@ const UserMenu: Component = () => {
     <div class="text-zinc-400 relative">
       <IoPersonCircleOutline
         size={24}
-        class="hover:text-white hover:cursor-pointer"
+        class="hover:text-green-500 hover:cursor-pointer"
         onClick={() => setShowMenu(true)}
       />
 

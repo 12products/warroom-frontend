@@ -1,5 +1,6 @@
-import { Component, Show } from 'solid-js'
-import { useNavigate, useParams } from 'solid-app-router'
+// @ts-nocheck
+import { Component, createEffect, createSignal, Show } from 'solid-js'
+import { useParams } from 'solid-app-router'
 import { createQuery } from 'solid-urql'
 
 import AppLayout from '../../../components/layouts/AppLayout'
@@ -8,6 +9,7 @@ import IncidentProperties from '../../../components/IncidentProperties'
 import IncidentActionItems from '../../../components/IncidentActionItems'
 import IncidentSummary from '../../../components/IncidentSummary'
 import IncidentWarRoom from '../../../components/IncidentWarRoom'
+import { Incident as IncidentType, IncidentUpdateProps } from '../../../types'
 
 const INCIDENT_QUERY = `
   query ($id: ID!) {
@@ -46,29 +48,55 @@ const INCIDENT_QUERY = `
 
 const Incident: Component = () => {
   const params = useParams()
+  const [incident, setIncident] = createSignal<IncidentType>()
   const [incidentResult, incidentState] = createQuery({
     query: INCIDENT_QUERY,
     variables: { id: params.id },
   })
-  const incident = () => ({
-    ...incidentResult()?.incident,
-    ...incidentResult()?.incidentEventTime,
+
+  createEffect(() => {
+    setIncident({
+      ...incidentResult()?.incident,
+      ...incidentResult()?.incidentEventTime,
+    })
   })
+
+  const handleOnUpdate = ({ event, statusMessage }: IncidentUpdateProps) => {
+    if (incident()) {
+      const prevIncident = incident() as IncidentType
+
+      if (event) {
+        prevIncident.events = [...incidentResult()?.incident.events, event]
+      }
+
+      if (statusMessage) {
+        prevIncident.statusMessage = [
+          ...incidentResult()?.incident.statusMessage,
+          statusMessage,
+        ]
+      }
+
+      setIncident(prevIncident)
+    }
+  }
 
   return (
     <AppLayout>
-      <Show when={!incidentState().fetching} fallback={<p>Loading...</p>}>
+      <Show when={incident()} fallback={<p>Loading...</p>}>
         <div class="grid grid-cols-4 gap-4">
           <div class="col-span-3 space-y-4">
             <IncidentSummary incident={incident} />
-            <IncidentDetails incident={incident} />
+
+            <IncidentDetails
+              incident={incident}
+              handleOnUpdate={handleOnUpdate}
+            />
           </div>
 
           <div class="space-y-4">
             <IncidentProperties incident={incident} />
 
             <IncidentWarRoom roomURL={incident()?.roomURL} />
-
             <IncidentActionItems incident={incident} />
           </div>
         </div>

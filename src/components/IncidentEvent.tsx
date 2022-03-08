@@ -1,7 +1,7 @@
 import { Component } from 'solid-js'
 import { format } from 'date-fns'
 
-import { Event } from '../types/event'
+import { Event } from '../types'
 
 type Props = {
   event: Event

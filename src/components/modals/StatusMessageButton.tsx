@@ -1,9 +1,12 @@
 import { Component, createSignal } from 'solid-js'
 
+import { HandleOnUpdateProps } from '../../types'
 import CreateButton from './CreateButton'
 import CreateStatusMessageModal from './CreateStatusMessage'
 
-const CreateStatusMessageButton: Component = () => {
+const CreateStatusMessageButton: Component<HandleOnUpdateProps> = ({
+  handleOnUpdate,
+}) => {
   const [getShouldDisplayStatusMessage, setShouldDisplayStatusMessage] =
     createSignal(false)
 
@@ -17,6 +20,7 @@ const CreateStatusMessageButton: Component = () => {
       <CreateStatusMessageModal
         getShouldDisplay={getShouldDisplayStatusMessage}
         setShouldDisplay={setShouldDisplayStatusMessage}
+        handleOnUpdate={handleOnUpdate}
       />
     </>
   )

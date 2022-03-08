@@ -1,7 +1,6 @@
 import { Accessor, Component, For } from 'solid-js'
 
-import { Event } from '../types/event'
-import { Incident } from '../types/incident'
+import { Event, Incident } from '../types'
 import IncidentEvent from './IncidentEvent'
 
 type Props = {
@@ -20,7 +19,7 @@ const IncidentEventsEmptyState: Component = () => {
 const IncidentEvents: Component<Props> = ({ incident }) => {
   return (
     <section class="text-sm p-8 space-y-8">
-      <For each={incident().events} fallback={<IncidentEventsEmptyState />}>
+      <For each={incident()?.events} fallback={<IncidentEventsEmptyState />}>
         {(event: Event) => <IncidentEvent event={event} />}
       </For>
     </section>

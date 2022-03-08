@@ -31,7 +31,7 @@ const IncidentsTableEmptyState: Component = () => {
 
 const IncidentsTable: Component<Props> = ({ incidents }) => {
   return (
-    <div class="col-span-3 ">
+    <div class="col-span-3">
       <section class="border border-zinc-700 rounded text-sm text-zinc-300 shadow shadow-zinc-900/50">
         <For each={incidents()} fallback={<IncidentsTableEmptyState />}>
           {(incident: Incident) => <IncidentRow incident={incident} />}

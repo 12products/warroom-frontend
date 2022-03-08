@@ -1,6 +1,6 @@
 import { Component } from 'solid-js'
 
-import { IncidentActionItem as IncidentActionItemType } from '../types/incident'
+import { IncidentActionItem as IncidentActionItemType } from '../types'
 
 type Props = {
   actionItem: IncidentActionItemType

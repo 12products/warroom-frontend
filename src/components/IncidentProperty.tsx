@@ -2,13 +2,13 @@ import { Accessor, Component, createEffect, createSignal } from 'solid-js'
 import { createMutation } from 'solid-urql'
 import { useParams } from 'solid-app-router'
 
-import { DropdownOption } from '../types/ui'
+import { DropdownOption } from '../types'
 import Dropdown from './Dropdown'
 import { getOption } from '../utils/getOption'
 
 const UPDATE_INCIDENT_MUTATION = `
   mutation($input: UpdateIncidentInput!) {
-    updateIncident(updateIncidentInput: $input){
+    updateIncident(updateIncidentInput: $input) {
       id
     }
   }

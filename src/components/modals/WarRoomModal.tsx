@@ -6,6 +6,7 @@ import {
   Show,
   Switch,
   Match,
+  useContext,
 } from 'solid-js'
 import { useParams } from 'solid-app-router'
 import { createQuery } from 'solid-urql'
@@ -17,7 +18,7 @@ import { FaSolidDoorOpen } from 'solid-icons/fa'
 import onClickOutside from '../../directives/onClickOutside'
 import { getUseDirectives } from '../../utils/directives'
 import { Portal } from 'solid-js/web'
-import { ModalProps } from '../../types/ui'
+import { WarRoomContext } from '../../context/WarRoomProvider'
 
 const GET_ROOM_URL = `
   query incidentRoomURL($id: ID!) {
@@ -25,24 +26,19 @@ const GET_ROOM_URL = `
   }
 `
 
-const WarRoomModal: Component<ModalProps> = ({ setShouldDisplay }) => {
-  const params = useParams()
-  const [roomURLResult] = createQuery({
-    query: GET_ROOM_URL,
-    variables: { id: params.id },
-  })
-  const roomURL = () => roomURLResult()?.incidentRoomURL
+const WarRoomModal: Component = () => {
+  const [state, { joinRoom, leaveRoom }] = useContext(WarRoomContext)
+
   const [getIsMinimized, setIsMinimized] = createSignal(false)
-  const [getIsInWarRoom, setIsInWarRoom] = createSignal(false)
 
   let iframe: any
 
   createEffect(() => {
     let callFrame: any
 
-    if (roomURL() && iframe) {
+    if (state.url && iframe) {
       callFrame = DailyIframe.wrap(iframe, {
-        url: roomURL(),
+        url: state.url,
       })
 
       callFrame.setTheme({
@@ -63,7 +59,7 @@ const WarRoomModal: Component<ModalProps> = ({ setShouldDisplay }) => {
       callFrame.join()
 
       callFrame.on('joined-meeting', () => {
-        setIsInWarRoom(true)
+        joinRoom()
       })
     }
 
@@ -86,10 +82,7 @@ const WarRoomModal: Component<ModalProps> = ({ setShouldDisplay }) => {
         ])}
       >
         <div
-          ref={getUseDirectives([
-            onClickOutside,
-            () => setShouldDisplay(false),
-          ])}
+          ref={getUseDirectives([onClickOutside, () => setIsMinimized(true)])}
           class="flex flex-col items-center"
         >
           <div
@@ -106,7 +99,7 @@ const WarRoomModal: Component<ModalProps> = ({ setShouldDisplay }) => {
               allow="microphone; camera; autoplay; display-capture"
             />
 
-            <Show when={getIsInWarRoom()}>
+            <Show when={state.isInRoom}>
               <div class="absolute bottom-0 right-0 text-xs py-1.5 px-4 space-x-4 flex justify-center items-center text-zinc-300">
                 <div
                   onClick={() => setIsMinimized(!getIsMinimized())}
@@ -130,7 +123,7 @@ const WarRoomModal: Component<ModalProps> = ({ setShouldDisplay }) => {
                 </div>
 
                 <div
-                  onClick={() => setShouldDisplay(false)}
+                  onClick={() => leaveRoom()}
                   class="hover:cursor-pointer flex flex-col items-center space-y-1"
                 >
                   <FaSolidDoorOpen size={20} />

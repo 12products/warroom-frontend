@@ -1,6 +1,6 @@
 import { Component } from 'solid-js'
 
-import { DropdownOption as DropdownOptionType } from '../types/ui'
+import { DropdownOption as DropdownOptionType } from '../types'
 
 type Props = {
   onClick: (id: string) => void

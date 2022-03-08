@@ -1,11 +1,10 @@
-import { Component, createSignal, Show, useContext } from 'solid-js'
+import { Component, Show, useContext } from 'solid-js'
 import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
 
 import Input from '../Input'
 import Button from '../Button'
-import ErrorAlert from '../ErrorAlert'
 import { AuthContext } from '../../context/AuthProvider'
 
 const GET_USER = `
@@ -27,7 +26,7 @@ const UPDATE_USER = `
   }
 `
 
-const SignIn: Component = () => {
+const UpdateUserForm: Component = () => {
   const [{ user: authUser }] = useContext(AuthContext)
   const [userResults] = createQuery({
     query: GET_USER,
@@ -67,4 +66,4 @@ const SignIn: Component = () => {
   )
 }
 
-export default SignIn
+export default UpdateUserForm
