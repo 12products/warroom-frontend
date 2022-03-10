@@ -1,10 +1,10 @@
 import { Component, onMount, Show } from 'solid-js'
-import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation, createQuery } from 'solid-urql'
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/flatpickr.min.css'
 
+import { Form, FormType } from '../../lib/form'
 import Button from '../Button'
 import Input from '../Input'
 import FormDropdown from '../FormDropdown'

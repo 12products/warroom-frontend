@@ -6,8 +6,9 @@ import {
   Match,
   Switch,
 } from 'solid-js'
-import { useField } from 'solid-js-form'
 import classnames from 'classnames'
+
+import { useField } from '../lib/form'
 
 type Props = {
   field: string

@@ -1,7 +1,7 @@
 import { Accessor, Component, createSignal, Show } from 'solid-js'
-import { useField } from 'solid-js-form'
 import { DropdownOption } from '../types'
 
+import { useField } from '../lib/form'
 import Dropdown from './Dropdown'
 
 type Props = {

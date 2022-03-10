@@ -1,6 +1,7 @@
 import { Component } from 'solid-js'
-import { useField } from 'solid-js-form'
 import classnames from 'classnames'
+
+import { useField } from '../lib/form'
 
 type Props = {
   ref?: any

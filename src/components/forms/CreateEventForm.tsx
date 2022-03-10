@@ -1,9 +1,9 @@
 import { Component, createSignal, onMount, Show } from 'solid-js'
-import { Form, FormType } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation } from 'solid-urql'
 import { useParams } from 'solid-app-router'
 
+import { Form, FormType } from '../../lib/form'
 import Button from '../Button'
 import Input from '../Input'
 import ErrorAlert from '../ErrorAlert'

@@ -1,9 +1,9 @@
 import { Component, useContext, Show } from 'solid-js'
-import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
 import { createMutation, createQuery } from 'solid-urql'
 
+import { Form } from '../../lib/form'
 import Input from '../Input'
 import Button from '../Button'
 import { AuthContext } from '../../context/AuthProvider'

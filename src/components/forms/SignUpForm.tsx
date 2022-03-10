@@ -1,10 +1,10 @@
 import { Component, createSignal, Show } from 'solid-js'
-import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { useNavigate } from 'solid-app-router'
 import YupPassword from 'yup-password'
 YupPassword(Yup) // extend yup
 
+import { Form } from '../../lib/form'
 import Input from '../Input'
 import Button from '../Button'
 import { supabase } from '../../lib/supabase'
@@ -18,7 +18,7 @@ const SignUp: Component = () => {
     <Form
       initialValues={{ email: '', password: '' }}
       validation={{
-        email: Yup.string().required('Email is required'),
+        email: Yup.string().email('Please enter a valid email').required(),
         password: Yup.string()
           .required('Please enter your password')
           .min(6, 'Password must contain 6 characters')

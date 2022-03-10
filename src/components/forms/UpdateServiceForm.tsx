@@ -1,8 +1,8 @@
 import { Component, createSignal, Show } from 'solid-js'
-import { Form } from 'solid-js-form'
 import * as Yup from 'yup'
 import { createMutation } from 'solid-urql'
 
+import { Form } from '../../lib/form'
 import Input from '../Input'
 import Button from '../Button'
 import FormDropdown from '../FormDropdown'
