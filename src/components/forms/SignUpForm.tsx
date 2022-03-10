@@ -18,7 +18,7 @@ const SignUp: Component = () => {
     <Form
       initialValues={{ email: '', password: '' }}
       validation={{
-        email: Yup.string().email('Email must be valid').required(),
+        email: Yup.string().required('Email is required'),
         password: Yup.string()
           .required('Please enter your password')
           .min(6, 'Password must contain 6 characters')

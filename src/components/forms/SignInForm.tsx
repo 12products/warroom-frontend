@@ -16,7 +16,7 @@ const SignIn: Component = () => {
     <Form
       initialValues={{ email: '', password: '' }}
       validation={{
-        email: Yup.string().email().required(),
+        email: Yup.string().required('Email is required'),
         password: Yup.string().required(),
       }}
       onSubmit={async ({ values: { email, password } }) => {

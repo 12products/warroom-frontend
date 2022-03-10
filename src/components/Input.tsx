@@ -35,9 +35,8 @@ const Input: Component<Props> = ({
           inputClass,
         ])}
         name={name}
-        // @ts-ignore
-        value={field.value()}
         type={type}
+        // @ts-ignore
         use:formHandler
       />
 
