@@ -1300,19 +1300,6 @@ solid-icons@^0.3.3:
   resolved "https://registry.yarnpkg.com/solid-icons/-/solid-icons-0.3.3.tgz#2bbec35509c1a5cba6fa749d6bfb602a1dd428fd"
   integrity sha512-lZ2d83D6KIv10sXaGZcUvymlAt/mCxGYGsbfXZbRvSH7Ojb7cmS6MRlZxcSrXKY0ntGobquN9xRjWoK0hOUqQA==
 
-solid-js-form@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/solid-js-form/-/solid-js-form-0.1.5.tgz#052748ccefc1f8cf043661a26eb28e9000f7b1fc"
-  integrity sha512-IxJLlbdJvlFgHDotvLreq6jTk7RXI3lWW6GErqS1jJMjeGWsRNDCuUhIz+zs5xcHrPc4hOBXbY9Wg2hKEKk/BA==
-  dependencies:
-    solid-js "^1.1.2"
-    yup "^0.32.9"
-
-solid-js@^1.1.2:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.3.7.tgz#4d9568544143ddee2fc4a18fb69e110571012d83"
-  integrity sha512-YAz0NQhIZ8yCR2VZK8aMjNrWMU4gnmCgzqy7EpMF7WsyWV3PSoO3HvDs3kR75Ejk/a4ohfxQNiLhC9TOQltXSA==
-
 solid-js@^1.3.3:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.3.5.tgz#77899623b04ee75a302a12d16897d7c5a873508e"
@@ -1523,7 +1510,7 @@ yup-password@^0.2.2:
   resolved "https://registry.yarnpkg.com/yup-password/-/yup-password-0.2.2.tgz#07169da2aa246dd9e389075596175b95f7f994b9"
   integrity sha512-2PHfqGWtbXg4OfDV7VKFIb3hyEaYgTYpEORnFqgGAYqzENWmGzWMoeGvJg2Ohmq6maTRxhJzLZpNTITrqlZTrA==
 
-yup@^0.32.9:
+yup@^0.32.11:
   version "0.32.11"
   resolved "https://registry.yarnpkg.com/yup/-/yup-0.32.11.tgz#d67fb83eefa4698607982e63f7ca4c5ed3cf18c5"
   integrity sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==
