@@ -1,15 +1,15 @@
 import { Component, Show } from 'solid-js'
-import { CreateModalProps } from '../../types/ui'
+import { CreateModalProps, HandleOnUpdateProps, Incident } from '../../types'
 
 import CreateIncidentForm from '../forms/CreateIncidentForm'
 import Modal from './Modal'
 
-const CreateIncidentModal: Component<CreateModalProps> = ({
-  setShouldDisplay,
-  getShouldDisplay,
-}) => {
-  const handleOnCreateIncident = () => {
+const CreateIncidentModal: Component<
+  CreateModalProps & HandleOnUpdateProps
+> = ({ setShouldDisplay, getShouldDisplay, handleOnUpdate }) => {
+  const handleOnCreateIncident = (incident: Incident) => {
     setShouldDisplay(false)
+    handleOnUpdate({ incident })
   }
   return (
     <Show when={getShouldDisplay()}>

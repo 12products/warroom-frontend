@@ -69,8 +69,6 @@ const Incident: Component = () => {
         prevIncident.events = [...incidentResult()?.incident.events, event]
       }
 
-      console.log({ prevIncident })
-
       if (statusMessage) {
         prevIncident.statusMessage = [
           ...incidentResult()?.incident.statusMessage,

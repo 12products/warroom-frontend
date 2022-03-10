@@ -5,6 +5,7 @@ import { useParams } from 'solid-app-router'
 import IncidentsSidebar from '../../components/IncidentsSidebar'
 import IncidentsTable from '../../components/IncidentsTable'
 import AppLayout from '../../components/layouts/AppLayout'
+import { Incident } from '../../types'
 
 const GET_INCIDENTS_BY_SERVICES = `
   query($id: ID!) {
@@ -31,7 +32,7 @@ const fetchIncidentsByServiceId = async (serviceId: string) => {
 const Incidents: Component = () => {
   const params = useParams()
   const [getServiceId, setServiceId] = createSignal<string | null>(null)
-  const [getIncidents, setIncidents] = createSignal([])
+  const [getIncidents, setIncidents] = createSignal<Incident[]>([])
 
   createEffect(async () => {
     if (params.id !== getServiceId()) {
@@ -40,11 +41,20 @@ const Incidents: Component = () => {
     }
   })
 
+  const handleOnUpdate = ({ incident }: { incident?: Incident }) => {
+    if (incident) {
+      setIncidents([incident, ...getIncidents()])
+    }
+  }
+
   return (
     <AppLayout>
       <main class="grid gap-4 grid-cols-4">
         <IncidentsSidebar />
-        <IncidentsTable incidents={getIncidents} />
+        <IncidentsTable
+          incidents={getIncidents}
+          handleOnUpdate={handleOnUpdate}
+        />
       </main>
     </AppLayout>
   )

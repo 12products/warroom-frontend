@@ -107,7 +107,6 @@ const CreateEventForm: Component<Props> = ({
       },
     }
     await createEvent(variables)
-    console.log('Data', createMutationResult().data)
     handleOnUpdate({ event: createMutationResult().data })
     onCreateEvent()
   }
