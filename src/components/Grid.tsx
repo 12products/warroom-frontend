@@ -50,7 +50,7 @@ const Grid: Component = () => {
 
       <style>{`
         .grid-container {
-          transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+          transform: rotateX(65deg) rotateY(0deg) rotateZ(-45deg);
         }
         .cell:hover {
           box-shadow: 0px 0px 25px 2px rgba(72, 187, 120, 1);

@@ -5,7 +5,7 @@ import { createMutation } from 'solid-urql'
 
 import { Service } from '../types/service'
 import { getServiceStatusIcon } from './ServiceStatusIcons'
-import EditDropdown from './EditDropDown'
+import EditDropdown from './EditDropdown'
 import UpdateService from './modals/UpdateServiceModal'
 
 const REMOVE_SERVICE = `
