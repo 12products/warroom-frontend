@@ -1,7 +1,6 @@
 import { Component, For } from 'solid-js'
 import { createQuery } from 'solid-urql'
 
-import StatusSidebar from './StatusSidebar'
 import IncidentsSidebarItem from './IncidentsSidebarItem'
 import {
   IncidentsSidebarItem as IncidentsSidebarItemType,
@@ -52,8 +51,6 @@ const IncidentsSidebar: Component = () => {
             )}
           </For>
         </section>
-
-        <StatusSidebar />
       </div>
     </aside>
   )
