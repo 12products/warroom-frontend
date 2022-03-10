@@ -36,7 +36,7 @@ const Home: Component = () => {
 
       <main class="max-w-7xl mx-auto space-y-40 md:space-y-60">
         <section class="md:flex items-center space-y-10 md:space-y-0">
-          <div class="md:w-1/2 bg-zinc-700 bg-opacity-50 p-10 rounded">
+          <div class="md:w-1/2 p-10 rounded">
             <h2 class="text-3xl md:text-4xl leading-none font-bold mb-4">
               An intelligent status page
             </h2>
@@ -164,7 +164,7 @@ const Home: Component = () => {
             </div>
           </div>
 
-          <div class="md:w-1/2 bg-zinc-700 bg-opacity-50 p-10 rounded">
+          <div class="md:w-1/2 p-10 rounded">
             <h2 class="text-3xl md:text-4xl leading-none font-bold mb-6">
               Centralized effort
             </h2>
@@ -231,7 +231,7 @@ const Home: Component = () => {
         </section>
 
         <section class="md:flex items-center space-y-10 md:space-y-0 md:space-x-10">
-          <div class="md:w-1/2 bg-zinc-700 bg-opacity-50 p-10 rounded">
+          <div class="md:w-1/2 p-10 rounded">
             <h2 class="text-3xl md:text-4xl leading-none font-bold mb-6">
               A history of events
             </h2>
@@ -336,7 +336,7 @@ const Home: Component = () => {
             </div>
           </div>
 
-          <div class="md:w-1/2 bg-zinc-700 bg-opacity-50 p-10 rounded">
+          <div class="md:w-1/2 p-10 rounded">
             <h2 class="text-3xl md:text-4xl leading-none font-bold mb-6">
               Remove silos, embrace learnings
             </h2>
