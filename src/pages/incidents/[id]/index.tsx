@@ -36,7 +36,7 @@ const INCIDENT_QUERY = `
       }
       events {
         text
-        createdAt
+        eventDate
       }
     }
     incidentEventTime(id: $id) {
@@ -68,6 +68,8 @@ const Incident: Component = () => {
       if (event) {
         prevIncident.events = [...incidentResult()?.incident.events, event]
       }
+
+      console.log({ prevIncident })
 
       if (statusMessage) {
         prevIncident.statusMessage = [

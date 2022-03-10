@@ -14,6 +14,9 @@ const CREATE_STATUS_MESSAGE = `
   mutation ($input: CreateStatusMessageInput!) {
     createStatusMessage(createStatusMessageInput: $input){
       id
+      status
+      createdAt
+      text
     }
   }
 `

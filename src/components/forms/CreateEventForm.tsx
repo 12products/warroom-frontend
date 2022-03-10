@@ -15,6 +15,8 @@ const CREATE_EVENT = `
   mutation ($input: CreateEventInput!) {
     createEvent(createEventInput: $input){
       id
+      text
+      eventDate
     }
   }
 `
@@ -105,8 +107,8 @@ const CreateEventForm: Component<Props> = ({
       },
     }
     await createEvent(variables)
-
-    handleOnUpdate(createMutationResult().data)
+    console.log('Data', createMutationResult().data)
+    handleOnUpdate({ event: createMutationResult().data })
     onCreateEvent()
   }
 
@@ -117,7 +119,7 @@ const CreateEventForm: Component<Props> = ({
         detectionEvent: false,
         causeEvent: false,
         resolutionEvent: false,
-        eventDate: '',
+        eventDate: new Date().toISOString(),
       }}
       validation={{
         message: Yup.string().required(),
