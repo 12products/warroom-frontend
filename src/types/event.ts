@@ -1,7 +1,7 @@
 export type Event = {
   id: string
   text: string
-  createdAt: string
+  eventDate: string
 }
 
 export enum EventType {

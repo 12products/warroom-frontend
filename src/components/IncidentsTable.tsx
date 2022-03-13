@@ -2,14 +2,16 @@ import { Accessor, Component, createSignal, For } from 'solid-js'
 
 import Button from './Button'
 import IncidentRow from './IncidentRow'
-import { Incident } from '../types/incident'
+import { Incident, HandleOnUpdateProps } from '../types'
 import CreateIncidentModal from './modals/CreateIncidentModal'
 
-type Props = {
+type Props = HandleOnUpdateProps & {
   incidents: Accessor<Incident[]>
 }
 
-const IncidentsTableEmptyState: Component = () => {
+const IncidentsTableEmptyState: Component<HandleOnUpdateProps> = ({
+  handleOnUpdate,
+}) => {
   const [getShouldDisplay, setShouldDisplay] = createSignal(false)
 
   const handleCreateIncident = () => {
@@ -24,16 +26,22 @@ const IncidentsTableEmptyState: Component = () => {
       <CreateIncidentModal
         getShouldDisplay={getShouldDisplay}
         setShouldDisplay={setShouldDisplay}
+        handleOnUpdate={handleOnUpdate}
       />
     </>
   )
 }
 
-const IncidentsTable: Component<Props> = ({ incidents }) => {
+const IncidentsTable: Component<Props> = ({ incidents, handleOnUpdate }) => {
   return (
     <div class="col-span-3">
       <section class="border border-zinc-700 rounded text-sm text-zinc-300 shadow shadow-zinc-900/50">
-        <For each={incidents()} fallback={<IncidentsTableEmptyState />}>
+        <For
+          each={incidents()}
+          fallback={
+            <IncidentsTableEmptyState handleOnUpdate={handleOnUpdate} />
+          }
+        >
           {(incident: Incident) => <IncidentRow incident={incident} />}
         </For>
       </section>

@@ -1,6 +1,7 @@
 import { Accessor, Setter } from 'solid-js'
 import { StatusMessage } from './statusMessage'
 import { Event } from './event'
+import { Incident } from './incident'
 
 export type IncidentsSidebarItem = {
   title: string
@@ -24,6 +25,7 @@ export type ModalProps = {
 export type IncidentUpdateProps = {
   event?: Event
   statusMessage?: StatusMessage
+  incident?: Incident
 }
 
 export type HandleOnUpdateProps = {

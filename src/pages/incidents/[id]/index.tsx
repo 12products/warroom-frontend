@@ -36,7 +36,7 @@ const INCIDENT_QUERY = `
       }
       events {
         text
-        createdAt
+        eventDate
       }
     }
     incidentEventTime(id: $id) {

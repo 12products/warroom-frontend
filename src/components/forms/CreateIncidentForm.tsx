@@ -13,6 +13,7 @@ import {
   incidentSeverityOptions,
   Service,
   User,
+  Incident,
 } from '../../types'
 import ErrorAlert from '../ErrorAlert'
 
@@ -33,11 +34,16 @@ const CREATE_INCIDENT = `
   mutation ($input: CreateIncidentInput!) {
     createIncident(createIncidentInput: $input){
       id
+      status
+      title
+      incidentDate
+      severity
+      tag
     }
   }
 `
 type Props = {
-  onCreateIncident: () => void
+  onCreateIncident: (incident: Incident) => void
 }
 
 const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
@@ -80,7 +86,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
     }
     await createIncident(variables)
     if (!createMutationResult().error) {
-      onCreateIncident()
+      onCreateIncident(createMutationResult().data.createIncident)
     }
   }
 
@@ -101,7 +107,7 @@ const CreateIncidentForm: Component<Props> = ({ onCreateIncident }) => {
         initialValues={{
           title: '',
           description: '',
-          incidentDate: '',
+          incidentDate: new Date().toISOString(),
           severity: '',
           status: '',
           serviceId: '',

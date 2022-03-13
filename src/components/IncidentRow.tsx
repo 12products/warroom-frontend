@@ -1,9 +1,9 @@
-import { Component, Show } from 'solid-js'
+import { Component } from 'solid-js'
 import { useNavigate } from 'solid-app-router'
 import { format } from 'date-fns'
 
-import { Incident } from '../types/incident'
 import { getIncidentSeverityIcon } from './IncidentSeverityIcons'
+import { Incident } from '../types'
 
 type Props = {
   incident: Incident
